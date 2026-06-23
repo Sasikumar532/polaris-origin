@@ -8,6 +8,7 @@ const SITEMAP = [
     items: [
       { label: "Services", to: "/services" },
       { label: "Case Studies", to: "/case-studies" },
+      { label: "Blog", to: "/blog" },
       { label: "Book Consultation", to: "/contact" },
     ],
   },

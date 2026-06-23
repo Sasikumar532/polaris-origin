@@ -7,6 +7,7 @@ const NAV = [
   { label: "Services", to: "/services", id: "nav-services" },
   { label: "Case Studies", to: "/case-studies", id: "nav-case-studies" },
   { label: "About", to: "/about", id: "nav-about" },
+  { label: "Blog", to: "/blog", id: "nav-blog" },
   { label: "Careers", to: "/careers", id: "nav-careers" },
 ];
 

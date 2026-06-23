@@ -8,8 +8,10 @@ import {
   ShieldCheck,
   Quote,
   Minus,
+  Clock,
 } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
+import { POSTS } from "@/pages/Blog";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85";
@@ -448,6 +450,91 @@ export default function Home() {
                 Marisol Ortega · VP Revenue · Sequora AI
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BLOG TEASER */}
+      <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="home-blog-section">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
+            <div className="lg:col-span-6">
+              <SectionLabel index="(VII)" label="Field Notes · From the Firm" />
+              <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
+                Writing from the
+                <br />
+                <span className="font-display italic text-[#1f3a5f]">engagement floor</span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+              <p className="text-[16px] leading-[1.8] text-slate-600">
+                Long-form, partner-authored essays on outbound doctrine, the
+                pay-per-show-up model, deliverability discipline, and the
+                operating cadence of enterprise revenue. Published when we
+                have something to say — not on a schedule.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
+            {POSTS.slice(0, 3).map((p, i) => (
+              <article
+                key={p.slug}
+                data-testid={`home-blog-card-${p.slug}`}
+                className="group bg-white p-8 lg:p-10 flex flex-col reveal"
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
+                <div className="border border-slate-200 overflow-hidden">
+                  <img
+                    src={p.cover}
+                    alt={p.title}
+                    className="w-full h-[200px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+                <div className="mt-8 flex items-center justify-between">
+                  <span className="text-[11px] uppercase tracking-[0.28em] text-[#1f3a5f] font-medium">
+                    {p.category}
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.22em] text-slate-500 flex items-center gap-2">
+                    <Clock size={12} strokeWidth={1.5} />
+                    {p.readTime}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-[20px] lg:text-[22px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.2]">
+                  {p.title}
+                </h3>
+                <p className="mt-4 text-[14px] leading-[1.75] text-slate-600 flex-1">
+                  {p.excerpt}
+                </p>
+                <Link
+                  to={`/blog/${p.slug}`}
+                  data-testid={`home-blog-card-link-${p.slug}`}
+                  className="mt-8 pt-6 border-t border-slate-200 inline-flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-[#1f3a5f] font-medium link-underline self-start"
+                >
+                  Read essay
+                  <ArrowRight size={14} strokeWidth={1.75} />
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-10 border-t border-slate-300">
+            <p className="text-[13px] text-slate-600 max-w-xl">
+              The full archive — operating doctrine, deliverability essays,
+              and field manuals — lives on the blog.
+            </p>
+            <Link
+              to="/blog"
+              data-testid="home-blog-read-more"
+              className="group inline-flex items-center gap-3 bg-[#1f3a5f] text-white px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#16294a] transition-colors"
+            >
+              Read More on the Blog
+              <ArrowUpRight
+                size={16}
+                strokeWidth={1.75}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
           </div>
         </div>
       </section>
