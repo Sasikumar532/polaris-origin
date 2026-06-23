@@ -1,0 +1,161 @@
+{
+  "project_name": "PolarisOrigin",
+  "app_type": "marketing_site",
+  "domain": "B2B Growth Strategy / Outbound Agency",
+  "theme": "light",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) / Editorial",
+  "brand_positioning": "Premium Outbound GTM strategy and execution. Hyper-personalized outbound that books meetings. High-trust, authority-driven, McKinsey/BCG meets modern SaaS.",
+  "global_rules": {
+    "gradients": "FORBIDDEN completely. Do not use bg-gradient anywhere.",
+    "shadows": "FORBIDDEN. Use 1px solid borders (border-gray-200) instead to separate cards and elements.",
+    "neon_glow": "FORBIDDEN. No glowing effects.",
+    "border_radius": "Sharp geometry. Use rounded-none or maximum rounded-sm for subtle softening. No pill-shaped buttons unless explicitly styled as tags.",
+    "whitespace": "HEAVY. Use 2-3x more spacing than usual. p-12, p-16, py-24, py-32 for sections.",
+    "icons": "Use lucide-react (stroke-width 1.5, clean line icons only).",
+    "testing_attributes": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case."
+  },
+  "colors": {
+    "primary": "#1f3a5f",
+    "accent_gold": "#D4AF37",
+    "background_white": "#ffffff",
+    "background_cool_gray": "#f8f9fa",
+    "text_main": "#0f172a",
+    "text_muted": "#475569",
+    "border_subtle": "#e2e8f0"
+  },
+  "typography": {
+    "body_font": "Inter, sans-serif",
+    "heading_font": "Cabinet Grotesk, General Sans, or Inter (if Inter is used, MUST apply tracking-tighter and font-semibold to font-bold)",
+    "scale": {
+      "h1": "text-5xl md:text-6xl tracking-tighter font-bold text-slate-900",
+      "h2": "text-3xl md:text-4xl tracking-tight font-semibold text-slate-900",
+      "h3": "text-xl md:text-2xl tracking-tight font-medium text-[#1f3a5f]",
+      "body": "text-base md:text-lg leading-relaxed text-slate-600",
+      "overline": "text-xs md:text-sm uppercase tracking-[0.2em] font-semibold text-[#1f3a5f]"
+    }
+  },
+  "motion_and_interaction": {
+    "general": "Subtle, restrained, no bouncy animations. Gentle fade-ins (opacity 0 to 1) and slow upward translations (translate-y-4 to 0).",
+    "hover_states": "Hover should trigger background color shifts or border color shifts (e.g., border-gray-200 to border-[#1f3a5f]). Do not use transform scaling (no scale-105) as it breaks the editorial rigid feel."
+  },
+  "components": {
+    "button_primary": "bg-[#1f3a5f] text-white hover:bg-slate-800 transition-colors border border-transparent rounded-none px-6 py-3 font-medium",
+    "button_secondary": "bg-transparent text-[#1f3a5f] border border-[#1f3a5f] hover:bg-slate-50 transition-colors rounded-none px-6 py-3 font-medium",
+    "button_accent": "bg-white border border-[#D4AF37] text-[#1f3a5f] hover:bg-[#f8f9fa] transition-colors rounded-none px-6 py-3 font-medium",
+    "card": "bg-white border border-slate-200 p-8 rounded-none",
+    "navigation": "Sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200. Logo lockup 'POLARIS / ORIGIN' with small lucide Compass or Star icon."
+  },
+  "pages": {
+    "home": {
+      "sections": [
+        {
+          "name": "Hero",
+          "layout": "High whitespace, left-aligned or asymmetric. H1: 'Hyper-personalized outbound that books meetings — you only pay for show-ups.' Subtitle. Two CTAs. Background is white, perhaps a subtle geometric image on the right or top-right.",
+          "image_url": "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85"
+        },
+        {
+          "name": "Trusted By Strip",
+          "layout": "Horizontal row of logos (use lucide icons as placeholders if needed, e.g., Building, Landmark), separated by vertical 1px borders."
+        },
+        {
+          "name": "Problem / Model Explanation",
+          "layout": "Grid layout (1 col md: 2 col). Sharp contrast. Explain the 'Pay-Per-Show-Up' model. Use dark navy background (#1f3a5f) section with white text and gold accent borders."
+        },
+        {
+          "name": "How It Works (Process)",
+          "layout": "Step-by-step editorial list. 1px horizontal borders separating steps. Large numbers (01, 02, 03) in gold or light gray."
+        },
+        {
+          "name": "Featured Case Study Teaser",
+          "layout": "Large 2-column card. Image on one side, metrics on the other. Button: 'Read the full story'.",
+          "image_url": "https://images.pexels.com/photos/5686077/pexels-photo-5686077.jpeg"
+        },
+        {
+          "name": "Final CTA",
+          "layout": "Centered block, high padding (py-32). bg-[#f8f9fa] border-t border-slate-200."
+        }
+      ]
+    },
+    "services": {
+      "sections": [
+        {
+          "name": "Hero",
+          "layout": "Large typographic header: 'Systematic Growth. Engineered for Enterprise.' No image, pure typography and whitespace."
+        },
+        {
+          "name": "Service Pillars",
+          "layout": "Bento grid or 4-column layout with 1px borders. Pillars: ICP & Offer Design, Hyper-Personalized Outbound, Multi-Channel Sequencing, Meeting Show-Up Guarantee."
+        },
+        {
+          "name": "Methodology & Deliverables",
+          "layout": "List view, detailed text, editorial formatting. Use a sidebar navigation if needed."
+        }
+      ]
+    },
+    "case_studies": {
+      "sections": [
+        {
+          "name": "Header & Filter",
+          "layout": "Simple header. Text links for filtering by industry (e.g., SaaS, Finance, Logistics)."
+        },
+        {
+          "name": "Grid",
+          "layout": "Grid of cards. Each card has a border, a stark metric in large typography (e.g., '+140% ARR'), and a brief description. B&W imagery inside cards.",
+          "image_urls": [
+            "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85",
+            "https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85"
+          ]
+        }
+      ]
+    },
+    "about": {
+      "sections": [
+        {
+          "name": "Hero / Mission",
+          "layout": "Massive text. The North Star metaphor. 'Clarity in complex growth systems.'",
+          "image_url": "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85"
+        },
+        {
+          "name": "Leadership / Principles",
+          "layout": "2-column layout. Black and white portraits. Stark lines."
+        }
+      ]
+    },
+    "careers": {
+      "sections": [
+        {
+          "name": "Hero",
+          "layout": "Typographic header: 'Build the engine.' Culture and operating principles listed."
+        },
+        {
+          "name": "Open Roles",
+          "layout": "Accordion or list view. Title, Location, Department. Border bottom for each row."
+        }
+      ]
+    },
+    "contact": {
+      "sections": [
+        {
+          "name": "Header & Split Layout",
+          "layout": "2-column layout. Left: 'What to expect' panel (timeline, no-BS policy, qualification criteria). Right: The Form."
+        },
+        {
+          "name": "Form",
+          "layout": "Use generic HTML inputs styled with Tailwind (border-b-only inputs, no fully boxed inputs for that editorial feel, or 1px border boxed inputs). Fields: Name, Work Email, Company, Role, Monthly Rev Range, ICP, Message. Submit button: navy, full width. Include 'data-testid' on inputs and button."
+        }
+      ]
+    }
+  },
+  "global_components": {
+    "header": {
+      "items": ["Services", "Case Studies", "About", "Careers", "Book Consultation"],
+      "logo": "POLARIS / ORIGIN",
+      "style": "sticky, border-b border-gray-200 bg-white/95"
+    },
+    "footer": {
+      "style": "bg-[#1f3a5f] text-white py-20",
+      "sitemap": ["Home", "Services", "Case Studies", "About", "Careers", "Contact"],
+      "legal": ["Privacy Policy", "Terms of Service"]
+    }
+  }
+}
