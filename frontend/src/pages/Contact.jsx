@@ -136,7 +136,7 @@ export default function Contact() {
                     fit, you will know inside thirty minutes."
                   </p>
                   <p className="mt-6 text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                    — The PolarisOrigin Partners
+                    — Polaris Origin
                   </p>
                 </div>
 
@@ -291,9 +291,10 @@ export default function Contact() {
 
                   <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-6">
                     <p className="text-[12px] tracking-[0.04em] text-slate-500 max-w-md">
-                      By submitting, you agree to be contacted by a
-                      PolarisOrigin partner. No mailing list. No automated
-                      sequences. We never share your details.
+                      By submitting, you agree to be contacted by Polaris
+                      Origin. We will follow up personally — no mailing list,
+                      no automated sequences, and your details are never
+                      shared.
                     </p>
                     <button
                       type="submit"

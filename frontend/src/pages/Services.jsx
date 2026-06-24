@@ -2,73 +2,73 @@ import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   ArrowRight,
-  Target,
   Compass,
+  Workflow,
   Network,
-  ShieldCheck,
-  FileText,
+  Gauge,
   Layers,
-  LineChart,
+  Rocket,
+  Activity,
   Inbox,
-  Phone,
-  Calendar,
+  Linkedin,
+  Database,
 } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
 
 const PILLARS = [
   {
     n: "01",
-    icon: Target,
-    title: "ICP & Offer Engineering",
-    summary: "Codify the buyer. Sharpen the wedge.",
+    icon: Compass,
+    title: "Strategy First",
+    summary: "ICP, offer, messaging — defined before outreach.",
     body:
-      "Two-week intensive that produces an Offer Doctrine, a tiered ICP map, and the messaging primitives every downstream channel will use. No more anecdotal positioning.",
+      "We begin every engagement with ICP development, offer refinement and messaging. Outreach only launches once the strategy can be defended on paper.",
     deliverables: [
-      "Offer Doctrine (14-page operating document)",
-      "ICP tiering with named accounts",
-      "Buying-committee map per segment",
-      "Wedge messaging primitives",
+      "ICP definition with named accounts",
+      "Refined offer and wedge messaging",
+      "Buyer-level point of view library",
+      "Engagement objectives & success criteria",
     ],
   },
   {
     n: "02",
-    icon: Compass,
-    title: "Hyper-Personalized Outbound",
-    summary: "Research-led. One-to-one. No spray.",
+    icon: Workflow,
+    title: "Revenue Infrastructure",
+    summary: "CRM, automations and workflows that compound.",
     body:
-      "Every account receives a researched point of view before a sequence ever begins. Our analysts build account briefs your AEs would build — if they had the time.",
+      "We configure the CRM, automations and workflows that support long-term growth — so the work compounds with every engagement quarter.",
     deliverables: [
-      "Per-account research briefs",
-      "Researcher-written first touches",
-      "Signal-led trigger libraries",
-      "Manual QA on every send",
+      "CRM architecture and pipeline stages",
+      "Automation flows and routing rules",
+      "Domains, mailboxes and outbound stack",
+      "Reporting on pipeline quality, not activity",
     ],
   },
   {
     n: "03",
     icon: Network,
-    title: "Multi-Channel Orchestration",
-    summary: "Email · LinkedIn · Voice · Warm direct.",
+    title: "Multi-Channel Outbound",
+    summary: "Email and LinkedIn as one conversation.",
     body:
-      "Sequencing engineered around your buyer's decision rhythm — not our send schedule. We treat outbound as a single conversation, not five disconnected channels.",
+      "Cold email and LinkedIn work together as one conversation — coordinated, timed, and grounded in the same researched point of view per account.",
     deliverables: [
-      "Channel orchestration plan",
-      "Deliverability & domain architecture",
-      "Calling cadence with scripts",
-      "Account-level rhythm dashboards",
+      "Per-account research briefs",
+      "Coordinated email & LinkedIn cadence",
+      "Manual QA on every first touch",
+      "Reply handling and meeting booking",
     ],
   },
   {
     n: "04",
-    icon: ShieldCheck,
-    title: "Show-Up Guarantee",
-    summary: "Paid only when prospects show up.",
+    icon: Gauge,
+    title: "Performance-Based Model",
+    summary: "You pay when qualified prospects show up.",
     body:
-      "Qualified meetings count when the prospect attends and matches the rubric you signed. No-shows, mismatches, and reschedules are on us.",
+      "Polaris Origin is paid against qualified prospects who attend the meeting and match the agreed ICP — so incentives stay aligned with pipeline outcomes.",
     deliverables: [
-      "Mutually signed qualification rubric",
-      "Pay-per-show-up contract",
-      "Weekly attestation report",
+      "Mutually agreed ICP and qualification rubric",
+      "Performance-based engagement contract",
+      "Weekly attestation and review",
       "Net-30 invoicing, post-attendance",
     ],
   },
@@ -76,36 +76,47 @@ const PILLARS = [
 
 const PROCESS = [
   {
-    icon: FileText,
+    icon: Compass,
     label: "Phase 01",
-    title: "Discovery & Doctrine",
-    duration: "Weeks 1–2",
+    title: "Strategy",
+    duration: "Week 1",
     bullets: [
-      "Interviews with closers, CS, and product",
-      "Pipeline & deal-loss audit",
-      "Offer Doctrine drafted and reviewed",
+      "Define ICP and named-account tiers",
+      "Refine offer and messaging",
+      "Establish positioning",
     ],
   },
   {
     icon: Layers,
     label: "Phase 02",
-    title: "Build & Calibrate",
-    duration: "Weeks 3–4",
+    title: "Infrastructure",
+    duration: "Week 2",
     bullets: [
-      "Signal lists, sequences, infrastructure",
-      "Three calibration cohorts",
-      "Compliance & deliverability sign-off",
+      "Configure CRM and pipeline stages",
+      "Provision domains and mailboxes",
+      "Build automation and routing",
     ],
   },
   {
-    icon: LineChart,
+    icon: Rocket,
     label: "Phase 03",
-    title: "Run & Compound",
-    duration: "Week 5 → ongoing",
+    title: "Launch",
+    duration: "Week 3",
     bullets: [
-      "Weekly operating review with revenue",
-      "Pay-per-show-up invoicing begins",
-      "Quarterly doctrine refresh",
+      "Begin coordinated email outreach",
+      "Begin LinkedIn outreach",
+      "Monitor early signals and reply rates",
+    ],
+  },
+  {
+    icon: Activity,
+    label: "Phase 04",
+    title: "Optimization",
+    duration: "Ongoing",
+    bullets: [
+      "Weekly review of conversations",
+      "Refine messaging and offer",
+      "Improve pipeline quality continuously",
     ],
   },
 ];
@@ -115,19 +126,19 @@ const CHANNELS = [
     icon: Inbox,
     title: "Email",
     body:
-      "Three-domain architecture, warmed and monitored. Every first-touch is hand-written by a named analyst on the engagement.",
+      "Three-domain architecture, warmed and monitored. Every first-touch is hand-written by a researcher and reviewed before send.",
   },
   {
-    icon: Phone,
-    title: "Voice",
+    icon: Linkedin,
+    title: "LinkedIn",
     body:
-      "Senior callers — not gig SDRs. Scripts written against the Offer Doctrine, with weekly call reviews against the live pipeline.",
+      "Coordinated with email as one conversation. Connection requests, engagement, and messaging tied to the same researched point of view.",
   },
   {
-    icon: Calendar,
-    title: "Calendar",
+    icon: Database,
+    title: "CRM & Workflows",
     body:
-      "Mutual-action booking, agenda-first invites, and pre-call briefs delivered to your AE 24 hours before the meeting.",
+      "CRM architecture, automations and reporting designed so pipeline quality is visible — not just activity volume.",
   },
 ];
 
@@ -137,20 +148,21 @@ export default function Services() {
       {/* HERO */}
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 pt-20 lg:pt-28 pb-16 lg:pb-24">
-          <SectionLabel index="01 — Capabilities" label="Services" />
+          <SectionLabel index="01 — Services" label="What We Do" />
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
             <h1 className="lg:col-span-8 text-[44px] sm:text-[58px] lg:text-[80px] leading-[0.98] tracking-tighter-2 font-semibold text-slate-900">
-              Systematic growth.
-              <br />
+              Outbound systems,{" "}
               <span className="font-display italic text-[#1f3a5f]">
-                Engineered for enterprise.
+                built end to end
               </span>
+              .
             </h1>
             <div className="lg:col-span-4 flex items-end">
               <p className="text-[16px] leading-[1.8] text-slate-600">
-                A single firm executing four tightly integrated disciplines.
-                One contract. One operating cadence. One number that matters:
-                qualified meetings that show up.
+                Polaris Origin engagements cover strategy, revenue
+                infrastructure, multi-channel outbound, and performance-based
+                pricing — operated as a single system, not four disconnected
+                workstreams.
               </p>
             </div>
           </div>
@@ -220,22 +232,23 @@ export default function Services() {
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-5">
-              <SectionLabel index="02 — Method" label="Engagement Phases" />
+              <SectionLabel index="02 — Process" label="Engagement Phases" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
-                Three phases. <br />
-                <span className="font-display italic text-[#1f3a5f]">One operating cadence.</span>
+                How engagements{" "}
+                <span className="font-display italic text-[#1f3a5f]">work</span>.
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7 flex items-end">
               <p className="text-[16px] leading-[1.8] text-slate-600">
-                Engagements move on a fixed cadence. Every artifact has an
-                owner, a due date, and a defended hypothesis. No surprise
-                deliverables. No "strategy decks" that never ship.
+                Four phases. Strategy and infrastructure come first; outbound
+                launches in week three; optimisation is continuous. Every
+                deliverable has an owner, a due date, and a defended
+                hypothesis.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200 border border-slate-200">
             {PROCESS.map((p) => {
               const Icon = p.icon;
               return (
@@ -278,10 +291,10 @@ export default function Services() {
       <section className="bg-white border-b border-slate-200">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="max-w-3xl">
-            <SectionLabel index="03 — Channels" label="Where we operate" />
+            <SectionLabel index="03 — Channels" label="Where We Operate" />
             <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
-              Three channels.{" "}
-              <span className="font-display italic text-[#1f3a5f]">One conversation.</span>
+              Two channels,{" "}
+              <span className="font-display italic text-[#1f3a5f]">one CRM.</span>
             </h2>
           </div>
 
@@ -315,12 +328,17 @@ export default function Services() {
           <div className="lg:col-span-8">
             <SectionLabel index="04 —" label="Next Step" tone="light" />
             <h2 className="mt-8 text-[36px] lg:text-[56px] leading-[1.05] tracking-tighter-2 font-semibold">
-              Tell us the segment.
-              <br />
+              Tell us about your{" "}
               <span className="font-display italic text-[#C9A14A]">
-                We will return the playbook.
+                segment and offer
               </span>
+              .
             </h2>
+            <p className="mt-6 max-w-2xl text-[15px] text-white/70 leading-[1.8]">
+              A 30-minute call with the founder. We&apos;ll discuss the market,
+              the current motion, and whether Polaris Origin is the right
+              partner for the next quarter.
+            </p>
           </div>
           <div className="lg:col-span-4 lg:text-right">
             <Link

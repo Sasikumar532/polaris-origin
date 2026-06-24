@@ -2,13 +2,21 @@ import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   ArrowRight,
-  Compass,
-  Target,
-  Network,
-  ShieldCheck,
-  Quote,
-  Minus,
   Clock,
+  Compass,
+  Workflow,
+  Network,
+  Gauge,
+  Quote,
+  Layers,
+  Rocket,
+  Activity,
+  Users,
+  Server,
+  Code,
+  Briefcase,
+  Megaphone,
+  Building2,
 } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
 import { POSTS } from "@/pages/Blog";
@@ -20,73 +28,93 @@ const CASE_IMAGE =
   "https://images.pexels.com/photos/5686077/pexels-photo-5686077.jpeg";
 
 const TRUSTED = [
-  "Halden Capital",
-  "Northvane Logistics",
-  "Meridian Health",
-  "Atlas Cloud",
-  "Quartermast",
-  "Sequora AI",
-  "Bramley & Co.",
-  "Iron Harbor",
+  "Recruitment",
+  "IT Services",
+  "Software & SaaS",
+  "Consulting Firms",
+  "Marketing Agencies",
+  "Professional Services",
+  "B2B Operators",
+  "Founder-Led Teams",
 ];
 
 const METRICS = [
-  { k: "100%", v: "Pay-per-show-up. Zero retainer risk on outcomes." },
-  { k: "11.4×", v: "Average pipeline-to-fee ratio across 2024 cohort." },
-  { k: "94%", v: "Booked meeting show-up rate, last twelve months." },
-  { k: "21 days", v: "Median time from kickoff to first qualified meeting." },
+  { k: "Performance", v: "Engagements are priced against qualified prospects who attend the meeting." },
+  { k: "Founder-led", v: "Every engagement is personally overseen by the Polaris Origin founder." },
+  { k: "Research-driven", v: "Accounts are researched before sequences are written, not after." },
+  { k: "Weekly review", v: "We optimise pipeline quality on a weekly cadence with the revenue team." },
 ];
 
-const PILLARS = [
+const DIFFERENTIATORS = [
   {
     n: "01",
-    icon: Target,
-    title: "ICP & Offer Engineering",
+    icon: Compass,
+    title: "Strategy First",
     body:
-      "We codify the buyer, the buying committee, and the wedge offer. The first deliverable is a 14-page Offer Doctrine your AE team can defend.",
+      "We begin with ICP development, offer refinement and messaging before launching campaigns.",
   },
   {
     n: "02",
-    icon: Compass,
-    title: "Hyper-Personalized Outbound",
+    icon: Workflow,
+    title: "Revenue Infrastructure",
     body:
-      "Research-led, one-to-one outbound. No spray. No spin. Every sequence is built on signal, account context, and a written point of view.",
+      "CRM architecture, automations and workflows designed to support long-term growth.",
   },
   {
     n: "03",
     icon: Network,
-    title: "Multi-Channel Orchestration",
+    title: "Multi-Channel Outbound",
     body:
-      "Email, LinkedIn, voice, and warm direct. Sequencing engineered around your buyer's decision rhythm — not our send schedule.",
+      "Cold email and LinkedIn work together as one conversation.",
   },
   {
     n: "04",
-    icon: ShieldCheck,
-    title: "Show-Up Guarantee",
+    icon: Gauge,
+    title: "Performance-Based Model",
     body:
-      "Meetings only count when the prospect attends and matches the qualification rubric you signed. Anything else is on us.",
+      "You pay when qualified prospects show up.",
   },
 ];
 
-const STEPS = [
+const PHASES = [
   {
     n: "01",
-    title: "Discovery & Doctrine",
-    body:
-      "Two-week intensive. We interview your closers, study your pipeline, and write the operating doctrine for your outbound motion.",
+    icon: Compass,
+    title: "Strategy",
+    body: "Define ICP, refine the offer, establish positioning and messaging.",
+    duration: "Week 1",
   },
   {
     n: "02",
-    title: "Build & Calibrate",
-    body:
-      "Signal lists, messaging frameworks, deliverability infrastructure. Three calibration cohorts before scale.",
+    icon: Layers,
+    title: "Infrastructure",
+    body: "Configure CRM, automations, domains and outbound systems.",
+    duration: "Week 2",
   },
   {
     n: "03",
-    title: "Run & Compound",
-    body:
-      "Weekly review cadence. Show-ups, qualified pipeline, accepted deals — measured on the same dashboard as your revenue team.",
+    icon: Rocket,
+    title: "Launch",
+    body: "Begin email and LinkedIn outreach and monitor early signals.",
+    duration: "Week 3",
   },
+  {
+    n: "04",
+    icon: Activity,
+    title: "Optimization",
+    body:
+      "Review conversations, improve messaging and continuously refine pipeline quality.",
+    duration: "Ongoing",
+  },
+];
+
+const INDUSTRIES = [
+  { icon: Users, title: "Recruitment" },
+  { icon: Server, title: "IT Services" },
+  { icon: Code, title: "Software & SaaS" },
+  { icon: Briefcase, title: "Consulting Firms" },
+  { icon: Megaphone, title: "Marketing Agencies" },
+  { icon: Building2, title: "Professional Services" },
 ];
 
 export default function Home() {
@@ -96,25 +124,29 @@ export default function Home() {
       <section className="relative border-b border-slate-200">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 pt-20 lg:pt-28 pb-16 lg:pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7 reveal">
-            <SectionLabel index="(I)" label="Outbound GTM Firm · Est. 2021" />
+            <SectionLabel index="(I)" label="Outbound GTM · Polaris Origin" />
             <h1 className="mt-10 text-[44px] sm:text-[58px] lg:text-[78px] leading-[0.98] tracking-tighter-2 font-semibold text-slate-900">
-              Hyper-personalized outbound
+              We build outbound systems that
               <br />
-              that <span className="font-display italic text-[#1f3a5f]">books meetings</span>.
-              <br />
-              You only pay for{" "}
-              <span className="relative inline-block">
-                show-ups
-                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#C9A14A]" />
-              </span>
+              produce{" "}
+              <span className="font-display italic text-[#1f3a5f]">qualified meetings</span>
               .
             </h1>
 
             <p className="mt-10 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-600">
-              PolarisOrigin is an enterprise outbound firm for revenue leaders
-              who have outgrown agencies. We engineer the strategy, the
-              messaging, and the operating system — and we only invoice once a
-              qualified prospect sits across the table from your team.
+              Polaris Origin is an Outbound GTM firm for B2B service and
+              product companies. We help define the market, build the
+              infrastructure, and operate outbound systems that consistently
+              create pipeline.
+            </p>
+
+            <p className="mt-6 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-900 font-medium">
+              You only pay when qualified buyers{" "}
+              <span className="relative inline-block">
+                show up
+                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#C9A14A]" />
+              </span>
+              .
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
@@ -135,7 +167,7 @@ export default function Home() {
                 data-testid="hero-cta-secondary"
                 className="group inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-900 px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:border-[#1f3a5f] transition-colors"
               >
-                See the Casework
+                See Case Studies
                 <ArrowRight
                   size={16}
                   strokeWidth={1.75}
@@ -150,14 +182,14 @@ export default function Home() {
                   Engagement
                 </p>
                 <p className="mt-2 text-[15px] text-slate-900">
-                  Performance-based · No retainers
+                  Performance-based pricing
                 </p>
               </div>
               <div className="border-t border-slate-200 pt-5">
                 <p className="text-[12px] uppercase tracking-[0.22em] text-slate-500">
-                  Minimum ACV
+                  Execution
                 </p>
-                <p className="mt-2 text-[15px] text-slate-900">$36K · Mid-market & up</p>
+                <p className="mt-2 text-[15px] text-slate-900">Founder-led, weekly cadence</p>
               </div>
             </div>
           </div>
@@ -172,18 +204,18 @@ export default function Home() {
               />
               <div className="absolute left-0 top-0 bg-white border-b border-r border-slate-200 px-5 py-3">
                 <p className="text-[10px] tracking-[0.32em] uppercase text-slate-500">
-                  Doctrine
+                  Engagement
                 </p>
                 <p className="text-[13px] mt-1 text-slate-900">
-                  Polaris · Field manual 04.07
+                  Strategy · Infrastructure · Outbound
                 </p>
               </div>
               <div className="absolute right-0 bottom-0 bg-[#1f3a5f] text-white px-6 py-5 max-w-[280px]">
                 <p className="text-[11px] tracking-[0.24em] uppercase text-[#C9A14A]">
-                  North-star metric
+                  What we measure
                 </p>
                 <p className="mt-2 text-[15px] leading-snug">
-                  Qualified show-ups per sales rep per week.
+                  Qualified meetings, attended.
                 </p>
               </div>
             </div>
@@ -191,12 +223,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUSTED BY */}
-      <section className="border-b border-slate-200 bg-[#f5f6f8]" data-testid="trusted-strip">
+      {/* INDUSTRIES STRIP */}
+      <section className="border-b border-slate-200 bg-[#f5f6f8]" data-testid="industries-strip">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-10">
           <div className="flex items-center gap-8">
             <p className="hidden md:block shrink-0 text-[11px] uppercase tracking-[0.28em] text-slate-500">
-              Trusted by revenue teams at
+              Industries we partner with
             </p>
             <div className="flex-1 overflow-hidden">
               <div className="flex gap-14 po-marquee whitespace-nowrap">
@@ -214,31 +246,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* THE MODEL */}
+      {/* WHY POLARIS ORIGIN */}
       <section className="bg-[#1f3a5f] text-white relative overflow-hidden border-b border-[#16294a]">
         <div className="absolute inset-0 grid-lines-dark opacity-30 pointer-events-none" />
         <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-14">
           <div className="lg:col-span-5">
-            <SectionLabel index="(II)" label="The Pay-Per-Show-Up Model" tone="light" />
+            <SectionLabel index="(II)" label="How We Operate" tone="light" />
             <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold">
-              The agency model is broken.
+              Outbound, built as a
               <br />
               <span className="font-display italic text-[#C9A14A]">
-                We rebuilt the contract.
+                long-term system
               </span>
+              .
             </h2>
             <p className="mt-8 text-[16px] leading-[1.8] text-white/75 max-w-lg">
-              Most outbound vendors invoice for activity — emails sent,
-              meetings "booked", dashboards delivered. We invoice for the only
-              thing your CFO cares about: qualified prospects who actually
-              showed up. No retainer. No setup fee theatre. No padded reports.
+              Polaris Origin engagements are structured to compound. We invest
+              in strategy and infrastructure before we send a single message,
+              and we run on a weekly optimisation cadence with your revenue
+              team.
             </p>
             <Link
               to="/services"
               data-testid="model-link-services"
               className="mt-10 inline-flex items-center gap-2 text-[13px] tracking-[0.04em] uppercase text-[#C9A14A] hover:text-white transition-colors"
             >
-              Read the engagement doctrine
+              See the services
               <ArrowRight size={16} strokeWidth={1.75} />
             </Link>
           </div>
@@ -250,10 +283,10 @@ export default function Home() {
                 className="bg-[#1f3a5f] p-10 lg:p-12 reveal"
                 style={{ animationDelay: `${i * 80}ms` }}
               >
-                <p className="text-[44px] lg:text-[56px] leading-none tracking-tighter-2 font-semibold text-white num-cap">
+                <p className="text-[28px] lg:text-[36px] leading-[1.05] tracking-tighter-2 font-semibold text-white">
                   {m.k}
                 </p>
-                <p className="mt-5 text-[14px] leading-[1.7] text-white/70 max-w-[260px]">
+                <p className="mt-5 text-[14px] leading-[1.7] text-white/70 max-w-[280px]">
                   {m.v}
                 </p>
               </div>
@@ -262,34 +295,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PILLARS */}
-      <section className="border-b border-slate-200" data-testid="capabilities-section">
+      {/* DIFFERENTIATORS */}
+      <section className="border-b border-slate-200" data-testid="differentiators-section">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-5">
-              <SectionLabel index="(III)" label="Capabilities" />
+              <SectionLabel index="(III)" label="The Difference" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-                A single firm. <br />
-                <span className="font-display italic text-[#1f3a5f]">Four disciplines.</span>
+                What Makes Polaris Origin{" "}
+                <span className="font-display italic text-[#1f3a5f]">
+                  Different
+                </span>
+                .
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7 flex items-end">
               <p className="text-[16px] leading-[1.8] text-slate-600">
-                We do not sell tools, lists, or seats. We sell judgement —
-                operationalised through four tightly integrated disciplines
-                that produce one outcome: qualified meetings on your calendar.
+                Four operating principles that shape every Polaris Origin
+                engagement — from the first discovery call to the weekly
+                optimisation review.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200">
-            {PILLARS.map((p) => {
+            {DIFFERENTIATORS.map((p) => {
               const Icon = p.icon;
               return (
                 <article
                   key={p.n}
                   className="group border-r border-b border-slate-200 p-10 lg:p-12 bg-white hover:bg-[#f5f6f8] transition-colors"
-                  data-testid={`pillar-${p.n}`}
+                  data-testid={`differentiator-${p.n}`}
                 >
                   <div className="flex items-start justify-between">
                     <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
@@ -321,44 +357,142 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="how-it-works">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
-            <SectionLabel index="(IV)" label="Method" />
-            <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-              How an engagement runs.
-            </h2>
-            <p className="mt-8 text-[16px] leading-[1.8] text-slate-600 max-w-md">
-              Three phases. One operating cadence. Built so that every action
-              ties back to one defended hypothesis about your buyer.
-            </p>
+      {/* HOW ENGAGEMENTS WORK */}
+      <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="how-engagements-work">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-6">
+              <SectionLabel index="(IV)" label="Process" />
+              <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
+                How engagements{" "}
+                <span className="font-display italic text-[#1f3a5f]">work</span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+              <p className="text-[16px] leading-[1.8] text-slate-600">
+                Four phases. Strategy and infrastructure come first;
+                outbound launches in week three; optimisation is continuous.
+              </p>
+            </div>
           </div>
 
-          <div className="lg:col-span-8">
-            <ol className="border-t border-slate-300">
-              {STEPS.map((s, i) => (
-                <li
-                  key={s.n}
-                  className="grid grid-cols-12 gap-6 py-10 lg:py-12 border-b border-slate-300 reveal"
-                  style={{ animationDelay: `${i * 80}ms` }}
-                >
-                  <div className="col-span-3 lg:col-span-2">
-                    <span className="text-[40px] lg:text-[56px] leading-none tracking-tighter font-display italic text-[#C9A14A] num-cap">
-                      {s.n}
-                    </span>
-                  </div>
-                  <div className="col-span-9 lg:col-span-10">
-                    <h3 className="text-[22px] lg:text-[26px] tracking-tight font-semibold text-slate-900">
-                      {s.title}
+          {/* Desktop horizontal timeline */}
+          <div className="hidden lg:block relative">
+            <div className="grid grid-cols-4 gap-px bg-slate-200 border border-slate-200 relative">
+              {PHASES.map((p, i) => {
+                const Icon = p.icon;
+                return (
+                  <div
+                    key={p.n}
+                    data-testid={`phase-${p.n}`}
+                    className="bg-white p-8 xl:p-10 reveal relative"
+                    style={{ animationDelay: `${i * 80}ms` }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
+                        Phase {p.n}
+                      </span>
+                      <Icon
+                        size={18}
+                        strokeWidth={1.25}
+                        className="text-[#1f3a5f]"
+                      />
+                    </div>
+                    {/* Gold connector line across cards (z-10) */}
+                    <div className="absolute left-0 right-0 top-[88px] h-px bg-[#C9A14A] z-10" />
+                    {/* Dot punched on top of the line (z-20) */}
+                    <div className="relative mt-12 mb-12 z-20">
+                      <span
+                        className="block w-4 h-4 bg-[#C9A14A] mx-auto"
+                        style={{ boxShadow: "0 0 0 6px #ffffff" }}
+                      />
+                    </div>
+                    <h3 className="text-[24px] xl:text-[28px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.1]">
+                      {p.title}
                     </h3>
-                    <p className="mt-4 max-w-2xl text-[15px] leading-[1.8] text-slate-600">
-                      {s.body}
+                    <p className="mt-5 text-[14px] leading-[1.7] text-slate-600 min-h-[80px]">
+                      {p.body}
+                    </p>
+                    <p className="mt-8 pt-5 border-t border-slate-200 text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                      {p.duration}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile vertical timeline */}
+          <ol className="lg:hidden border-l border-[#C9A14A] ml-3">
+            {PHASES.map((p) => {
+              const Icon = p.icon;
+              return (
+                <li
+                  key={p.n}
+                  className="relative pl-8 pb-12 last:pb-0"
+                  data-testid={`phase-mobile-${p.n}`}
+                >
+                  <span className="absolute -left-[7px] top-2 w-3 h-3 bg-[#C9A14A]" />
+                  <div className="border border-slate-200 bg-white p-6">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
+                        Phase {p.n}
+                      </span>
+                      <Icon size={16} strokeWidth={1.25} className="text-[#1f3a5f]" />
+                    </div>
+                    <h3 className="mt-6 text-[22px] tracking-tighter-2 font-semibold text-slate-900">
+                      {p.title}
+                    </h3>
+                    <p className="mt-3 text-[14px] leading-[1.7] text-slate-600">
+                      {p.body}
+                    </p>
+                    <p className="mt-5 pt-4 border-t border-slate-200 text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                      {p.duration}
                     </p>
                   </div>
                 </li>
-              ))}
-            </ol>
+              );
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* INDUSTRIES */}
+      <section className="border-b border-slate-200 bg-white" data-testid="industries-section">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+            <div className="lg:col-span-6">
+              <SectionLabel index="(V)" label="Industries" />
+              <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
+                Who we{" "}
+                <span className="font-display italic text-[#1f3a5f]">work with</span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+              <p className="text-[16px] leading-[1.8] text-slate-600">
+                We partner with B2B companies that rely on relationship-driven
+                sales.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
+            {INDUSTRIES.map((ind, i) => {
+              const Icon = ind.icon;
+              return (
+                <div
+                  key={ind.title}
+                  data-testid={`industry-${ind.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                  className="bg-white p-10 lg:p-12 flex items-start justify-between gap-6 hover:bg-[#f5f6f8] transition-colors reveal"
+                  style={{ animationDelay: `${i * 60}ms` }}
+                >
+                  <h3 className="text-[20px] lg:text-[22px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.2]">
+                    {ind.title}
+                  </h3>
+                  <Icon size={22} strokeWidth={1.25} className="text-[#C9A14A] shrink-0 mt-1" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -370,40 +504,40 @@ export default function Home() {
             <div className="lg:col-span-6 border border-slate-200">
               <img
                 src={CASE_IMAGE}
-                alt="Quartermast — supply-chain SaaS case study"
+                alt="Featured engagement"
                 className="w-full h-full max-h-[560px] object-cover grayscale"
               />
             </div>
             <div className="lg:col-span-6 flex flex-col justify-between border border-slate-200 p-10 lg:p-14">
               <div>
-                <SectionLabel index="(V)" label="Featured Casework · Supply-Chain SaaS" />
+                <SectionLabel index="(VI)" label="Featured Case Study · IT Services" />
                 <h3 className="mt-10 text-[28px] lg:text-[40px] tracking-tighter-2 font-semibold leading-[1.1] text-slate-900">
-                  Quartermast went from{" "}
+                  A regional IT services firm went from{" "}
                   <span className="font-display italic text-[#1f3a5f]">
-                    11 to 47
+                    inconsistent referrals
                   </span>{" "}
-                  enterprise show-ups per quarter — in two cycles.
+                  to a predictable outbound motion in a single quarter.
                 </h3>
                 <p className="mt-6 text-[15px] leading-[1.8] text-slate-600 max-w-xl">
-                  A logistics SaaS company with a strong product and a soft
-                  outbound motion. We rebuilt the ICP, the wedge offer, and
-                  the operating cadence around a single contested account
-                  list.
+                  We rebuilt the ICP around mid-market technology buyers,
+                  refined the offer to a specific managed-services wedge,
+                  and operated a multi-channel outbound system that booked
+                  qualified meetings with named accounts.
                 </p>
               </div>
 
               <div className="mt-12 grid grid-cols-3 gap-8 border-t border-slate-200 pt-8">
                 <div>
                   <p className="text-[36px] tracking-tighter font-semibold text-slate-900 num-cap">
-                    +328%
+                    32
                   </p>
                   <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500 mt-2">
-                    qualified pipeline
+                    qualified meetings · 90 days
                   </p>
                 </div>
                 <div>
                   <p className="text-[36px] tracking-tighter font-semibold text-slate-900 num-cap">
-                    93%
+                    74%
                   </p>
                   <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500 mt-2">
                     show-up rate
@@ -411,7 +545,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-[36px] tracking-tighter font-semibold text-slate-900 num-cap">
-                    19d
+                    21d
                   </p>
                   <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500 mt-2">
                     to first meeting
@@ -440,16 +574,14 @@ export default function Home() {
           </div>
           <div className="lg:col-span-9">
             <p className="font-display text-[28px] sm:text-[34px] lg:text-[44px] leading-[1.2] tracking-tight text-slate-900">
-              "We replaced three SDRs, two agencies, and a sales-enablement tool
-              with PolarisOrigin. The line item on our P&amp;L is smaller and our
-              forecast is no longer fiction."
+              "Polaris Origin is the first team that treated our outbound the
+              way our engineering team treats production systems — with
+              strategy, infrastructure, and a weekly cadence we can actually
+              measure."
             </p>
-            <div className="mt-10 flex items-center gap-4">
-              <Minus size={20} strokeWidth={1.5} className="text-[#C9A14A]" />
-              <p className="text-[13px] uppercase tracking-[0.18em] text-slate-700">
-                Marisol Ortega · VP Revenue · Sequora AI
-              </p>
-            </div>
+            <p className="mt-10 text-[13px] uppercase tracking-[0.18em] text-slate-700">
+              Engagement reference · IT services, mid-market
+            </p>
           </div>
         </div>
       </section>
@@ -547,7 +679,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="border border-slate-200 px-8 lg:px-16 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8">
-              <SectionLabel index="(VI)" label="A 30-minute working session — not a pitch" />
+              <SectionLabel index="(VIII)" label="Start a Conversation" />
               <h2 className="mt-8 text-[36px] lg:text-[56px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
                 Bring us your toughest segment.
                 <br />
@@ -570,7 +702,7 @@ export default function Home() {
                 />
               </Link>
               <p className="mt-5 text-[12px] tracking-[0.04em] text-slate-500">
-                No retainer. No sales pressure. Walk away with a usable plan.
+                Performance-based pricing. Founder-led conversation.
               </p>
             </div>
           </div>

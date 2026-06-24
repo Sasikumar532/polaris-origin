@@ -5,8 +5,9 @@ import Logo from "@/components/site/Logo";
 
 const NAV = [
   { label: "Services", to: "/services", id: "nav-services" },
-  { label: "Case Studies", to: "/case-studies", id: "nav-case-studies" },
   { label: "About", to: "/about", id: "nav-about" },
+  { label: "Case Studies", to: "/case-studies", id: "nav-case-studies" },
+  { label: "Resources", to: "/resources", id: "nav-resources" },
   { label: "Blog", to: "/blog", id: "nav-blog" },
   { label: "Careers", to: "/careers", id: "nav-careers" },
 ];
@@ -40,12 +41,12 @@ export default function Navbar() {
             to="/"
             data-testid="nav-logo-link"
             className="flex items-center gap-3"
-            aria-label="PolarisOrigin home"
+            aria-label="Polaris Origin home"
           >
             <Logo />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-10" aria-label="Primary">
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Primary">
             {NAV.map((item) => (
               <NavLink
                 key={item.to}

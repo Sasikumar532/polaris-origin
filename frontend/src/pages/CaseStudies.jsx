@@ -5,74 +5,116 @@ import SectionLabel from "@/components/site/SectionLabel";
 
 const CASES = [
   {
-    id: "quartermast",
-    company: "Quartermast",
-    industry: "Logistics SaaS",
-    title: "From 11 to 47 enterprise show-ups in two cycles.",
-    metric: "+328%",
-    metricLabel: "Qualified pipeline · 90 days",
-    excerpt:
-      "We rebuilt the ICP, the wedge offer, and the operating cadence around a single contested account list — and routed every outbound action through one defended hypothesis.",
+    id: "northbridge-it",
+    company: "Mid-market IT Services Firm",
+    industry: "IT Services",
+    title: "From inconsistent referrals to a predictable outbound motion.",
+    challenge:
+      "A 60-person IT services firm relied on referrals for new business. Pipeline was unpredictable, sales cycles varied wildly, and outbound experiments had stalled twice.",
+    approach:
+      "Defined the ICP around technology buyers at $50M–$250M companies, sharpened the managed-services offer, configured the CRM around true pipeline stages, and ran coordinated email + LinkedIn outreach to a named-account list.",
+    results: [
+      "32 qualified meetings booked in 90 days",
+      "74% show-up rate on booked meetings",
+      "First meeting attended within 21 days of launch",
+    ],
+    timeline: "90 days",
+    stack: ["HubSpot", "Smartlead", "Apollo", "LinkedIn Sales Navigator"],
     image:
       "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85",
   },
   {
-    id: "sequora",
-    company: "Sequora AI",
-    industry: "Enterprise AI",
-    title: "Replaced three SDRs and two agencies with one operating cadence.",
-    metric: "11.4×",
-    metricLabel: "Pipeline-to-fee ratio",
-    excerpt:
-      "An infra-AI company with a complex story and a polite outbound motion. We re-architected the wedge and built a research-led sequence engine the AE team now drives themselves.",
+    id: "vantage-saas",
+    company: "Vertical SaaS Platform",
+    industry: "Software & SaaS",
+    title: "Built the outbound layer for a Series-A vertical SaaS.",
+    challenge:
+      "A vertical SaaS company had product-market fit in one segment but no repeatable outbound. Founder-led sales worked, but didn't scale beyond warm introductions.",
+    approach:
+      "Documented the offer, mapped the buying committee per ICP tier, and built a researcher-led outbound system. CRM and pipeline reporting were rebuilt to track qualified opportunities, not activity.",
+    results: [
+      "26 qualified meetings in the first quarter",
+      "9 opportunities advanced past discovery",
+      "Sales cycle stabilised at ~62 days",
+    ],
+    timeline: "Quarter 1 + ongoing",
+    stack: ["Pipedrive", "Instantly", "Clay", "LinkedIn"],
     image:
       "https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85",
   },
   {
-    id: "halden",
-    company: "Halden Capital",
-    industry: "Finance / Private Credit",
-    title: "Booked the LP committee they had been chasing for 18 months.",
-    metric: "94%",
-    metricLabel: "Show-up rate · LP segment",
-    excerpt:
-      "Private-credit fundraising is a relationship business. We engineered an outbound motion that respected the etiquette of the segment — and produced 17 LP meetings in a single quarter.",
+    id: "halden-recruitment",
+    company: "Specialist Recruitment Firm",
+    industry: "Recruitment",
+    title: "Replaced cold-call agencies with a multi-channel outbound system.",
+    challenge:
+      "A specialist recruitment firm was paying two agencies for inconsistent results. Hiring managers were not responding, and the firm needed a predictable way to reach in-house talent leaders.",
+    approach:
+      "Rebuilt the ICP around director-and-above talent leaders in life-sciences companies. Designed a coordinated email + LinkedIn cadence with researcher-written first touches. Configured CRM workflows for handoff to the recruiting team.",
+    results: [
+      "19 conversations with in-house talent leaders in 60 days",
+      "11 of 19 advanced to a second meeting",
+      "Three new client engagements signed in the same quarter",
+    ],
+    timeline: "60 days",
+    stack: ["HubSpot", "Lemlist", "LinkedIn Sales Navigator"],
     image:
       "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85",
   },
   {
-    id: "meridian",
-    company: "Meridian Health",
-    industry: "Healthcare Operations",
-    title: "Built a regulator-compliant outbound motion for hospital CFOs.",
-    metric: "+217%",
-    metricLabel: "Qualified meetings · CFO segment",
-    excerpt:
-      "Hospital CFOs do not read cold email. They read written points of view from people who understand reimbursement. We built one — and then operationalised it.",
+    id: "marketing-agency",
+    company: "Boutique Marketing Agency",
+    industry: "Marketing Agencies",
+    title: "Productised the offer and opened a new segment.",
+    challenge:
+      "A founder-led marketing agency wanted to move upmarket but lacked a clear offer for $20M+ ARR companies. Outbound attempts felt generic and stopped converting.",
+    approach:
+      "Worked with the founder to productise the offer into a defined 90-day engagement. Rebuilt outbound around three named-account tiers and a researched first-touch per account. CRM stages were redefined around the new offer.",
+    results: [
+      "14 qualified meetings booked in the first 90 days",
+      "5 paid engagements signed in the new segment",
+      "Average deal size 2.4× the previous segment",
+    ],
+    timeline: "90 days",
+    stack: ["HubSpot", "Smartlead", "Apollo", "Notion"],
     image:
       "https://images.pexels.com/photos/5686077/pexels-photo-5686077.jpeg",
   },
   {
-    id: "northvane",
-    company: "Northvane Logistics",
-    industry: "Logistics SaaS",
-    title: "Compressed a 9-month enterprise sales cycle to 113 days.",
-    metric: "−63%",
-    metricLabel: "Sales-cycle compression",
-    excerpt:
-      "We rewrote the first three meetings — discovery, mutual-action plan, and the technical workshop — and aligned outbound around the buying committee, not the individual buyer.",
+    id: "consulting-firm",
+    company: "B2B Consulting Firm",
+    industry: "Consulting Firms",
+    title: "Built outbound for a referral-driven consultancy.",
+    challenge:
+      "A boutique consulting firm grew on referrals and a small partner network. Leadership wanted a second, controllable channel — without diluting the brand or running cold-call campaigns.",
+    approach:
+      "Defined the ICP around two named segments, refined the offer into a clear discovery engagement, and ran a low-volume, high-research outbound motion that respected the etiquette of the segment.",
+    results: [
+      "11 qualified discovery calls in 90 days",
+      "4 proposals issued from the discovery calls",
+      "2 long-form engagements signed",
+    ],
+    timeline: "90 days",
+    stack: ["Pipedrive", "Apollo", "LinkedIn", "Loom"],
     image:
       "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85",
   },
   {
-    id: "atlas",
-    company: "Atlas Cloud",
-    industry: "Cloud Infrastructure",
-    title: "Opened a new vertical with 9 named-account show-ups in 30 days.",
-    metric: "9 / 22",
-    metricLabel: "Named-account show-ups",
-    excerpt:
-      "A new vertical, a new ICP, and a board commitment. We compressed discovery into ten days and ran a tight, named-account motion that produced nine show-ups inside thirty days.",
+    id: "professional-services",
+    company: "Professional Services Firm",
+    industry: "Professional Services",
+    title: "Outbound for a high-trust, regulated services firm.",
+    challenge:
+      "A professional-services firm in a regulated industry needed a careful outbound motion. Existing tooling produced too many low-fit conversations and was burning brand equity.",
+    approach:
+      "Restructured the ICP, rewrote the first-touch around a researched point of view on the buyer's regulatory pressure, and rebuilt the CRM to surface only ICP-matched opportunities.",
+    results: [
+      "17 qualified conversations with target buyers in 90 days",
+      "6 advanced to formal scoping",
+      "Pipeline visibility shifted from 'unknown' to 'forecasted'",
+    ],
+    timeline: "90 days",
+    stack: ["HubSpot", "Smartlead", "LinkedIn", "Airtable"],
     image:
       "https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85",
   },
@@ -80,11 +122,12 @@ const CASES = [
 
 const INDUSTRIES = [
   "All",
-  "Logistics SaaS",
-  "Enterprise AI",
-  "Finance / Private Credit",
-  "Healthcare Operations",
-  "Cloud Infrastructure",
+  "IT Services",
+  "Software & SaaS",
+  "Recruitment",
+  "Marketing Agencies",
+  "Consulting Firms",
+  "Professional Services",
 ];
 
 export default function CaseStudies() {
@@ -99,17 +142,17 @@ export default function CaseStudies() {
       {/* HERO */}
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 pt-20 lg:pt-28 pb-16 lg:pb-24">
-          <SectionLabel index="01 — Casework" label="Selected Engagements" />
+          <SectionLabel index="01 — Case Studies" label="Selected Engagements" />
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
             <h1 className="lg:col-span-8 text-[44px] sm:text-[58px] lg:text-[80px] leading-[0.98] tracking-tighter-2 font-semibold text-slate-900">
               The work,{" "}
-              <span className="font-display italic text-[#1f3a5f]">in numbers</span>.
+              <span className="font-display italic text-[#1f3a5f]">in detail</span>.
             </h1>
             <div className="lg:col-span-4 flex items-end">
               <p className="text-[16px] leading-[1.8] text-slate-600">
-                Engagements published with client consent. Numbers measured
-                inside the client&apos;s revenue stack — not ours. Every casework
-                page links to the operating doctrine that produced it.
+                Engagements published with client consent. Each study covers
+                the industry, the challenge, the approach we took, the
+                results, the timeline, and the technology stack.
               </p>
             </div>
           </div>
@@ -150,47 +193,96 @@ export default function CaseStudies() {
               No engagements published in this segment yet.
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
+            <div className="grid grid-cols-1 gap-px bg-slate-200 border border-slate-200">
               {filtered.map((c, i) => (
                 <article
                   key={c.id}
                   data-testid={`case-card-${c.id}`}
-                  className="group bg-white p-10 lg:p-12 flex flex-col reveal"
+                  className="group bg-white p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-10 reveal"
                   style={{ animationDelay: `${i * 60}ms` }}
                 >
-                  <div className="border border-slate-200 overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.company}
-                      className="w-full h-[260px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    />
-                  </div>
-                  <div className="mt-8 flex items-center justify-between">
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-[#1f3a5f] font-medium">
-                      {c.company}
-                    </p>
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                  <div className="lg:col-span-4">
+                    <div className="border border-slate-200 overflow-hidden">
+                      <img
+                        src={c.image}
+                        alt={c.company}
+                        className="w-full h-[220px] lg:h-[280px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                      />
+                    </div>
+                    <p className="mt-6 text-[11px] uppercase tracking-[0.28em] text-[#1f3a5f] font-medium">
                       {c.industry}
                     </p>
+                    <p className="mt-2 text-[14px] text-slate-500">
+                      {c.company}
+                    </p>
+                    <h2 className="mt-6 text-[22px] lg:text-[26px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.15]">
+                      {c.title}
+                    </h2>
                   </div>
-                  <h2 className="mt-6 text-[22px] lg:text-[28px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.15]">
-                    {c.title}
-                  </h2>
-                  <p className="mt-4 text-[15px] leading-[1.75] text-slate-600">
-                    {c.excerpt}
-                  </p>
-                  <div className="mt-8 pt-6 border-t border-slate-200 flex items-end justify-between">
+
+                  <div className="lg:col-span-5 grid grid-cols-1 gap-8">
                     <div>
-                      <p className="text-[36px] lg:text-[44px] tracking-tighter font-semibold text-slate-900 num-cap leading-none">
-                        {c.metric}
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-[#C9A14A] font-medium">
+                        Challenge
                       </p>
-                      <p className="mt-3 text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                        {c.metricLabel}
+                      <p className="mt-3 text-[15px] leading-[1.8] text-slate-700">
+                        {c.challenge}
                       </p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-[#C9A14A] font-medium">
+                        Approach
+                      </p>
+                      <p className="mt-3 text-[15px] leading-[1.8] text-slate-700">
+                        {c.approach}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-[#C9A14A] font-medium">
+                        Results
+                      </p>
+                      <ul className="mt-3 space-y-2">
+                        {c.results.map((r) => (
+                          <li
+                            key={r}
+                            className="text-[15px] leading-[1.7] text-slate-700 flex gap-3"
+                          >
+                            <span className="mt-3 inline-block w-2 h-px bg-[#C9A14A] shrink-0" />
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-3 lg:border-l lg:border-slate-200 lg:pl-8 grid grid-cols-2 lg:grid-cols-1 gap-8 content-start">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                        Timeline
+                      </p>
+                      <p className="mt-3 text-[20px] lg:text-[24px] tracking-tighter-2 font-semibold text-slate-900">
+                        {c.timeline}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                        Technology stack
+                      </p>
+                      <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-2">
+                        {c.stack.map((s) => (
+                          <li
+                            key={s}
+                            className="text-[12px] uppercase tracking-[0.12em] text-slate-700 border border-slate-300 px-3 py-1"
+                          >
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-[#1f3a5f] font-medium link-underline"
+                      data-testid={`case-card-cta-${c.id}`}
+                      className="col-span-2 lg:col-span-1 inline-flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-[#1f3a5f] font-medium link-underline mt-2"
                     >
                       Discuss this case
                       <ArrowRight size={14} strokeWidth={1.75} />

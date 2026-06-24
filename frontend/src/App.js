@@ -8,6 +8,7 @@ import About from "@/pages/About";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
 import Blog, { BlogPost } from "@/pages/Blog";
+import Resources from "@/pages/Resources";
 import NotFound from "@/pages/NotFound";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/about" element={<About />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />

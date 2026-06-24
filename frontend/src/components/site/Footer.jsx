@@ -8,6 +8,7 @@ const SITEMAP = [
     items: [
       { label: "Services", to: "/services" },
       { label: "Case Studies", to: "/case-studies" },
+      { label: "Resources", to: "/resources" },
       { label: "Blog", to: "/blog" },
       { label: "Book Consultation", to: "/contact" },
     ],
@@ -42,9 +43,10 @@ export default function Footer() {
           <div className="lg:col-span-5">
             <Logo tone="light" />
             <p className="mt-8 max-w-md text-[15px] leading-[1.7] text-white/70">
-              PolarisOrigin is an outbound GTM firm for enterprise teams.
-              We engineer hyper-personalized pipeline systems and charge
-              only when qualified prospects show up.
+              Polaris Origin is an Outbound GTM firm for B2B service and
+              product companies. We help define the market, build the
+              infrastructure, and operate outbound systems that consistently
+              create pipeline.
             </p>
 
             <Link
@@ -87,8 +89,8 @@ export default function Footer() {
 
         <div className="flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between gap-6 pt-10">
           <p className="text-[12px] tracking-[0.04em] text-white/55 num-cap">
-            © {new Date().getFullYear()} PolarisOrigin Partners, LLC ·
-            Engagement model: Pay per qualified show-up · ISO 27001 in progress
+            © {new Date().getFullYear()} Polaris Origin · Outbound GTM ·
+            Performance-based engagement model
           </p>
           <div className="flex items-center gap-8">
             <Link

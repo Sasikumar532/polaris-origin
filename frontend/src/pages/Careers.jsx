@@ -37,7 +37,7 @@ const ROLES = [
     location: "New York · London",
     type: "Full-time",
     summary:
-      "Run two engagements end-to-end. Author the Offer Doctrine. Own the weekly review. Build the future partnership at PolarisOrigin from the engagement floor up.",
+      "Run two engagements end-to-end. Author the engagement strategy, own the weekly review, and help shape the long-term operating system at Polaris Origin.",
     responsibilities: [
       "Lead Discovery & Doctrine for two engagements per quarter",
       "Own the weekly operating review with the client revenue team",
@@ -131,7 +131,7 @@ export default function Careers() {
             </h1>
           </div>
           <p className="mt-12 max-w-3xl text-[17px] leading-[1.8] text-slate-600">
-            PolarisOrigin hires senior operators who want to compound their
+            Polaris Origin hires senior operators who want to compound their
             craft. We do not staff engagements with pyramids of juniors. We do
             not run revenue on bonuses tied to activity. We build long, careful
             careers — and the firm where they are possible.

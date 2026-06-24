@@ -5,51 +5,39 @@ import SectionLabel from "@/components/site/SectionLabel";
 const ABOUT_IMAGE =
   "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85";
 
+const FOUNDER = {
+  name: "Lakshan Anirudh Kannan",
+  role: "Founder · Polaris Origin",
+  photo:
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&w=900&q=85",
+  bio:
+    "Every Polaris Origin engagement is personally overseen by founder Lakshan Anirudh Kannan. As Polaris Origin grows, we intend to remain intentionally selective and maintain a high standard of execution.",
+};
+
 const PRINCIPLES = [
   {
     n: "01",
-    title: "Defend the hypothesis.",
+    title: "Strategy first.",
     body:
-      "Every action — every email, every list, every meeting — must trace back to a single written hypothesis about the buyer. We refuse to operate on instinct dressed up as strategy.",
+      "Every engagement begins with ICP development, offer refinement and messaging — before campaigns launch.",
   },
   {
     n: "02",
-    title: "Pay for outcomes, not activity.",
+    title: "Performance-based pricing.",
     body:
-      "We refused the retainer model because it rewards optics. Our contracts charge for show-ups because that is the only metric a CFO will defend in a board meeting.",
+      "Our engagement model is structured around qualified prospects who actually attend the meeting.",
   },
   {
     n: "03",
-    title: "Write before you send.",
+    title: "Research-driven outreach.",
     body:
-      "Every engagement begins with a written Offer Doctrine. If we cannot write down what makes the offer worth a buyer's hour, we will not put it in their inbox.",
+      "Accounts are researched before sequences are written. Every message is grounded in a specific point of view.",
   },
   {
     n: "04",
-    title: "Compounding over campaigns.",
+    title: "Weekly optimization.",
     body:
-      "We do not run campaigns. We build operating systems. Six months in, the engagement should look less like outbound and more like a discipline embedded in your revenue team.",
-  },
-];
-
-const LEADERS = [
-  {
-    name: "Adelaide Brae",
-    role: "Founding Partner · Strategy",
-    bio:
-      "Previously led GTM strategy at three enterprise SaaS scale-ups. Built the Offer Doctrine method we now use across every engagement.",
-  },
-  {
-    name: "Iván Caro",
-    role: "Founding Partner · Operations",
-    bio:
-      "Twelve years architecting outbound infrastructure for revenue teams. Owns the deliverability, signal, and sequencing layer.",
-  },
-  {
-    name: "Helena Vance",
-    role: "Director · Research",
-    bio:
-      "Runs the research bench. Every account brief, every wedge primitive, every named-account map crosses her desk before it leaves the firm.",
+      "Engagements run on a weekly cadence — reviewing conversations, refining messaging, and improving pipeline quality.",
   },
 ];
 
@@ -60,18 +48,17 @@ export default function About() {
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 pt-20 lg:pt-28 pb-16 lg:pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7">
-            <SectionLabel index="01 — The Firm" label="About PolarisOrigin" />
+            <SectionLabel index="01 — The Firm" label="About Polaris Origin" />
             <h1 className="mt-10 text-[44px] sm:text-[58px] lg:text-[80px] leading-[0.98] tracking-tighter-2 font-semibold text-slate-900">
-              Clarity in complex{" "}
-              <span className="font-display italic text-[#1f3a5f]">growth systems</span>.
+              An Outbound GTM firm,{" "}
+              <span className="font-display italic text-[#1f3a5f]">built deliberately</span>.
             </h1>
             <p className="mt-10 max-w-2xl text-[17px] leading-[1.8] text-slate-600">
-              PolarisOrigin was founded on a single conviction: that outbound,
-              done with the discipline of a consulting firm, is one of the most
-              defensible growth assets a company can own. We are not an agency.
-              We do not sell hours. We sell the rare combination of judgement,
-              research, and operational rigour — and we only invoice when a
-              qualified prospect shows up.
+              Polaris Origin partners with B2B service and product companies
+              to build outbound systems that consistently produce qualified
+              meetings. We help define the market, build the infrastructure,
+              and run the operating cadence — and we charge against the
+              meetings that actually take place.
             </p>
           </div>
           <div className="lg:col-span-5">
@@ -83,9 +70,11 @@ export default function About() {
               />
               <div className="absolute left-0 top-0 bg-white border-b border-r border-slate-200 px-5 py-3">
                 <p className="text-[10px] tracking-[0.32em] uppercase text-slate-500">
-                  Founded
+                  Built around
                 </p>
-                <p className="text-[13px] mt-1 text-slate-900 num-cap">2021 · Boston</p>
+                <p className="text-[13px] mt-1 text-slate-900">
+                  Strategy · Infrastructure · Outbound
+                </p>
               </div>
               <div className="absolute right-0 bottom-0 bg-[#1f3a5f] text-white px-6 py-5 max-w-[280px]">
                 <Star
@@ -94,9 +83,9 @@ export default function About() {
                   className="text-[#C9A14A] mb-3"
                 />
                 <p className="text-[14px] leading-snug text-white/90">
-                  Polaris does not move.
+                  Founder-led.
                   <br />
-                  Everything else navigates by it.
+                  Intentionally selective.
                 </p>
               </div>
             </div>
@@ -104,10 +93,10 @@ export default function About() {
         </div>
       </section>
 
-      {/* NORTH STAR */}
+      {/* THE NAME */}
       <section className="bg-[#1f3a5f] text-white relative overflow-hidden border-b border-[#16294a]">
         <div className="absolute inset-0 grid-lines-dark opacity-30 pointer-events-none" />
-        <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-3">
             <Compass
               size={48}
@@ -123,12 +112,9 @@ export default function About() {
             />
           </div>
           <div className="lg:col-span-9">
-            <p className="font-display text-[28px] sm:text-[36px] lg:text-[48px] leading-[1.2] tracking-tight text-white max-w-4xl">
-              "Polaris" is the fixed point that sailors used to navigate by for
-              three thousand years. "Origin" is the coordinate every other point
-              on the map is measured from. We chose the name because that is
-              the role we play for revenue leaders — the steady reference point
-              that lets a complex growth system know where it is.
+            <p className="font-display text-[28px] sm:text-[34px] lg:text-[44px] leading-[1.25] tracking-tight text-white max-w-4xl">
+              Our name reflects a belief that growth should be intentional and
+              directional from the start.
             </p>
           </div>
         </div>
@@ -139,18 +125,16 @@ export default function About() {
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-5">
-              <SectionLabel index="03" label="Operating Principles" />
+              <SectionLabel index="03" label="How We Operate" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
-                Four sentences <br />
-                <span className="font-display italic text-[#1f3a5f]">we live by</span>.
+                Four commitments{" "}
+                <span className="font-display italic text-[#1f3a5f]">we work by</span>.
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7 flex items-end">
               <p className="text-[16px] leading-[1.8] text-slate-600">
-                These principles are not posters on a wall. They are the
-                criteria we use to decide who we hire, which engagements we
-                accept, and which lines we never cross — no matter what a
-                quarter looks like.
+                These shape who we hire, which engagements we accept, and
+                how we run every week of an engagement once it begins.
               </p>
             </div>
           </div>
@@ -177,55 +161,72 @@ export default function About() {
         </div>
       </section>
 
-      {/* LEADERSHIP */}
-      <section className="bg-[#f5f6f8] border-b border-slate-200">
+      {/* TEAM */}
+      <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="team-section">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-5">
-              <SectionLabel index="04" label="Leadership" />
+            <div className="lg:col-span-6">
+              <SectionLabel index="04" label="Meet the Team" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
-                Senior operators.
-                <br />
-                <span className="font-display italic text-[#1f3a5f]">No layered teams.</span>
+                <span className="font-display italic text-[#1f3a5f]">Founder-led</span>.
               </h2>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7 flex items-end">
+            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
               <p className="text-[16px] leading-[1.8] text-slate-600">
-                You will not be handed off to an account manager. Every
-                engagement is staffed and run by a partner. The partner who
-                wrote your Offer Doctrine is the partner who reads your
-                weekly review.
+                Every engagement is personally overseen by Polaris Origin
+                founder Lakshan Anirudh Kannan. As Polaris Origin grows, we
+                intend to remain intentionally selective and maintain a high
+                standard of execution.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
-            {LEADERS.map((l) => (
-              <div key={l.name} className="bg-white p-10">
-                <div className="border border-slate-200 h-72 flex items-center justify-center overflow-hidden">
-                  <div className="w-full h-full bg-[#1f3a5f] flex items-end p-6">
-                    <div>
-                      <p className="font-display text-[42px] leading-none text-white">
-                        {l.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </p>
-                      <div className="mt-4 w-10 h-px bg-[#C9A14A]" />
-                    </div>
-                  </div>
-                </div>
-                <h3 className="mt-8 text-[20px] tracking-tight font-semibold text-slate-900">
-                  {l.name}
-                </h3>
-                <p className="mt-2 text-[12px] uppercase tracking-[0.22em] text-[#1f3a5f]">
-                  {l.role}
-                </p>
-                <p className="mt-6 text-[14px] leading-[1.75] text-slate-600">
-                  {l.bio}
-                </p>
+          <div className="border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-12 gap-px bg-slate-200">
+            <div className="md:col-span-5 bg-white">
+              <div className="relative h-full w-full">
+                <img
+                  src={FOUNDER.photo}
+                  alt={FOUNDER.name}
+                  className="w-full h-full object-cover grayscale aspect-square md:aspect-auto"
+                  data-testid="founder-photo"
+                />
+                <span className="absolute left-0 bottom-0 bg-[#1f3a5f] text-white text-[10px] tracking-[0.28em] uppercase px-4 py-2">
+                  Founder
+                </span>
               </div>
-            ))}
+            </div>
+            <div className="md:col-span-7 bg-white p-10 lg:p-14 flex flex-col justify-center">
+              <p className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] font-medium">
+                Founder · Operator
+              </p>
+              <h3 className="mt-6 text-[32px] lg:text-[44px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
+                {FOUNDER.name}
+              </h3>
+              <p className="mt-3 text-[14px] uppercase tracking-[0.18em] text-[#1f3a5f]">
+                {FOUNDER.role}
+              </p>
+              <p className="mt-8 max-w-2xl text-[16px] leading-[1.85] text-slate-600">
+                {FOUNDER.bio}
+              </p>
+              <div className="mt-10 pt-8 border-t border-slate-200 grid grid-cols-2 gap-x-10 gap-y-6 max-w-2xl">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                    Approach
+                  </p>
+                  <p className="mt-2 text-[15px] text-slate-900">
+                    Founder-led execution
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
+                    Cadence
+                  </p>
+                  <p className="mt-2 text-[15px] text-slate-900">
+                    Weekly optimisation
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -238,11 +239,12 @@ export default function About() {
           </div>
           <div className="lg:col-span-9">
             <p className="font-display text-[28px] sm:text-[34px] lg:text-[44px] leading-[1.2] text-slate-900">
-              "PolarisOrigin behaves like the strategy team inside our company —
-              except they care more about the next ten meetings than we do."
+              "Polaris Origin behaves like the strategy team inside our
+              company — except they care more about the next ten meetings than
+              we do."
             </p>
             <p className="mt-10 text-[13px] uppercase tracking-[0.18em] text-slate-700">
-              — David Renshaw · CRO · Atlas Cloud
+              — Engagement reference · IT services, mid-market
             </p>
           </div>
         </div>
@@ -254,7 +256,7 @@ export default function About() {
           <div className="border border-slate-200 px-8 lg:px-16 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8">
               <h2 className="text-[34px] lg:text-[52px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-                Start a conversation with a partner.
+                Start a conversation with the founder.
               </h2>
             </div>
             <div className="lg:col-span-4 lg:text-right">

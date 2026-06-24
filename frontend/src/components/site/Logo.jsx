@@ -20,10 +20,10 @@ export default function Logo({ tone = "dark" }) {
         <span
           className={`text-[15px] font-semibold tracking-[0.18em] uppercase ${fg}`}
         >
-          Polaris<span className="text-[#C9A14A]">·</span>Origin
+          Polaris Origin
         </span>
         <span className={`text-[9.5px] tracking-[0.32em] uppercase ${sub} mt-1`}>
-          Outbound GTM · Pay per Show-up
+          Outbound GTM · Performance-based
         </span>
       </div>
     </div>
