@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { ArrowUpRight, Star, Compass, Quote } from "lucide-react";
+import { Star, Compass } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
+import CTASection from "@/components/site/CTASection";
 
 const ABOUT_IMAGE =
   "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85";
@@ -57,7 +57,7 @@ export default function About() {
               Polaris Origin partners with B2B service and product companies
               to build outbound systems that consistently produce qualified
               meetings. We help define the market, build the infrastructure,
-              and run the operating cadence — and we charge against the
+              and run the campaigns — and we only charge against the
               meetings that actually take place.
             </p>
           </div>
@@ -131,12 +131,6 @@ export default function About() {
                 <span className="font-display italic text-[#1f3a5f]">we work by</span>.
               </h2>
             </div>
-            <div className="lg:col-span-6 lg:col-start-7 flex items-end">
-              <p className="text-[16px] leading-[1.8] text-slate-600">
-                These shape who we hire, which engagements we accept, and
-                how we run every week of an engagement once it begins.
-              </p>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-200 border border-slate-200">
@@ -171,14 +165,6 @@ export default function About() {
                 <span className="font-display italic text-[#1f3a5f]">Founder-led</span>.
               </h2>
             </div>
-            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
-              <p className="text-[16px] leading-[1.8] text-slate-600">
-                Every engagement is personally overseen by Polaris Origin
-                founder Lakshan Anirudh Kannan. As Polaris Origin grows, we
-                intend to remain intentionally selective and maintain a high
-                standard of execution.
-              </p>
-            </div>
           </div>
 
           <div className="border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-12 gap-px bg-slate-200">
@@ -208,74 +194,15 @@ export default function About() {
               <p className="mt-8 max-w-2xl text-[16px] leading-[1.85] text-slate-600">
                 {FOUNDER.bio}
               </p>
-              <div className="mt-10 pt-8 border-t border-slate-200 grid grid-cols-2 gap-x-10 gap-y-6 max-w-2xl">
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                    Approach
-                  </p>
-                  <p className="mt-2 text-[15px] text-slate-900">
-                    Founder-led execution
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                    Cadence
-                  </p>
-                  <p className="mt-2 text-[15px] text-slate-900">
-                    Weekly optimisation
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* QUOTE */}
-      <section className="bg-white border-b border-slate-200">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-2 hidden lg:block">
-            <Quote size={36} strokeWidth={1.25} className="text-[#C9A14A]" />
-          </div>
-          <div className="lg:col-span-9">
-            <p className="font-display text-[28px] sm:text-[34px] lg:text-[44px] leading-[1.2] text-slate-900">
-              "Polaris Origin behaves like the strategy team inside our
-              company — except they care more about the next ten meetings than
-              we do."
-            </p>
-            <p className="mt-10 text-[13px] uppercase tracking-[0.18em] text-slate-700">
-              — Engagement reference · IT services, mid-market
-            </p>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="border border-slate-200 px-8 lg:px-16 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-8">
-              <h2 className="text-[34px] lg:text-[52px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-                Start a conversation with the founder.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 lg:text-right">
-              <Link
-                to="/contact"
-                data-testid="about-cta"
-                className="group inline-flex items-center gap-3 bg-[#1f3a5f] text-white px-8 py-5 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#16294a] transition-colors"
-              >
-                Book Free Consultation
-                <ArrowUpRight
-                  size={18}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CTASection testId="about-cta">
+        Start a conversation with the founder.
+      </CTASection>
     </div>
   );
 }

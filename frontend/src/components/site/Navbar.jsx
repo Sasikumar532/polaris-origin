@@ -4,12 +4,9 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import Logo from "@/components/site/Logo";
 
 const NAV = [
-  { label: "Services", to: "/services", id: "nav-services" },
+  { label: "Home", to: "/", id: "nav-home" },
   { label: "About", to: "/about", id: "nav-about" },
-  { label: "Case Studies", to: "/case-studies", id: "nav-case-studies" },
-  { label: "Resources", to: "/resources", id: "nav-resources" },
-  { label: "Blog", to: "/blog", id: "nav-blog" },
-  { label: "Careers", to: "/careers", id: "nav-careers" },
+  { label: "Services", to: "/services", id: "nav-services" },
 ];
 
 export default function Navbar() {

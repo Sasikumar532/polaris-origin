@@ -7,9 +7,6 @@ const SITEMAP = [
     title: "Engagement",
     items: [
       { label: "Services", to: "/services" },
-      { label: "Case Studies", to: "/case-studies" },
-      { label: "Resources", to: "/resources" },
-      { label: "Blog", to: "/blog" },
       { label: "Book Consultation", to: "/contact" },
     ],
   },
@@ -17,7 +14,6 @@ const SITEMAP = [
     title: "Firm",
     items: [
       { label: "About", to: "/about" },
-      { label: "Careers", to: "/careers" },
       { label: "Contact", to: "/contact" },
     ],
   },
@@ -26,9 +22,17 @@ const SITEMAP = [
     items: [
       { label: "North America", to: "/contact" },
       { label: "United Kingdom", to: "/contact" },
-      { label: "DACH & Nordics", to: "/contact" },
+      { label: "India", to: "/contact" },
     ],
   },
+];
+
+const CONTACT_INFO = [
+  { label: "partners@polarisorigin.com", href: "mailto:partners@polarisorigin.com" },
+  { label: "contact@polarisorigin.com", href: "mailto:contact@polarisorigin.com" },
+  { label: "careers@polarisorigin.com", href: "mailto:careers@polarisorigin.com" },
+  { label: "+1 332-290-3120", href: "tel:+13322903120" },
+  { label: "+91 87789 31001", href: "tel:+918778931001" },
 ];
 
 export default function Footer() {
@@ -38,9 +42,9 @@ export default function Footer() {
       className="bg-[#1f3a5f] text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 grid-lines-dark opacity-30 pointer-events-none" />
-      <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-20 lg:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-white/15">
-          <div className="lg:col-span-5">
+      <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-14 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 pb-12 border-b border-white/15">
+          <div className="lg:col-span-4">
             <Logo tone="light" />
             <p className="mt-8 max-w-md text-[15px] leading-[1.7] text-white/70">
               Polaris Origin is an Outbound GTM firm for B2B service and
@@ -52,7 +56,7 @@ export default function Footer() {
             <Link
               to="/contact"
               data-testid="footer-cta"
-              className="group mt-10 inline-flex items-center gap-3 border border-[#C9A14A] text-white px-6 py-4 text-[13px] tracking-[0.04em] uppercase font-medium hover:bg-[#C9A14A] hover:text-[#1f3a5f] transition-colors"
+              className="group mt-10 inline-flex items-center gap-3 bg-[#C9A14A] text-[#1f3a5f] px-6 py-4 text-[13px] tracking-[0.04em] uppercase font-medium"
             >
               Book Free Consultation
               <ArrowUpRight
@@ -63,7 +67,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-10">
+          <div className="lg:col-span-8 grid grid-cols-2 lg:grid-cols-4 gap-8">
             {SITEMAP.map((group) => (
               <div key={group.title}>
                 <p className="text-[11px] uppercase tracking-[0.28em] text-[#C9A14A] mb-6">
@@ -84,6 +88,25 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
+
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.28em] text-[#C9A14A] mb-6">
+                Contact
+              </p>
+              <ul className="space-y-4">
+                {CONTACT_INFO.map((it) => (
+                  <li key={it.label}>
+                    <a
+                      href={it.href}
+                      data-testid={`footer-contact-${it.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                      className="text-[14px] text-white/80 hover:text-white link-underline"
+                    >
+                      {it.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 

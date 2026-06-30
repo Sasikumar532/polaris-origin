@@ -3,12 +3,8 @@ import { BrowserRouter, Routes, Route, ScrollRestoration } from "react-router-do
 import SiteLayout from "@/components/site/SiteLayout";
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
-import CaseStudies from "@/pages/CaseStudies";
 import About from "@/pages/About";
-import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
-import Blog, { BlogPost } from "@/pages/Blog";
-import Resources from "@/pages/Resources";
 import NotFound from "@/pages/NotFound";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -20,12 +16,7 @@ function App() {
           <Route element={<SiteLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/about" element={<About />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Route>

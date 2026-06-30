@@ -2,15 +2,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
   ArrowRight,
-  Clock,
-  Compass,
-  Workflow,
-  Network,
-  Gauge,
-  Quote,
-  Layers,
-  Rocket,
-  Activity,
   Users,
   Server,
   Code,
@@ -19,13 +10,10 @@ import {
   Building2,
 } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
-import { POSTS } from "@/pages/Blog";
+import CTASection from "@/components/site/CTASection";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85";
-
-const CASE_IMAGE =
-  "https://images.pexels.com/photos/5686077/pexels-photo-5686077.jpeg";
 
 const TRUSTED = [
   "Recruitment",
@@ -43,69 +31,6 @@ const METRICS = [
   { k: "Founder-led", v: "Every engagement is personally overseen by the Polaris Origin founder." },
   { k: "Research-driven", v: "Accounts are researched before sequences are written, not after." },
   { k: "Weekly review", v: "We optimise pipeline quality on a weekly cadence with the revenue team." },
-];
-
-const DIFFERENTIATORS = [
-  {
-    n: "01",
-    icon: Compass,
-    title: "Strategy First",
-    body:
-      "We begin with ICP development, offer refinement and messaging before launching campaigns.",
-  },
-  {
-    n: "02",
-    icon: Workflow,
-    title: "Revenue Infrastructure",
-    body:
-      "CRM architecture, automations and workflows designed to support long-term growth.",
-  },
-  {
-    n: "03",
-    icon: Network,
-    title: "Multi-Channel Outbound",
-    body:
-      "Cold email and LinkedIn work together as one conversation.",
-  },
-  {
-    n: "04",
-    icon: Gauge,
-    title: "Performance-Based Model",
-    body:
-      "You pay when qualified prospects show up.",
-  },
-];
-
-const PHASES = [
-  {
-    n: "01",
-    icon: Compass,
-    title: "Strategy",
-    body: "Define ICP, refine the offer, establish positioning and messaging.",
-    duration: "Week 1",
-  },
-  {
-    n: "02",
-    icon: Layers,
-    title: "Infrastructure",
-    body: "Configure CRM, automations, domains and outbound systems.",
-    duration: "Week 2",
-  },
-  {
-    n: "03",
-    icon: Rocket,
-    title: "Launch",
-    body: "Begin email and LinkedIn outreach and monitor early signals.",
-    duration: "Week 3",
-  },
-  {
-    n: "04",
-    icon: Activity,
-    title: "Optimization",
-    body:
-      "Review conversations, improve messaging and continuously refine pipeline quality.",
-    duration: "Ongoing",
-  },
 ];
 
 const INDUSTRIES = [
@@ -137,7 +62,7 @@ export default function Home() {
               Polaris Origin is an Outbound GTM firm for B2B service and
               product companies. We help define the market, build the
               infrastructure, and operate outbound systems that consistently
-              create pipeline.
+              fill pipeline.
             </p>
 
             <p className="mt-6 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-900 font-medium">
@@ -162,35 +87,6 @@ export default function Home() {
                   className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </Link>
-              <Link
-                to="/case-studies"
-                data-testid="hero-cta-secondary"
-                className="group inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-900 px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:border-[#1f3a5f] transition-colors"
-              >
-                See Case Studies
-                <ArrowRight
-                  size={16}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
-
-            <div className="mt-16 grid grid-cols-2 gap-x-10 gap-y-8 max-w-xl">
-              <div className="border-t border-slate-200 pt-5">
-                <p className="text-[12px] uppercase tracking-[0.22em] text-slate-500">
-                  Engagement
-                </p>
-                <p className="mt-2 text-[15px] text-slate-900">
-                  Performance-based pricing
-                </p>
-              </div>
-              <div className="border-t border-slate-200 pt-5">
-                <p className="text-[12px] uppercase tracking-[0.22em] text-slate-500">
-                  Execution
-                </p>
-                <p className="mt-2 text-[15px] text-slate-900">Founder-led, weekly cadence</p>
-              </div>
             </div>
           </div>
 
@@ -295,165 +191,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DIFFERENTIATORS */}
-      <section className="border-b border-slate-200" data-testid="differentiators-section">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-5">
-              <SectionLabel index="(III)" label="The Difference" />
-              <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-                What Makes Polaris Origin{" "}
-                <span className="font-display italic text-[#1f3a5f]">
-                  Different
-                </span>
-                .
-              </h2>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7 flex items-end">
-              <p className="text-[16px] leading-[1.8] text-slate-600">
-                Four operating principles that shape every Polaris Origin
-                engagement — from the first discovery call to the weekly
-                optimisation review.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-slate-200">
-            {DIFFERENTIATORS.map((p) => {
-              const Icon = p.icon;
-              return (
-                <article
-                  key={p.n}
-                  className="group border-r border-b border-slate-200 p-10 lg:p-12 bg-white hover:bg-[#f5f6f8] transition-colors"
-                  data-testid={`differentiator-${p.n}`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
-                      {p.n}
-                    </span>
-                    <Icon
-                      size={22}
-                      strokeWidth={1.25}
-                      className="text-[#1f3a5f]"
-                    />
-                  </div>
-                  <h3 className="mt-12 text-[22px] lg:text-[26px] tracking-tight font-semibold text-slate-900">
-                    {p.title}
-                  </h3>
-                  <p className="mt-5 text-[15px] leading-[1.75] text-slate-600">
-                    {p.body}
-                  </p>
-                  <Link
-                    to="/services"
-                    className="mt-10 inline-flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-[#1f3a5f] group-hover:text-[#16294a]"
-                  >
-                    Learn more
-                    <ArrowRight size={14} strokeWidth={1.75} />
-                  </Link>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* HOW ENGAGEMENTS WORK */}
       <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="how-engagements-work">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-6">
-              <SectionLabel index="(IV)" label="Process" />
+              <SectionLabel index="(III)" label="Process" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-                How engagements{" "}
+                How we{" "}
                 <span className="font-display italic text-[#1f3a5f]">work</span>.
               </h2>
             </div>
-            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
-              <p className="text-[16px] leading-[1.8] text-slate-600">
-                Four phases. Strategy and infrastructure come first;
-                outbound launches in week three; optimisation is continuous.
-              </p>
-            </div>
           </div>
-
-          {/* Desktop horizontal timeline */}
-          <div className="hidden lg:block relative">
-            <div className="grid grid-cols-4 gap-px bg-slate-200 border border-slate-200 relative">
-              {PHASES.map((p, i) => {
-                const Icon = p.icon;
-                return (
-                  <div
-                    key={p.n}
-                    data-testid={`phase-${p.n}`}
-                    className="bg-white p-8 xl:p-10 reveal relative"
-                    style={{ animationDelay: `${i * 80}ms` }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
-                        Phase {p.n}
-                      </span>
-                      <Icon
-                        size={18}
-                        strokeWidth={1.25}
-                        className="text-[#1f3a5f]"
-                      />
-                    </div>
-                    {/* Gold connector line across cards (z-10) */}
-                    <div className="absolute left-0 right-0 top-[88px] h-px bg-[#C9A14A] z-10" />
-                    {/* Dot punched on top of the line (z-20) */}
-                    <div className="relative mt-12 mb-12 z-20">
-                      <span
-                        className="block w-4 h-4 bg-[#C9A14A] mx-auto"
-                        style={{ boxShadow: "0 0 0 6px #ffffff" }}
-                      />
-                    </div>
-                    <h3 className="text-[24px] xl:text-[28px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.1]">
-                      {p.title}
-                    </h3>
-                    <p className="mt-5 text-[14px] leading-[1.7] text-slate-600 min-h-[80px]">
-                      {p.body}
-                    </p>
-                    <p className="mt-8 pt-5 border-t border-slate-200 text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                      {p.duration}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Mobile vertical timeline */}
-          <ol className="lg:hidden border-l border-[#C9A14A] ml-3">
-            {PHASES.map((p) => {
-              const Icon = p.icon;
-              return (
-                <li
-                  key={p.n}
-                  className="relative pl-8 pb-12 last:pb-0"
-                  data-testid={`phase-mobile-${p.n}`}
-                >
-                  <span className="absolute -left-[7px] top-2 w-3 h-3 bg-[#C9A14A]" />
-                  <div className="border border-slate-200 bg-white p-6">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
-                        Phase {p.n}
-                      </span>
-                      <Icon size={16} strokeWidth={1.25} className="text-[#1f3a5f]" />
-                    </div>
-                    <h3 className="mt-6 text-[22px] tracking-tighter-2 font-semibold text-slate-900">
-                      {p.title}
-                    </h3>
-                    <p className="mt-3 text-[14px] leading-[1.7] text-slate-600">
-                      {p.body}
-                    </p>
-                    <p className="mt-5 pt-4 border-t border-slate-200 text-[11px] uppercase tracking-[0.22em] text-slate-500">
-                      {p.duration}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
         </div>
       </section>
 
@@ -462,7 +211,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
             <div className="lg:col-span-6">
-              <SectionLabel index="(V)" label="Industries" />
+              <SectionLabel index="(IV)" label="Industries" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
                 Who we{" "}
                 <span className="font-display italic text-[#1f3a5f]">work with</span>.
@@ -497,217 +246,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CASE TEASER */}
-      <section className="border-b border-slate-200" data-testid="case-teaser">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-            <div className="lg:col-span-6 border border-slate-200">
-              <img
-                src={CASE_IMAGE}
-                alt="Featured engagement"
-                className="w-full h-full max-h-[560px] object-cover grayscale"
-              />
-            </div>
-            <div className="lg:col-span-6 flex flex-col justify-between border border-slate-200 p-10 lg:p-14">
-              <div>
-                <SectionLabel index="(VI)" label="Featured Case Study · IT Services" />
-                <h3 className="mt-10 text-[28px] lg:text-[40px] tracking-tighter-2 font-semibold leading-[1.1] text-slate-900">
-                  A regional IT services firm went from{" "}
-                  <span className="font-display italic text-[#1f3a5f]">
-                    inconsistent referrals
-                  </span>{" "}
-                  to a predictable outbound motion in a single quarter.
-                </h3>
-                <p className="mt-6 text-[15px] leading-[1.8] text-slate-600 max-w-xl">
-                  We rebuilt the ICP around mid-market technology buyers,
-                  refined the offer to a specific managed-services wedge,
-                  and operated a multi-channel outbound system that booked
-                  qualified meetings with named accounts.
-                </p>
-              </div>
-
-              <div className="mt-12 grid grid-cols-3 gap-8 border-t border-slate-200 pt-8">
-                <div>
-                  <p className="text-[36px] tracking-tighter font-semibold text-slate-900 num-cap">
-                    32
-                  </p>
-                  <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500 mt-2">
-                    qualified meetings · 90 days
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[36px] tracking-tighter font-semibold text-slate-900 num-cap">
-                    74%
-                  </p>
-                  <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500 mt-2">
-                    show-up rate
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[36px] tracking-tighter font-semibold text-slate-900 num-cap">
-                    21d
-                  </p>
-                  <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500 mt-2">
-                    to first meeting
-                  </p>
-                </div>
-              </div>
-
-              <Link
-                to="/case-studies"
-                data-testid="case-teaser-cta"
-                className="mt-10 inline-flex items-center gap-2 text-[13px] tracking-[0.06em] uppercase text-[#1f3a5f] font-medium link-underline self-start"
-              >
-                Read the full story
-                <ArrowRight size={16} strokeWidth={1.75} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONIAL */}
-      <section className="bg-white border-b border-slate-200">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-2 hidden lg:block">
-            <Quote size={36} strokeWidth={1.25} className="text-[#C9A14A]" />
-          </div>
-          <div className="lg:col-span-9">
-            <p className="font-display text-[28px] sm:text-[34px] lg:text-[44px] leading-[1.2] tracking-tight text-slate-900">
-              "Polaris Origin is the first team that treated our outbound the
-              way our engineering team treats production systems — with
-              strategy, infrastructure, and a weekly cadence we can actually
-              measure."
-            </p>
-            <p className="mt-10 text-[13px] uppercase tracking-[0.18em] text-slate-700">
-              Engagement reference · IT services, mid-market
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* BLOG TEASER */}
-      <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="home-blog-section">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
-            <div className="lg:col-span-6">
-              <SectionLabel index="(VII)" label="Field Notes · From the Firm" />
-              <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
-                Writing from the
-                <br />
-                <span className="font-display italic text-[#1f3a5f]">engagement floor</span>.
-              </h2>
-            </div>
-            <div className="lg:col-span-5 lg:col-start-8 flex items-end">
-              <p className="text-[16px] leading-[1.8] text-slate-600">
-                Long-form, partner-authored essays on outbound doctrine, the
-                pay-per-show-up model, deliverability discipline, and the
-                operating cadence of enterprise revenue. Published when we
-                have something to say — not on a schedule.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
-            {POSTS.slice(0, 3).map((p, i) => (
-              <article
-                key={p.slug}
-                data-testid={`home-blog-card-${p.slug}`}
-                className="group bg-white p-8 lg:p-10 flex flex-col reveal"
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <div className="border border-slate-200 overflow-hidden">
-                  <img
-                    src={p.cover}
-                    alt={p.title}
-                    className="w-full h-[200px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                  />
-                </div>
-                <div className="mt-8 flex items-center justify-between">
-                  <span className="text-[11px] uppercase tracking-[0.28em] text-[#1f3a5f] font-medium">
-                    {p.category}
-                  </span>
-                  <span className="text-[11px] uppercase tracking-[0.22em] text-slate-500 flex items-center gap-2">
-                    <Clock size={12} strokeWidth={1.5} />
-                    {p.readTime}
-                  </span>
-                </div>
-                <h3 className="mt-6 text-[20px] lg:text-[22px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.2]">
-                  {p.title}
-                </h3>
-                <p className="mt-4 text-[14px] leading-[1.75] text-slate-600 flex-1">
-                  {p.excerpt}
-                </p>
-                <Link
-                  to={`/blog/${p.slug}`}
-                  data-testid={`home-blog-card-link-${p.slug}`}
-                  className="mt-8 pt-6 border-t border-slate-200 inline-flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-[#1f3a5f] font-medium link-underline self-start"
-                >
-                  Read essay
-                  <ArrowRight size={14} strokeWidth={1.75} />
-                </Link>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-10 border-t border-slate-300">
-            <p className="text-[13px] text-slate-600 max-w-xl">
-              The full archive — operating doctrine, deliverability essays,
-              and field manuals — lives on the blog.
-            </p>
-            <Link
-              to="/blog"
-              data-testid="home-blog-read-more"
-              className="group inline-flex items-center gap-3 bg-[#1f3a5f] text-white px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#16294a] transition-colors"
-            >
-              Read More on the Blog
-              <ArrowUpRight
-                size={16}
-                strokeWidth={1.75}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section
-        data-testid="home-cta"
-        className="bg-white"
+      <CTASection
+        testId="home-cta"
+        body="Performance-based pricing. Founder-led conversation."
       >
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="border border-slate-200 px-8 lg:px-16 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-8">
-              <SectionLabel index="(VIII)" label="Start a Conversation" />
-              <h2 className="mt-8 text-[36px] lg:text-[56px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
-                Bring us your toughest segment.
-                <br />
-                <span className="font-display italic text-[#1f3a5f]">
-                  We will give you a written plan to win it.
-                </span>
-              </h2>
-            </div>
-            <div className="lg:col-span-4 lg:text-right">
-              <Link
-                to="/contact"
-                data-testid="home-cta-button"
-                className="group inline-flex items-center gap-3 bg-[#1f3a5f] text-white px-8 py-5 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#16294a] transition-colors"
-              >
-                Book Free Consultation
-                <ArrowUpRight
-                  size={18}
-                  strokeWidth={1.75}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Link>
-              <p className="mt-5 text-[12px] tracking-[0.04em] text-slate-500">
-                Performance-based pricing. Founder-led conversation.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        Bring us your toughest segment.{" "}
+        <span className="font-display italic text-[#1f3a5f]">
+          We will give you a written plan to win it.
+        </span>
+      </CTASection>
     </div>
   );
 }
