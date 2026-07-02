@@ -117,14 +117,14 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-8">
             <Link
-              to="/contact"
+              to="/privacy-policy"
               className="text-[12px] uppercase tracking-[0.18em] text-white/60 hover:text-white"
               data-testid="footer-privacy"
             >
               Privacy Policy
             </Link>
             <Link
-              to="/contact"
+              to="/terms-of-service"
               className="text-[12px] uppercase tracking-[0.18em] text-white/60 hover:text-white"
               data-testid="footer-terms"
             >
