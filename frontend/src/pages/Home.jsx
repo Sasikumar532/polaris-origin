@@ -55,7 +55,6 @@ export default function Home() {
               <br />
               produce{" "}
               <span className="font-display italic text-[#1f3a5f]">qualified meetings</span>
-              .
             </h1>
 
             <p className="mt-10 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-600">
@@ -154,7 +153,6 @@ export default function Home() {
               <span className="font-display italic text-[#C9A14A]">
                 long-term system
               </span>
-              .
             </h2>
             <p className="mt-8 text-[16px] leading-[1.8] text-white/75 max-w-lg">
               Polaris Origin engagements are structured to compound. We invest
@@ -194,7 +192,7 @@ export default function Home() {
       {/* HOW ENGAGEMENTS WORK */}
       <section className="bg-[#f5f6f8] border-b border-slate-200" data-testid="how-engagements-work">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
             <div className="lg:col-span-6">
               <SectionLabel index="(III)" label="Process" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
@@ -202,6 +200,40 @@ export default function Home() {
                 <span className="font-display italic text-[#1f3a5f]">work</span>.
               </h2>
             </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            {[
+              "ICP Defining & Offer Building Workshop",
+              "Email Infrastructure Setup",
+              "Lead Sourcing & Data Enrichment",
+              "Hyper-Personalized Sequence Writing",
+              "Revenue Infrastructure",
+              "A/B Testing & Iteration",
+              "Multi-Channel Outbound",
+              "Reply Management & Lead Qualification",
+            ].map((title, i) => (
+              <div
+                key={title}
+                className="bg-white border border-slate-200 flex items-center justify-between px-8 py-5 group hover:bg-[#f5f6f8] transition-colors"
+              >
+                <div className="flex items-center gap-6">
+                  <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-[17px] font-semibold text-slate-900 tracking-tight">
+                    {title}
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="shrink-0 inline-flex items-center gap-2 text-[12px] tracking-[0.08em] uppercase text-[#1f3a5f] font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  Learn More
+                  <ArrowUpRight size={14} strokeWidth={1.75} />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -247,15 +279,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <CTASection
-        testId="home-cta"
-        body="Performance-based pricing. Founder-led conversation."
-      >
-        Bring us your toughest segment.{" "}
-        <span className="font-display italic text-[#1f3a5f]">
-          We will give you a written plan to win it.
-        </span>
-      </CTASection>
+      <CTASection testId="home-cta" />
     </div>
   );
 }

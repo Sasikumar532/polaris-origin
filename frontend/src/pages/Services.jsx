@@ -5,6 +5,8 @@ import {
   PenTool,
   Gauge,
   MessageSquare,
+  Workflow,
+  Network,
   Linkedin,
 } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
@@ -41,13 +43,27 @@ const PILLARS = [
   },
   {
     n: "05",
+    icon: Workflow,
+    title: "Revenue Infrastructure",
+    body:
+      "We configure the CRM, automations and workflows that support long-term growth.",
+  },
+  {
+    n: "06",
     icon: Gauge,
     title: "A/B Testing & Iteration",
     body:
       "Campaigns are continuously refined through structured testing, allowing messaging, targeting, and timing to improve based on real-world performance.",
   },
   {
-    n: "06",
+    n: "07",
+    icon: Network,
+    title: "Multi-Channel Outbound",
+    body:
+      "Cold email and LinkedIn work together as one conversation, in the same researched point of view per account.",
+  },
+  {
+    n: "08",
     icon: MessageSquare,
     title: "Reply Management & Lead Qualification",
     body:
@@ -117,22 +133,24 @@ export default function Services() {
                 <article
                   key={p.n}
                   data-testid={`service-pillar-${p.n}`}
-                  className="bg-white p-10 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-center"
+                  className="bg-white p-10 lg:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10"
                 >
-                  <div className="lg:col-span-5 flex items-center gap-4">
-                    <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap shrink-0">
-                      {p.n}
-                    </span>
-                    <Icon
-                      size={20}
-                      strokeWidth={1.25}
-                      className="text-[#1f3a5f] shrink-0"
-                    />
-                    <h2 className="text-[22px] lg:text-[26px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.15]">
+                  <div className="lg:col-span-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
+                        {p.n}
+                      </span>
+                      <Icon
+                        size={20}
+                        strokeWidth={1.25}
+                        className="text-[#1f3a5f]"
+                      />
+                    </div>
+                    <h2 className="mt-8 text-[26px] lg:text-[34px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.1]">
                       {p.title}
                     </h2>
                   </div>
-                  <div className="lg:col-span-7">
+                  <div className="lg:col-span-8">
                     <p className="text-[16px] leading-[1.8] text-slate-600">
                       {p.body}
                     </p>
@@ -179,17 +197,7 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <CTASection
-        index="04 —"
-        testId="services-cta"
-        body="A 30-minute call with the founder. We'll discuss the market, the current motion, and whether Polaris Origin is the right partner for the next quarter."
-      >
-        Tell us about your{" "}
-        <span className="font-display italic text-[#1f3a5f]">
-          segment and offer
-        </span>
-        .
-      </CTASection>
+      <CTASection testId="services-cta" />
     </div>
   );
 }

@@ -42,7 +42,7 @@ export default function Footer() {
       className="bg-[#1f3a5f] text-white relative overflow-hidden"
     >
       <div className="absolute inset-0 grid-lines-dark opacity-30 pointer-events-none" />
-      <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-14 lg:py-20">
+      <div className="relative mx-auto max-w-[1320px] px-6 lg:px-10 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 pb-12 border-b border-white/15">
           <div className="lg:col-span-4">
             <Logo tone="light" />

@@ -11,15 +11,7 @@ const NAV = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -28,9 +20,7 @@ export default function Navbar() {
   return (
     <header
       data-testid="site-navbar"
-      className={`sticky top-0 z-50 bg-white/95 backdrop-blur border-b transition-colors ${
-        scrolled ? "border-slate-200" : "border-transparent"
-      }`}
+      className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200"
     >
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="flex items-center justify-between h-[72px]">

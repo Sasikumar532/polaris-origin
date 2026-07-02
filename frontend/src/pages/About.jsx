@@ -200,9 +200,7 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <CTASection testId="about-cta">
-        Start a conversation with the founder.
-      </CTASection>
+      <CTASection testId="about-cta" />
     </div>
   );
 }
