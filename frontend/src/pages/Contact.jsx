@@ -103,27 +103,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* OFFICES */}
-      <section className="bg-[#f5f6f8]">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-20 lg:py-24 grid grid-cols-1 md:grid-cols-4 gap-px bg-slate-200 border border-slate-200">
-          {[
-            { city: "Boston", note: "Founding office · HQ" },
-            { city: "New York", note: "Engagement floor · Finance" },
-            { city: "London", note: "EMEA partner office" },
-            { city: "Singapore", note: "APAC referral partner" },
-          ].map((o) => (
-            <div key={o.city} className="bg-white p-8">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-[#C9A14A]">
-                Office
-              </p>
-              <p className="mt-6 text-[22px] tracking-tight font-semibold text-slate-900">
-                {o.city}
-              </p>
-              <p className="mt-2 text-[13px] text-slate-500">{o.note}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }
