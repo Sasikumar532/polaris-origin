@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export default function NotFound() {
@@ -17,7 +17,7 @@ export default function NotFound() {
           inside a private engagement. Return to the home page and resume.
         </p>
         <Link
-          to="/"
+          href="/"
           data-testid="notfound-cta"
           className="mt-12 inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#16294a] transition-colors"
         >

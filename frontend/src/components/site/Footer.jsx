@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "@/components/site/Logo";
 
@@ -54,7 +54,7 @@ export default function Footer() {
             </p>
 
             <Link
-              to="/contact"
+              href="/contact"
               data-testid="footer-cta"
               className="group mt-10 inline-flex items-center gap-3 bg-[#C9A14A] text-[#1f3a5f] px-6 py-4 text-[13px] tracking-[0.04em] uppercase font-medium"
             >
@@ -77,7 +77,7 @@ export default function Footer() {
                   {group.items.map((it) => (
                     <li key={it.label}>
                       <Link
-                        to={it.to}
+                        href={it.to}
                         data-testid={`footer-link-${it.label.toLowerCase().replace(/\s+/g, "-")}`}
                         className="text-[14px] text-white/80 hover:text-white link-underline"
                       >
@@ -117,14 +117,14 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-8">
             <Link
-              to="/privacy-policy"
+              href="/privacy-policy"
               className="text-[12px] uppercase tracking-[0.18em] text-white/60 hover:text-white"
               data-testid="footer-privacy"
             >
               Privacy Policy
             </Link>
             <Link
-              to="/terms-of-service"
+              href="/terms-of-service"
               className="text-[12px] uppercase tracking-[0.18em] text-white/60 hover:text-white"
               data-testid="footer-terms"
             >

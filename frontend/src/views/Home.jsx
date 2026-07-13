@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -51,17 +51,18 @@ export default function Home() {
           <div className="lg:col-span-7 reveal">
             <SectionLabel index="(I)" label="Outbound GTM · Polaris Origin" />
             <h1 className="mt-10 text-[44px] sm:text-[58px] lg:text-[78px] leading-[0.98] tracking-tighter-2 font-semibold text-slate-900">
-              We build outbound systems that
+              We produce{" "}
+              <span className="font-display italic text-[#1f3a5f]">qualified sales calls</span>
               <br />
-              produce{" "}
-              <span className="font-display italic text-[#1f3a5f]">qualified meetings</span>
+              through smart outbound
             </h1>
 
             <p className="mt-10 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-600">
-              Polaris Origin is an Outbound GTM firm for B2B service and
-              product companies. We help define the market, build the
-              infrastructure, and operate outbound systems that consistently
-              fill pipeline.
+              Polaris Origin is an Outbound GTM and RevOps firm that helps B2B
+              service companies get qualified, ICP-matched sales calls on their
+              calendar. We help define your ICP, setup the infrastructure, and
+              operate the entire outbound system in a completely done-for-you
+              manner, without any retainers or setup fees.
             </p>
 
             <p className="mt-6 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-900 font-medium">
@@ -75,7 +76,7 @@ export default function Home() {
 
             <div className="mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Link
-                to="/contact"
+                href="/contact"
                 data-testid="hero-cta-primary"
                 className="group inline-flex items-center justify-center gap-2 bg-[#1f3a5f] text-white px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#16294a] transition-colors"
               >
@@ -161,7 +162,7 @@ export default function Home() {
               team.
             </p>
             <Link
-              to="/services"
+              href="/services"
               data-testid="model-link-services"
               className="mt-10 inline-flex items-center gap-2 text-[13px] tracking-[0.04em] uppercase text-[#C9A14A] hover:text-white transition-colors"
             >
@@ -226,7 +227,7 @@ export default function Home() {
                   </p>
                 </div>
                 <Link
-                  to="/services"
+                  href="/services"
                   className="shrink-0 inline-flex items-center gap-2 text-[12px] tracking-[0.08em] uppercase text-[#1f3a5f] font-medium opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   Learn More

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 export default function CTASection({ testId = "site-cta" }) {
@@ -22,7 +22,7 @@ export default function CTASection({ testId = "site-cta" }) {
           </div>
           <div className="lg:col-span-4 lg:text-right">
             <Link
-              to="/contact"
+              href="/contact"
               data-testid={`${testId}-button`}
               className="group inline-flex items-center gap-3 bg-[#C9A14A] text-[#1f3a5f] px-8 py-5 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#1f3a5f] hover:text-white transition-colors"
             >
