@@ -1,4 +1,4 @@
-import { Star, Compass } from "lucide-react";
+import { Star, Compass, Linkedin } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
 import CTASection from "@/components/site/CTASection";
 
@@ -123,8 +123,8 @@ export default function About() {
       {/* PRINCIPLES */}
       <section className="bg-white border-b border-slate-200" data-testid="principles-section">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
-            <div className="lg:col-span-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-8">
+            <div className="lg:col-span-9">
               <SectionLabel index="03" label="How We Operate" />
               <h2 className="mt-10 text-[34px] lg:text-[48px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.05]">
                 Four commitments{" "}
@@ -194,6 +194,16 @@ export default function About() {
               <p className="mt-8 max-w-2xl text-[16px] leading-[1.85] text-slate-600">
                 {FOUNDER.bio}
               </p>
+              <a
+                href="https://linkedin.com/in/lakscales"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="founder-linkedin"
+                className="mt-8 inline-flex items-center gap-2 self-start bg-[#1f3a5f] text-white px-5 py-3 text-[13px] tracking-[0.04em] uppercase font-medium hover:bg-[#16294a] transition-colors"
+              >
+                <Linkedin size={16} strokeWidth={1.75} />
+                Connect on LinkedIn
+              </a>
             </div>
           </div>
         </div>

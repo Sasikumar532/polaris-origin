@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
 import CTASection from "@/components/site/CTASection";
+import ProcessAccordion from "@/components/site/ProcessAccordion";
+import CalEmbed from "@/components/site/CalEmbed";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmUlMjB3aGl0ZSUyMG1pbmltYWx8ZW58MHx8fHwxNzgyMjUyMTM2fDA&ixlib=rb-4.1.0&q=85";
@@ -34,12 +36,12 @@ const METRICS = [
 ];
 
 const INDUSTRIES = [
-  { icon: Users, title: "Recruitment" },
   { icon: Server, title: "IT Services" },
-  { icon: Code, title: "Software & SaaS" },
-  { icon: Briefcase, title: "Consulting Firms" },
   { icon: Megaphone, title: "Marketing Agencies" },
+  { icon: Code, title: "Software & SaaS" },
   { icon: Building2, title: "Professional Services" },
+  { icon: Users, title: "Recruitment" },
+  { icon: Briefcase, title: "Consulting Firms" },
 ];
 
 export default function Home() {
@@ -51,10 +53,10 @@ export default function Home() {
           <div className="lg:col-span-7 reveal">
             <SectionLabel index="(I)" label="Outbound GTM · Polaris Origin" />
             <h1 className="mt-10 text-[44px] sm:text-[58px] lg:text-[78px] leading-[0.98] tracking-tighter-2 font-semibold text-slate-900">
-              We produce{" "}
+              We get you{" "}
               <span className="font-display italic text-[#1f3a5f]">qualified sales calls</span>
               <br />
-              through smart outbound
+              with your ideal customers.
             </h1>
 
             <p className="mt-10 max-w-2xl text-[17px] lg:text-[18px] leading-[1.7] text-slate-600">
@@ -203,39 +205,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
-            {[
-              "ICP Defining & Offer Building Workshop",
-              "Email Infrastructure Setup",
-              "Lead Sourcing & Data Enrichment",
-              "Hyper-Personalized Sequence Writing",
-              "Revenue Infrastructure",
-              "A/B Testing & Iteration",
-              "Multi-Channel Outbound",
-              "Reply Management & Lead Qualification",
-            ].map((title, i) => (
-              <div
-                key={title}
-                className="bg-white border border-slate-200 flex items-center justify-between px-8 py-5 group hover:bg-[#f5f6f8] transition-colors"
-              >
-                <div className="flex items-center gap-6">
-                  <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-[17px] font-semibold text-slate-900 tracking-tight">
-                    {title}
-                  </p>
-                </div>
-                <Link
-                  href="/services"
-                  className="shrink-0 inline-flex items-center gap-2 text-[12px] tracking-[0.08em] uppercase text-[#1f3a5f] font-medium opacity-0 group-hover:opacity-100 transition-opacity"
-                >
-                  Learn More
-                  <ArrowUpRight size={14} strokeWidth={1.75} />
-                </Link>
-              </div>
-            ))}
-          </div>
+          <ProcessAccordion />
         </div>
       </section>
 
@@ -276,6 +246,28 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* BOOK A CALL */}
+      <section className="border-b border-slate-200 bg-[#f5f6f8]" data-testid="home-booking">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14">
+            <div className="lg:col-span-7">
+              <SectionLabel index="(V)" label="Book a Consultation" />
+              <h2 className="mt-10 text-[34px] lg:text-[48px] leading-[1.05] tracking-tighter-2 font-semibold text-slate-900">
+                Pick a time that{" "}
+                <span className="font-display italic text-[#1f3a5f]">works for you</span>.
+              </h2>
+              <p className="mt-8 max-w-xl text-[16px] leading-[1.8] text-slate-600">
+                A 30-minute working session — we discuss the segment, the offer,
+                and the system, and you leave with a written next step whether we
+                work together or not.
+              </p>
+            </div>
+          </div>
+
+          <CalEmbed />
         </div>
       </section>
 

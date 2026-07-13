@@ -135,22 +135,24 @@ export default function Services() {
                   data-testid={`service-pillar-${p.n}`}
                   className="bg-white p-10 lg:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10"
                 >
-                  <div className="lg:col-span-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
-                        {p.n}
-                      </span>
-                      <Icon
-                        size={20}
-                        strokeWidth={1.25}
-                        className="text-[#1f3a5f]"
-                      />
+                  <div className="lg:col-span-7">
+                    <div className="flex items-start gap-6">
+                      <div className="shrink-0">
+                        <Icon
+                          size={28}
+                          strokeWidth={1.25}
+                          className="text-[#1f3a5f]"
+                        />
+                        <span className="mt-6 block text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap">
+                          {p.n}
+                        </span>
+                      </div>
+                      <h2 className="text-[26px] lg:text-[34px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.1]">
+                        {p.title}
+                      </h2>
                     </div>
-                    <h2 className="mt-8 text-[26px] lg:text-[34px] tracking-tighter-2 font-semibold text-slate-900 leading-[1.1]">
-                      {p.title}
-                    </h2>
                   </div>
-                  <div className="lg:col-span-8">
+                  <div className="lg:col-span-5">
                     <p className="text-[16px] leading-[1.8] text-slate-600">
                       {p.body}
                     </p>

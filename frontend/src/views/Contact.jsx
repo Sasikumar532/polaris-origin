@@ -1,5 +1,6 @@
 import { CheckCircle2, Calendar, Mail, FileText, Quote } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
+import CalEmbed from "@/components/site/CalEmbed";
 
 const EXPECT = [
   {
@@ -90,14 +91,7 @@ export default function Contact() {
 
             {/* RIGHT — Cal.com embed */}
             <div className="lg:col-span-8 order-1 lg:order-2">
-              <iframe
-                src="https://cal.com/polarisorigin/revops-consultation?embed=true"
-                frameBorder="0"
-                title="Book a consultation"
-                className="w-full border border-slate-200 bg-white"
-                style={{ minHeight: "700px" }}
-                data-testid="cal-embed"
-              />
+              <CalEmbed />
             </div>
           </div>
         </div>

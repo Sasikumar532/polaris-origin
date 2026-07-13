@@ -3,11 +3,30 @@ import Script from "next/script";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://polarisorigin.com";
+
+const TITLE =
+  "Polaris Origin — Outbound GTM systems that produce qualified meetings.";
+const DESCRIPTION =
+  "Polaris Origin is an Outbound GTM and RevOps firm that helps B2B service companies get qualified, ICP-matched sales calls on their calendar — done-for-you, without retainers or setup fees.";
+
 export const metadata = {
-  title:
-    "Polaris Origin — Outbound GTM systems that produce qualified meetings.",
-  description:
-    "Polaris Origin — We build outbound systems that produce qualified meetings for B2B service and product companies.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: "Polaris Origin",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 };
 
 export const viewport = {

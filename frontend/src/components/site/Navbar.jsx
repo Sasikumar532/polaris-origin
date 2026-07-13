@@ -10,8 +10,6 @@ const NAV = [
   { label: "Home", to: "/", id: "nav-home" },
   { label: "About", to: "/about", id: "nav-about" },
   { label: "Services", to: "/services", id: "nav-services" },
-  { label: "Privacy Policy", to: "/privacy-policy", id: "nav-privacy" },
-  { label: "Terms of Service", to: "/terms-of-service", id: "nav-terms" },
 ];
 
 export default function Navbar() {
