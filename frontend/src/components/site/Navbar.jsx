@@ -60,7 +60,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               data-testid="nav-cta-book"
-              className="group inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-5 py-3 text-[13px] tracking-[0.04em] uppercase font-medium hover:bg-[#16294a] transition-colors"
+              className="group inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-5 py-3 text-[13px] tracking-[0.04em] uppercase font-medium hover:bg-[#C9A14A] transition-colors"
             >
               Book Free Consultation
               <ArrowUpRight

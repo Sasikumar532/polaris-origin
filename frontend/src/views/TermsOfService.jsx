@@ -1,4 +1,3 @@
-import CTASection from "@/components/site/CTASection";
 import SectionLabel from "@/components/site/SectionLabel";
 
 const SECTIONS = [
@@ -237,8 +236,6 @@ export default function TermsOfService() {
           </div>
         </div>
       </section>
-
-      <CTASection testId="terms-cta" />
     </div>
   );
 }

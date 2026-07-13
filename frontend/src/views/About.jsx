@@ -1,6 +1,8 @@
 import { Star, Compass, Linkedin } from "lucide-react";
+import Image from "next/image";
 import SectionLabel from "@/components/site/SectionLabel";
 import CTASection from "@/components/site/CTASection";
+import founderColor from "@/founder-color.png";
 
 const ABOUT_IMAGE =
   "https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGFyY2hpdGVjdHVyYWx8ZW58MHx8fHwxNzgyMjUyMTM1fDA&ixlib=rb-4.1.0&q=85";
@@ -167,13 +169,15 @@ export default function About() {
             </div>
           </div>
 
-          <div className="border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-12 gap-px bg-slate-200">
+          <div className="group border border-slate-200 bg-white grid grid-cols-1 md:grid-cols-12 gap-px bg-slate-200">
             <div className="md:col-span-5 bg-white">
-              <div className="relative h-full w-full">
-                <img
-                  src={FOUNDER.photo}
+              <div className="relative h-full w-full aspect-square md:aspect-auto">
+                <Image
+                  src={founderColor}
                   alt={FOUNDER.name}
-                  className="w-full h-full object-cover grayscale aspect-square md:aspect-auto"
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   data-testid="founder-photo"
                 />
                 <span className="absolute left-0 bottom-0 bg-[#1f3a5f] text-white text-[10px] tracking-[0.28em] uppercase px-4 py-2">

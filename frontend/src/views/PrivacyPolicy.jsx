@@ -1,4 +1,3 @@
-import CTASection from "@/components/site/CTASection";
 import SectionLabel from "@/components/site/SectionLabel";
 
 const SECTIONS = [
@@ -305,8 +304,6 @@ export default function PrivacyPolicy() {
           </div>
         </div>
       </section>
-
-      <CTASection testId="privacy-cta" />
     </div>
   );
 }
