@@ -43,18 +43,6 @@ export default async function Image() {
           style={{ objectFit: "contain" }}
           alt="Polaris Origin"
         />
-        <div
-          style={{
-            display: "flex",
-            marginTop: 40,
-            fontSize: 28,
-            letterSpacing: 10,
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.72)",
-          }}
-        >
-          Outbound GTM · Performance-based
-        </div>
       </div>
     ),
     { ...size }
