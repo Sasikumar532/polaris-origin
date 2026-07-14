@@ -47,10 +47,20 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <Logo tone="light" />
             <p className="mt-8 max-w-md text-[15px] leading-[1.7] text-white/70">
-              Polaris Origin is an Outbound GTM firm for B2B service and
-              product companies. We help define the market, build the
-              infrastructure, and operate outbound systems that consistently
-              create pipeline.
+              Polaris Origin is an Outbound GTM and RevOps firm that helps B2B
+              service companies get qualified, ICP-matched sales calls on their
+              calendar. We help define your ICP, setup the infrastructure, and
+              operate the entire outbound system in a completely done-for-you
+              manner, without any retainers or setup fees.
+            </p>
+
+            <p className="mt-6 max-w-md text-[15px] leading-[1.7] text-white font-medium">
+              You only pay when qualified buyers{" "}
+              <span className="relative inline-block">
+                show up
+                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#C9A14A]" />
+              </span>
+              .
             </p>
 
             <Link
@@ -112,8 +122,7 @@ export default function Footer() {
 
         <div className="flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between gap-6 pt-10">
           <p className="text-[12px] tracking-[0.04em] text-white/55 num-cap">
-            © {new Date().getFullYear()} Polaris Origin · Outbound GTM ·
-            Performance-based engagement model
+            © {new Date().getFullYear()} Polaris Origin
           </p>
           <div className="flex items-center gap-8">
             <Link

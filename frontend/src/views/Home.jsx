@@ -206,6 +206,21 @@ export default function Home() {
           </div>
 
           <ProcessAccordion />
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/services"
+              data-testid="process-learn-more"
+              className="group inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-7 py-4 text-[13px] tracking-[0.06em] uppercase font-medium hover:bg-[#C9A14A] transition-colors"
+            >
+              Learn More
+              <ArrowUpRight
+                size={16}
+                strokeWidth={1.75}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </div>
         </div>
       </section>
 

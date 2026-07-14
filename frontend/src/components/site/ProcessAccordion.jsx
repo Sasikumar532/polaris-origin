@@ -62,7 +62,7 @@ export default function ProcessAccordion() {
               type="button"
               aria-expanded={isOpen}
               onClick={() => setOpen(isOpen ? null : i)}
-              className="w-full flex items-center justify-between gap-6 px-8 py-5 text-left group hover:bg-[#f5f6f8] transition-colors"
+              className="w-full flex items-center justify-between gap-6 px-8 py-5 text-left group"
             >
               <div className="flex items-center gap-6">
                 <span className="text-[11px] tracking-[0.32em] uppercase text-[#C9A14A] num-cap shrink-0">
@@ -89,7 +89,8 @@ export default function ProcessAccordion() {
               }`}
             >
               <div className="overflow-hidden">
-                <p className="px-8 pb-6 pl-[74px] max-w-3xl text-[16px] leading-[1.8] text-slate-600">
+                <div className="mx-8 border-t border-slate-100" />
+                <p className="px-8 pt-6 pb-6 pl-[74px] max-w-3xl text-[16px] leading-[1.8] text-slate-600">
                   {step.body}
                 </p>
               </div>
