@@ -4,7 +4,7 @@
 
 import { buildSystemPrompt } from "./prompt";
 
-const DEFAULT_MODEL = "openai/gpt-4o";
+const DEFAULT_MODEL = "z-ai/glm-5.2";
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 // Free models are slow and flaky: they can hang, return empty content, hit 429,
