@@ -1,0 +1,227 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Loader2, ExternalLink, RefreshCw, LogOut } from "lucide-react";
+
+const STATUS_STYLES = {
+  completed: "bg-green-50 text-green-700 border-green-200",
+  processing: "bg-amber-50 text-amber-700 border-amber-200",
+  failed: "bg-red-50 text-red-700 border-red-200",
+};
+
+function fmtDate(d) {
+  if (!d) return "";
+  return new Date(d).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+export default function AdminDashboard({ adminEmail }) {
+  const router = useRouter();
+  const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [busyId, setBusyId] = useState(null);
+
+  const load = useCallback(async () => {
+    setError("");
+    try {
+      const res = await fetch("/api/admin/submissions", { cache: "no-store" });
+      if (res.status === 401) {
+        router.push("/admin-login");
+        return;
+      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Failed to load.");
+      setRows(data.submissions);
+    } catch (err) {
+      setError(err.message || "Failed to load submissions.");
+    } finally {
+      setLoading(false);
+    }
+  }, [router]);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  const generate = async (id) => {
+    setBusyId(id);
+    setError("");
+    setRows((rs) =>
+      rs.map((r) => (r.id === id ? { ...r, status: "processing" } : r))
+    );
+    try {
+      const res = await fetch(`/api/admin/submissions/${id}/generate`, {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (res.status === 401) {
+        router.push("/admin-login");
+        return;
+      }
+      if (!res.ok) throw new Error(data?.error || "Generation failed.");
+      setRows((rs) =>
+        rs.map((r) =>
+          r.id === id
+            ? { ...r, status: "completed", documentUrl: data.documentUrl, error: null }
+            : r
+        )
+      );
+    } catch (err) {
+      setRows((rs) =>
+        rs.map((r) =>
+          r.id === id ? { ...r, status: "failed", error: err.message } : r
+        )
+      );
+      setError(err.message || "Generation failed.");
+    } finally {
+      setBusyId(null);
+    }
+  };
+
+  const logout = async () => {
+    await fetch("/api/admin/logout", { method: "POST" });
+    router.push("/admin-login");
+    router.refresh();
+  };
+
+  return (
+    <section className="mx-auto max-w-[1320px] px-6 lg:px-10 py-16 lg:py-20">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <span className="text-[11px] tracking-[0.28em] uppercase text-[#C9A14A]">
+            Admin
+          </span>
+          <h1 className="mt-3 text-[32px] lg:text-[42px] tracking-tighter-2 font-semibold text-slate-900">
+            Blueprint submissions
+          </h1>
+          <p className="mt-2 text-[14px] text-slate-500">
+            Signed in as {adminEmail}
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={load}
+            className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-[12px] tracking-[0.08em] uppercase text-slate-600 hover:border-[#1f3a5f] hover:text-[#1f3a5f] transition-colors"
+          >
+            <RefreshCw size={14} strokeWidth={1.75} />
+            Refresh
+          </button>
+          <button
+            onClick={logout}
+            className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-[12px] tracking-[0.08em] uppercase text-slate-600 hover:border-red-400 hover:text-red-600 transition-colors"
+          >
+            <LogOut size={14} strokeWidth={1.75} />
+            Log out
+          </button>
+        </div>
+      </div>
+
+      {error && (
+        <p className="mt-6 text-[14px] text-red-600 break-words">{error}</p>
+      )}
+
+      {loading ? (
+        <div className="mt-16 flex items-center gap-2 text-slate-500">
+          <Loader2 size={18} className="animate-spin" /> Loading…
+        </div>
+      ) : rows.length === 0 ? (
+        <p className="mt-16 text-slate-500">No submissions yet.</p>
+      ) : (
+        <div className="mt-10 border border-slate-200 overflow-x-auto">
+          <table className="w-full min-w-[900px] text-left text-[14px]">
+            <thead>
+              <tr className="bg-[#1f3a5f] text-white">
+                {["Company", "Industry", "AOV", "Competitor", "Submitted", "Status", "Blueprint"].map(
+                  (h) => (
+                    <th
+                      key={h}
+                      className="px-4 py-3 text-[11px] tracking-[0.12em] uppercase font-medium"
+                    >
+                      {h}
+                    </th>
+                  )
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr key={r.id} className="border-t border-slate-200 align-top">
+                  <td className="px-4 py-4">
+                    <div className="font-medium text-slate-900">
+                      {r.company_name}
+                    </div>
+                    {r.website_url && (
+                      <a
+                        href={r.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[12px] text-slate-500 hover:text-[#1f3a5f] break-all"
+                      >
+                        {r.website_url}
+                      </a>
+                    )}
+                  </td>
+                  <td className="px-4 py-4 text-slate-600">{r.best_fit_industry}</td>
+                  <td className="px-4 py-4 text-slate-600">{r.aov}</td>
+                  <td className="px-4 py-4 text-slate-600">{r.competitor_name}</td>
+                  <td className="px-4 py-4 text-slate-500 whitespace-nowrap">
+                    {fmtDate(r.createdAt)}
+                  </td>
+                  <td className="px-4 py-4">
+                    <span
+                      className={`inline-block border px-2.5 py-1 text-[11px] uppercase tracking-[0.08em] ${
+                        STATUS_STYLES[r.status] || "bg-slate-50 text-slate-600 border-slate-200"
+                      }`}
+                    >
+                      {r.status}
+                    </span>
+                    {r.status === "failed" && r.error && (
+                      <div className="mt-1 text-[11px] text-red-500 max-w-[220px] break-words">
+                        {r.error}
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-4 py-4">
+                    {r.documentUrl ? (
+                      <a
+                        href={r.documentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[13px] text-[#1f3a5f] hover:text-[#C9A14A] font-medium"
+                      >
+                        Open doc
+                        <ExternalLink size={14} strokeWidth={1.75} />
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => generate(r.id)}
+                        disabled={busyId === r.id}
+                        className="inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-4 py-2 text-[12px] tracking-[0.06em] uppercase font-medium hover:bg-[#C9A14A] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                      >
+                        {busyId === r.id ? (
+                          <>
+                            Generating
+                            <Loader2 size={13} className="animate-spin" />
+                          </>
+                        ) : (
+                          "Generate"
+                        )}
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}

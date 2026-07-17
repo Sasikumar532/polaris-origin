@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
-import { fetchSiteText } from "@/lib/blueprint/fetchSite";
-import { generateBlueprint } from "@/lib/blueprint/generate";
-import { createBlueprintDoc } from "@/lib/blueprint/googleDoc";
-import {
-  saveSubmission,
-  markSubmissionComplete,
-  markSubmissionFailed,
-} from "@/lib/blueprint/store";
+import { saveSubmission } from "@/lib/blueprint/store";
+import { processBlueprint } from "@/lib/blueprint/process";
 
 // googleapis + fetch of arbitrary sites need the Node runtime, not Edge.
 export const runtime = "nodejs";
@@ -68,36 +62,4 @@ export async function POST(request) {
   // 3. Acknowledge the submission only — never expose any generated data or the
   //    background process to the public form.
   return NextResponse.json({ ok: true });
-}
-
-// Runs after the response is sent: fetch sites, generate, build the doc, and
-// record the result (or the failure) against the stored submission.
-async function processBlueprint(submissionId, body) {
-  try {
-    const [websiteContent, competitorContent] = await Promise.all([
-      fetchSiteText(body.website_url),
-      fetchSiteText(body.competitor_website),
-    ]);
-
-    const values = {
-      ...body,
-      website_content: websiteContent || "(could not be fetched automatically)",
-      competitor_website_content:
-        competitorContent || "(not provided or could not be fetched)",
-    };
-
-    const { flat } = await generateBlueprint(values);
-    const doc = await createBlueprintDoc({ flat, companyName: body.company_name });
-
-    await markSubmissionComplete(submissionId, {
-      documentUrl: doc.editUrl,
-      viewUrl: doc.viewUrl,
-    });
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error("Blueprint generation failed:", err);
-    await markSubmissionFailed(submissionId, String(err?.message || err)).catch(
-      () => {}
-    );
-  }
 }
