@@ -1,8 +1,32 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, ExternalLink, RefreshCw, LogOut } from "lucide-react";
+import {
+  Loader2,
+  ExternalLink,
+  RefreshCw,
+  LogOut,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
+
+// All prospect-answer fields, in form order, for the expanded detail panel.
+const DETAIL_FIELDS = [
+  ["Website", "website_url"],
+  ["Offer description", "offer_description"],
+  ["Industries", "industries_list"],
+  ["Best-fit industry", "best_fit_industry"],
+  ["Pain points", "pain_points"],
+  ["Value delivered", "value_delivered"],
+  ["Geography", "geography"],
+  ["Capacity", "capacity"],
+  ["Average order value", "aov"],
+  ["Competitor", "competitor_name"],
+  ["Competitor website", "competitor_website"],
+  ["Qualifying criteria", "qualifying_criteria"],
+  ["Additional notes", "additional_notes"],
+];
 
 const STATUS_STYLES = {
   completed: "bg-green-50 text-green-700 border-green-200",
@@ -27,6 +51,7 @@ export default function AdminDashboard({ adminEmail }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [busyId, setBusyId] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
 
   const load = useCallback(async () => {
     setError("");
@@ -138,6 +163,7 @@ export default function AdminDashboard({ adminEmail }) {
           <table className="w-full min-w-[900px] text-left text-[14px]">
             <thead>
               <tr className="bg-[#1f3a5f] text-white">
+                <th className="w-10 px-2 py-3" />
                 {["Company", "Industry", "AOV", "Competitor", "Submitted", "Status", "Blueprint"].map(
                   (h) => (
                     <th
@@ -151,73 +177,114 @@ export default function AdminDashboard({ adminEmail }) {
               </tr>
             </thead>
             <tbody>
-              {rows.map((r) => (
-                <tr key={r.id} className="border-t border-slate-200 align-top">
-                  <td className="px-4 py-4">
-                    <div className="font-medium text-slate-900">
-                      {r.company_name}
-                    </div>
-                    {r.website_url && (
-                      <a
-                        href={r.website_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[12px] text-slate-500 hover:text-[#1f3a5f] break-all"
-                      >
-                        {r.website_url}
-                      </a>
-                    )}
-                  </td>
-                  <td className="px-4 py-4 text-slate-600">{r.best_fit_industry}</td>
-                  <td className="px-4 py-4 text-slate-600">{r.aov}</td>
-                  <td className="px-4 py-4 text-slate-600">{r.competitor_name}</td>
-                  <td className="px-4 py-4 text-slate-500 whitespace-nowrap">
-                    {fmtDate(r.createdAt)}
-                  </td>
-                  <td className="px-4 py-4">
-                    <span
-                      className={`inline-block border px-2.5 py-1 text-[11px] uppercase tracking-[0.08em] ${
-                        STATUS_STYLES[r.status] || "bg-slate-50 text-slate-600 border-slate-200"
-                      }`}
-                    >
-                      {r.status}
-                    </span>
-                    {r.status === "failed" && r.error && (
-                      <div className="mt-1 text-[11px] text-red-500 max-w-[220px] break-words">
-                        {r.error}
-                      </div>
-                    )}
-                  </td>
-                  <td className="px-4 py-4">
-                    {r.documentUrl ? (
-                      <a
-                        href={r.documentUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-[13px] text-[#1f3a5f] hover:text-[#C9A14A] font-medium"
-                      >
-                        Open doc
-                        <ExternalLink size={14} strokeWidth={1.75} />
-                      </a>
-                    ) : (
-                      <button
-                        onClick={() => generate(r.id)}
-                        disabled={busyId === r.id}
-                        className="inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-4 py-2 text-[12px] tracking-[0.06em] uppercase font-medium hover:bg-[#C9A14A] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
-                      >
-                        {busyId === r.id ? (
-                          <>
-                            Generating
-                            <Loader2 size={13} className="animate-spin" />
-                          </>
-                        ) : (
-                          "Generate"
+              {rows.map((r) => {
+                const open = expandedId === r.id;
+                return (
+                  <Fragment key={r.id}>
+                    <tr className="border-t border-slate-200 align-top">
+                      <td className="px-2 py-4">
+                        <button
+                          onClick={() => setExpandedId(open ? null : r.id)}
+                          aria-label={open ? "Collapse" : "Expand"}
+                          className="text-slate-400 hover:text-[#1f3a5f] transition-colors"
+                        >
+                          {open ? (
+                            <ChevronDown size={18} strokeWidth={1.75} />
+                          ) : (
+                            <ChevronRight size={18} strokeWidth={1.75} />
+                          )}
+                        </button>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="font-medium text-slate-900">
+                          {r.company_name}
+                        </div>
+                        {r.website_url && (
+                          <a
+                            href={r.website_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[12px] text-slate-500 hover:text-[#1f3a5f] break-all"
+                          >
+                            {r.website_url}
+                          </a>
                         )}
-                      </button>
+                      </td>
+                      <td className="px-4 py-4 text-slate-600">
+                        {r.best_fit_industry}
+                      </td>
+                      <td className="px-4 py-4 text-slate-600">{r.aov}</td>
+                      <td className="px-4 py-4 text-slate-600">
+                        {r.competitor_name}
+                      </td>
+                      <td className="px-4 py-4 text-slate-500 whitespace-nowrap">
+                        {fmtDate(r.createdAt)}
+                      </td>
+                      <td className="px-4 py-4">
+                        <span
+                          className={`inline-block border px-2.5 py-1 text-[11px] uppercase tracking-[0.08em] ${
+                            STATUS_STYLES[r.status] ||
+                            "bg-slate-50 text-slate-600 border-slate-200"
+                          }`}
+                        >
+                          {r.status}
+                        </span>
+                        {r.status === "failed" && r.error && (
+                          <div className="mt-1 text-[11px] text-red-500 max-w-[220px] break-words">
+                            {r.error}
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-4 py-4">
+                        {r.documentUrl ? (
+                          <a
+                            href={r.documentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[13px] text-[#1f3a5f] hover:text-[#C9A14A] font-medium"
+                          >
+                            Open doc
+                            <ExternalLink size={14} strokeWidth={1.75} />
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => generate(r.id)}
+                            disabled={busyId === r.id}
+                            className="inline-flex items-center gap-2 bg-[#1f3a5f] text-white px-4 py-2 text-[12px] tracking-[0.06em] uppercase font-medium hover:bg-[#C9A14A] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                          >
+                            {busyId === r.id ? (
+                              <>
+                                Generating
+                                <Loader2 size={13} className="animate-spin" />
+                              </>
+                            ) : (
+                              "Generate"
+                            )}
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                    {open && (
+                      <tr className="border-t border-slate-100 bg-[#f5f6f8]">
+                        <td colSpan={8} className="px-6 py-6">
+                          <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
+                            {DETAIL_FIELDS.map(([label, key]) => (
+                              <div key={key}>
+                                <dt className="text-[11px] tracking-[0.14em] uppercase text-slate-500 mb-1">
+                                  {label}
+                                </dt>
+                                <dd className="text-[14px] leading-[1.7] text-slate-800 break-words whitespace-pre-wrap">
+                                  {r[key] ? r[key] : "—"}
+                                </dd>
+                              </div>
+                            ))}
+                          </dl>
+                        </td>
+                      </tr>
                     )}
-                  </td>
-                </tr>
-              ))}
+                  </Fragment>
+                );
+              })}
             </tbody>
           </table>
         </div>

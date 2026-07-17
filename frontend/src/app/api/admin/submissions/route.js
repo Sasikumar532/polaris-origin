@@ -13,15 +13,23 @@ export async function GET() {
 
   try {
     const submissions = await getSubmissions(500);
-    // Normalize Mongo types for the client.
+    // Normalize Mongo types for the client, returning every field.
     const rows = submissions.map((s) => ({
       id: String(s._id),
       company_name: s.company_name,
       website_url: s.website_url,
+      offer_description: s.offer_description,
+      industries_list: s.industries_list,
       best_fit_industry: s.best_fit_industry,
+      pain_points: s.pain_points,
+      value_delivered: s.value_delivered,
       geography: s.geography,
+      capacity: s.capacity,
       aov: s.aov,
       competitor_name: s.competitor_name,
+      competitor_website: s.competitor_website || "",
+      qualifying_criteria: s.qualifying_criteria,
+      additional_notes: s.additional_notes || "",
       status: s.status,
       documentUrl: s.documentUrl || null,
       error: s.error || null,
