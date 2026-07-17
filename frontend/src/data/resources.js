@@ -12,7 +12,7 @@ export const RESOURCES = [
     readingTime: "5 min to complete",
   },
   {
-    slug: "gtm-roi-calculator",
+    slug: "outbound-gtm-roi-calculator",
     icon: Calculator,
     type: "calculator",
     title: "GTM Cost & ROI Calculator",
