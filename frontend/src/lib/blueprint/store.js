@@ -53,3 +53,10 @@ export async function getSubmissionById(id) {
   await connectDb();
   return BlueprintSubmission.findById(id).lean();
 }
+
+// Permanently remove a submission. Returns true if a document was deleted.
+export async function deleteSubmission(id) {
+  await connectDb();
+  const res = await BlueprintSubmission.findByIdAndDelete(id);
+  return Boolean(res);
+}

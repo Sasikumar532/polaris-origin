@@ -9,6 +9,7 @@ import {
   LogOut,
   ChevronDown,
   ChevronRight,
+  Trash2,
 } from "lucide-react";
 
 // All prospect-answer fields, in form order, for the expanded detail panel.
@@ -52,6 +53,8 @@ export default function AdminDashboard({ adminEmail }) {
   const [error, setError] = useState("");
   const [busyId, setBusyId] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const load = useCallback(async () => {
     setError("");
@@ -116,6 +119,28 @@ export default function AdminDashboard({ adminEmail }) {
     router.refresh();
   };
 
+  const doDelete = async (id) => {
+    setDeletingId(id);
+    setError("");
+    try {
+      const res = await fetch(`/api/admin/submissions/${id}`, {
+        method: "DELETE",
+      });
+      if (res.status === 401) {
+        router.push("/admin-login");
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || "Delete failed.");
+      setRows((rs) => rs.filter((r) => r.id !== id));
+      setConfirmDeleteId(null);
+    } catch (err) {
+      setError(err.message || "Delete failed.");
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
   return (
     <section className="mx-auto max-w-[1320px] px-6 lg:px-10 py-16 lg:py-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -174,6 +199,7 @@ export default function AdminDashboard({ adminEmail }) {
                     </th>
                   )
                 )}
+                <th className="w-10 px-2 py-3" />
               </tr>
             </thead>
             <tbody>
@@ -263,10 +289,19 @@ export default function AdminDashboard({ adminEmail }) {
                           </button>
                         )}
                       </td>
+                      <td className="px-2 py-4">
+                        <button
+                          onClick={() => setConfirmDeleteId(r.id)}
+                          aria-label="Delete submission"
+                          className="text-slate-400 hover:text-red-600 transition-colors"
+                        >
+                          <Trash2 size={16} strokeWidth={1.75} />
+                        </button>
+                      </td>
                     </tr>
                     {open && (
                       <tr className="border-t border-slate-100 bg-[#f5f6f8]">
-                        <td colSpan={8} className="px-6 py-6">
+                        <td colSpan={9} className="px-6 py-6">
                           <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
                             {DETAIL_FIELDS.map(([label, key]) => (
                               <div key={key}>
@@ -287,6 +322,55 @@ export default function AdminDashboard({ adminEmail }) {
               })}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {confirmDeleteId && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        >
+          <div
+            className="absolute inset-0 bg-slate-900/60"
+            onClick={() => !deletingId && setConfirmDeleteId(null)}
+          />
+          <div className="relative z-10 w-full max-w-md bg-white border border-slate-200 shadow-xl p-8">
+            <h2 className="text-[22px] font-semibold text-slate-900">
+              Delete submission?
+            </h2>
+            <p className="mt-3 text-[15px] leading-[1.7] text-slate-600">
+              This permanently removes{" "}
+              <span className="font-medium text-slate-900">
+                {rows.find((r) => r.id === confirmDeleteId)?.company_name ||
+                  "this submission"}
+              </span>{" "}
+              from the database. This can&apos;t be undone.
+            </p>
+            <div className="mt-8 flex justify-end gap-3">
+              <button
+                onClick={() => setConfirmDeleteId(null)}
+                disabled={!!deletingId}
+                className="border border-slate-300 px-5 py-2.5 text-[13px] uppercase tracking-[0.06em] text-slate-600 hover:border-slate-500 transition-colors disabled:opacity-60"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => doDelete(confirmDeleteId)}
+                disabled={!!deletingId}
+                className="inline-flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 text-[13px] uppercase tracking-[0.06em] font-medium hover:bg-red-700 transition-colors disabled:opacity-70"
+              >
+                {deletingId ? (
+                  <>
+                    Deleting
+                    <Loader2 size={14} className="animate-spin" />
+                  </>
+                ) : (
+                  "Delete"
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </section>
