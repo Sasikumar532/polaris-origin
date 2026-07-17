@@ -57,6 +57,8 @@ async function callModel({ apiKey, model, system }) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
+        // A real User-Agent avoids WAF "security policy" blocks on some hosts.
+        "User-Agent": "PolarisOrigin/1.0 (+https://polarisorigin.com)",
         // Optional attribution headers OpenRouter uses for its dashboard.
         "HTTP-Referer":
           process.env.NEXT_PUBLIC_SITE_URL || "https://polarisorigin.com",
