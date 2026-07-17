@@ -10,6 +10,7 @@ const NAV = [
   { label: "Home", to: "/", id: "nav-home" },
   { label: "About", to: "/about", id: "nav-about" },
   { label: "Services", to: "/services", id: "nav-services" },
+  { label: "Resources", to: "/resources", id: "nav-resources" },
 ];
 
 export default function Navbar() {

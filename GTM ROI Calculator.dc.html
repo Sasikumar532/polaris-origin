@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/styles.css">
+  <script src="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/_ds_bundle.js"></script>
+  <style>
+    body{margin:0;background:#ffffff;color:#0f172a;}
+    a{color:#1f3a5f;text-decoration:none;}
+    a:hover{color:#16294a;}
+    input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+    input[type="number"]{-moz-appearance:textfield;appearance:textfield;}
+    input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:#e2e8f0;outline:none;cursor:pointer;}
+    input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:0;background:#c9a14a;border:none;cursor:pointer;}
+    input[type="range"]::-webkit-slider-thumb:hover{background:#d4af37;}
+    input[type="range"]::-moz-range-thumb{width:14px;height:14px;border-radius:0;background:#c9a14a;border:none;cursor:pointer;}
+    input:focus{outline:none;}
+  </style>
+</helmet>
+<div style="min-height:100vh;background:#ffffff;font-family:var(--font-sans);color:#0f172a;">
+
+  <!-- top bar -->
+  <div style="border-bottom:1px solid #e2e8f0;">
+    <div style="max-width:1320px;margin:0 auto;padding:0 40px;height:76px;display:flex;align-items:center;justify-content:space-between;">
+      <img src="assets/logo-on-light.png" alt="Polaris Origin" style="height:30px;display:block;">
+      <div style="display:flex;align-items:center;gap:24px;">
+        <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#475569;">Resource — GTM ROI Calculator</span>
+        <button onClick="{{ resetAll }}" style="font-family:var(--font-sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#1f3a5f;background:none;border:1px solid #e2e8f0;padding:9px 16px;cursor:pointer;" style-hover="border-color:#1f3a5f;">Reset defaults</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div style="max-width:1320px;margin:0 auto;padding:88px 40px 56px;">
+    <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:28px;">
+      <span style="font-family:var(--font-mono);font-size:12px;color:#c9a14a;">01 —</span>
+      <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#475569;">Cost &amp; ROI Calculator</span>
+    </div>
+    <h1 style="font-size:62px;line-height:1.05;letter-spacing:-0.035em;font-weight:600;margin:0 0 24px;max-width:900px;">Know the true cost of a <em style="font-family:var(--font-display);font-weight:400;font-style:italic;letter-spacing:-0.01em;">qualified sales call.</em></h1>
+    <p style="font-size:18px;line-height:1.7;color:#475569;max-width:640px;margin:0 0 36px;">Model your outbound engine end to end — infrastructure, spend, funnel conversion and client economics. Change any input and every figure recalculates instantly. All amounts in USD.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:center;">
+      <span style="display:flex;align-items:center;gap:9px;font-size:13px;color:#475569;"><span style="width:10px;height:10px;background:#c9a14a;display:inline-block;"></span>Your inputs</span>
+      <span style="display:flex;align-items:center;gap:9px;font-size:13px;color:#475569;"><span style="width:10px;height:10px;background:#1f3a5f;display:inline-block;"></span>Calculated automatically</span>
+      <span style="display:flex;align-items:center;gap:9px;font-size:13px;color:#475569;"><span style="width:10px;height:10px;border:1px solid #94a3b8;display:inline-block;box-sizing:border-box;"></span>Fixed variables</span>
+    </div>
+  </div>
+
+  <!-- headline metrics band -->
+  <div class="grid-lines-dark" style="background:#16294a;position:sticky;top:0;z-index:50;">
+    <div style="max-width:1320px;margin:0 auto;padding:14px 40px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.15);">
+        <div style="background:#16294a;padding:12px 18px;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:6px;">Monthly GTM spend</div>
+          <div style="font-family:var(--font-mono);font-size:19px;color:#ffffff;">{{ mMonthlySpend }}</div>
+        </div>
+        <div style="background:#16294a;padding:12px 18px;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:6px;">Cost per call</div>
+          <div style="font-family:var(--font-mono);font-size:19px;color:#ffffff;">{{ mCostPerCall }}</div>
+        </div>
+        <div style="background:#16294a;padding:12px 18px;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:6px;">Acquisition cost</div>
+          <div style="font-family:var(--font-mono);font-size:19px;color:#ffffff;">{{ mCAC }}</div>
+        </div>
+        <div style="background:#16294a;padding:12px 18px;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:6px;">Client lifetime value</div>
+          <div style="font-family:var(--font-mono);font-size:19px;color:#ffffff;">{{ mCLV }}</div>
+        </div>
+        <div style="background:#16294a;padding:12px 18px;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:6px;">CLV : CAC</div>
+          <div style="font-family:var(--font-mono);font-size:19px;color:#d4af37;">{{ mClvCac }}</div>
+        </div>
+        <div style="background:#16294a;padding:12px 18px;">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:6px;">6-month net cashflow</div>
+          <div style="font-family:var(--font-mono);font-size:19px;color:#ffffff;">{{ mTotalCashflow }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1320px;margin:0 auto;padding:0 40px;">
+
+    <!-- SECTION 02 — infrastructure & costs -->
+    <div style="padding:80px 0;border-bottom:1px solid #e2e8f0;">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:12px;">
+        <span style="font-family:var(--font-mono);font-size:12px;color:#c9a14a;">02 —</span>
+        <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#475569;">Sending infrastructure &amp; costs</span>
+      </div>
+      <h2 style="font-size:34px;letter-spacing:-0.02em;font-weight:600;margin:0 0 40px;">What it costs to <em style="font-family:var(--font-display);font-weight:400;">reach your market.</em></h2>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;">
+        <!-- volume inputs -->
+        <div style="background:#ffffff;padding:40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:28px;display:flex;align-items:center;gap:9px;"><span style="width:8px;height:8px;background:#c9a14a;display:inline-block;"></span>Sending volume<span style="font-family:var(--font-mono);font-size:10px;color:#c9a14a;letter-spacing:0.1em;">[INPUT]</span></div>
+          <div style="display:flex;flex-direction:column;gap:26px;">
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Leads reached monthly</span>
+              <input type="number" value="{{ leads }}" onChange="{{ onLeads }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Emails in sequence</span>
+              <input type="number" value="{{ seq }}" onChange="{{ onSeq }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Sending days in month</span>
+              <input type="number" value="{{ days }}" onChange="{{ onDays }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+          </div>
+        </div>
+        <!-- software inputs -->
+        <div style="background:#ffffff;padding:40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:28px;display:flex;align-items:center;gap:9px;"><span style="width:8px;height:8px;background:#c9a14a;display:inline-block;"></span>Software spend / month<span style="font-family:var(--font-mono);font-size:10px;color:#c9a14a;letter-spacing:0.1em;">[INPUT]</span></div>
+          <div style="display:flex;flex-direction:column;gap:26px;">
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Sending software</span>
+              <input type="number" value="{{ sendCost }}" onChange="{{ onSendCost }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">CRM + Slack + misc software</span>
+              <input type="number" value="{{ crmCost }}" onChange="{{ onCrmCost }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Clay (optional)</span>
+              <input type="number" value="{{ clay }}" onChange="{{ onClay }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+          </div>
+          <p style="font-size:12px;line-height:1.6;color:#64748b;margin:24px 0 0;">Clay ranges from $125–$1,000+ depending on requirements. An advanced prospecting and enrichment tool — not required in the beginning.</p>
+        </div>
+        <!-- calculated infra -->
+        <div style="background:#f5f6f8;padding:40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:28px;display:flex;align-items:center;gap:9px;"><span style="width:8px;height:8px;background:#1f3a5f;display:inline-block;"></span>Infrastructure required</div>
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #e2e8f0;"><span style="font-size:13px;color:#475569;">Emails sent per month</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mEmailsMonthly }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #e2e8f0;"><span style="font-size:13px;color:#475569;">Cold emails per day</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mEmailsDaily }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #e2e8f0;"><span style="font-size:13px;color:#475569;">Inboxes required</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mInboxes }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #e2e8f0;"><span style="font-size:13px;color:#475569;">Domains required</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mDomains }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #e2e8f0;"><span style="font-size:13px;color:#475569;">Inbox cost / month</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mInboxCost }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #e2e8f0;"><span style="font-size:13px;color:#475569;">Leads + enrichment / month</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mLeadCost }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;"><span style="font-size:13px;color:#475569;">Domains / year (paid month 1)</span><span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ mDomainAnnual }}</span></div>
+          </div>
+          <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="font-size:11px;color:#475569;border:1px solid #cbd5e1;padding:5px 10px;font-family:var(--font-mono);">20 emails / inbox / day</span>
+            <span style="font-size:11px;color:#475569;border:1px solid #cbd5e1;padding:5px 10px;font-family:var(--font-mono);">3 inboxes / domain</span>
+            <span style="font-size:11px;color:#475569;border:1px solid #cbd5e1;padding:5px 10px;font-family:var(--font-mono);">$4.50 / inbox / mo</span>
+            <span style="font-size:11px;color:#475569;border:1px solid #cbd5e1;padding:5px 10px;font-family:var(--font-mono);">$100 / 2,000 leads</span>
+            <span style="font-size:11px;color:#475569;border:1px solid #cbd5e1;padding:5px 10px;font-family:var(--font-mono);">$12 / domain / yr</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- totals strip -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;border-top:none;">
+        <div style="background:#ffffff;padding:28px 40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Software total / mo</div>
+          <div style="font-family:var(--font-mono);font-size:24px;color:#0f172a;">{{ mSoftwareTotal }}</div>
+        </div>
+        <div style="background:#ffffff;padding:28px 40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Variable total / mo</div>
+          <div style="font-family:var(--font-mono);font-size:24px;color:#0f172a;">{{ mVariableTotal }}</div>
+        </div>
+        <div style="background:#1f3a5f;padding:28px 40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:10px;">Total monthly spend</div>
+          <div style="font-family:var(--font-mono);font-size:24px;color:#ffffff;">{{ mMonthlySpend }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 03 — funnel -->
+    <div style="padding:80px 0;border-bottom:1px solid #e2e8f0;">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:12px;">
+        <span style="font-family:var(--font-mono);font-size:12px;color:#c9a14a;">03 —</span>
+        <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#475569;">KPI projections</span>
+      </div>
+      <h2 style="font-size:34px;letter-spacing:-0.02em;font-weight:600;margin:0 0 40px;">From cold email to <em style="font-family:var(--font-display);font-weight:400;">closed client.</em></h2>
+
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;">
+        <!-- rate sliders -->
+        <div style="background:#ffffff;padding:40px;display:flex;flex-direction:column;gap:30px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;display:flex;align-items:center;gap:9px;"><span style="width:8px;height:8px;background:#c9a14a;display:inline-block;"></span>Conversion rates</div>
+          <sc-for list="{{ rateRows }}" as="r" hint-placeholder-count="5">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;">
+                <span style="font-size:13px;color:#475569;">{{ r.label }}</span>
+                <span style="font-family:var(--font-mono);font-size:16px;color:#0f172a;">{{ r.display }}</span>
+              </div>
+              <input type="range" min="0" max="{{ r.max }}" step="{{ r.step }}" value="{{ r.value }}" onChange="{{ r.onChange }}" onInput="{{ r.onChange }}">
+            </div>
+          </sc-for>
+        </div>
+        <!-- funnel -->
+        <div style="background:#ffffff;padding:40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;display:flex;align-items:center;gap:9px;margin-bottom:30px;"><span style="width:8px;height:8px;background:#1f3a5f;display:inline-block;"></span>Projected funnel / month</div>
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <sc-for list="{{ funnelRows }}" as="f" hint-placeholder-count="6">
+              <div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;">
+                  <span style="font-size:13px;color:#475569;">{{ f.label }}</span>
+                  <span style="font-family:var(--font-mono);font-size:18px;color:#0f172a;">{{ f.display }}</span>
+                </div>
+                <div style="height:6px;background:#f5f6f8;">
+                  <div style="height:6px;background:{{ f.color }};width:{{ f.width }};"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;margin-top:34px;">
+            <div style="background:#f5f6f8;padding:22px 26px;">
+              <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:8px;">Cost per call booked</div>
+              <div style="font-family:var(--font-mono);font-size:22px;color:#0f172a;">{{ mCostPerCall }}</div>
+            </div>
+            <div style="background:#f5f6f8;padding:22px 26px;">
+              <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:8px;">Cost to acquire customer</div>
+              <div style="font-family:var(--font-mono);font-size:22px;color:#0f172a;">{{ mCAC }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 04 — per-client economics -->
+    <div style="padding:80px 0;border-bottom:1px solid #e2e8f0;">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:12px;">
+        <span style="font-family:var(--font-mono);font-size:12px;color:#c9a14a;">04 —</span>
+        <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#475569;">Per-client economics</span>
+      </div>
+      <h2 style="font-size:34px;letter-spacing:-0.02em;font-weight:600;margin:0 0 40px;">What one client is <em style="font-family:var(--font-display);font-weight:400;">actually worth.</em></h2>
+
+      <div style="display:grid;grid-template-columns:5fr 7fr;gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;">
+        <div style="background:#ffffff;padding:40px;">
+          <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:28px;display:flex;align-items:center;gap:9px;"><span style="width:8px;height:8px;background:#c9a14a;display:inline-block;"></span>Revenue inputs</div>
+          <div style="display:flex;flex-direction:column;gap:26px;">
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Average upfront revenue</span>
+              <input type="number" value="{{ upfront }}" onChange="{{ onUpfront }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Average monthly recurring revenue</span>
+              <input type="number" value="{{ mrr }}" onChange="{{ onMrr }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-size:13px;color:#475569;margin-bottom:8px;">Average customer stay (months)</span>
+              <input type="number" value="{{ stay }}" onChange="{{ onStay }}" style="width:100%;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:10px 12px;font-family:var(--font-mono);font-size:20px;color:#0f172a;background:#fdfaf3;box-sizing:border-box;" style-focus="border-color:#c9a14a;">
+            </label>
+          </div>
+        </div>
+        <div style="background:#ffffff;padding:40px;display:flex;flex-direction:column;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e2e8f0;border:1px solid #e2e8f0;">
+            <div style="background:#f5f6f8;padding:26px;">
+              <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Client lifetime value</div>
+              <div style="font-family:var(--font-mono);font-size:26px;color:#0f172a;">{{ mCLV }}</div>
+            </div>
+            <div style="background:#f5f6f8;padding:26px;">
+              <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#475569;margin-bottom:10px;">Gross margin</div>
+              <div style="font-family:var(--font-mono);font-size:26px;color:#0f172a;">{{ mGrossMargin }}</div>
+            </div>
+            <div style="background:#16294a;padding:26px;">
+              <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:10px;">CLV : CAC</div>
+              <div style="font-family:var(--font-mono);font-size:26px;color:#d4af37;">{{ mClvCac }}</div>
+            </div>
+          </div>
+          <p style="font-size:13px;line-height:1.7;color:#64748b;margin:28px 0 0;">Gross margin here is illustrative only — it shows the margin on a single client with the full GTM spend attributed to it. Delivery cost is already captured in acquisition cost, so it is not subtracted again in the cashflow model below.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 05 — cashflow -->
+    <div style="padding:80px 0;border-bottom:1px solid #e2e8f0;">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:12px;">
+        <span style="font-family:var(--font-mono);font-size:12px;color:#c9a14a;">05 —</span>
+        <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#475569;">Cashflow model</span>
+      </div>
+      <h2 style="font-size:34px;letter-spacing:-0.02em;font-weight:600;margin:0 0 16px;">Six months, <em style="font-family:var(--font-display);font-weight:400;">month by month.</em></h2>
+      <p style="font-size:15px;line-height:1.7;color:#475569;max-width:680px;margin:0 0 40px;">Month 1 closes are held at zero, assuming a sales cycle of at least one month. Closes from month 2 onwards default to your projected funnel — edit them to model ramp-up. Domains are billed annually in month 1.</p>
+
+      <div style="border:1px solid #e2e8f0;overflow-x:auto;">
+        <div style="display:grid;grid-template-columns:0.7fr 1fr 1.2fr 1fr 1.4fr 1.2fr 1.3fr;gap:1px;background:#e2e8f0;min-width:900px;">
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Month</div>
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Closes</div>
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Upfront rev</div>
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Active clients</div>
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Recurring rev</div>
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Total costs</div>
+          <div style="background:#1f3a5f;padding:14px 18px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.8);">Net cashflow</div>
+          <sc-for list="{{ cashRows }}" as="c" hint-placeholder-count="6">
+            <div style="background:#ffffff;padding:14px 18px;font-family:var(--font-mono);font-size:14px;color:#475569;">{{ c.m }}</div>
+            <div style="background:{{ c.closeBg }};padding:8px 18px;display:flex;align-items:center;">
+              <sc-if value="{{ c.editable }}" hint-placeholder-val="{{ true }}">
+                <input type="number" min="0" value="{{ c.closesVal }}" onChange="{{ c.onCloses }}" onBlur="{{ c.onBlurCloses }}" title="Defaults to your projected closes. Clear the field to re-sync with the funnel." style="width:64px;border:1px solid #e3d5b3;border-bottom:2px solid #c9a14a;padding:5px 8px;font-family:var(--font-mono);font-size:15px;color:#0f172a;background:#fdfaf3;" style-focus="border-color:#c9a14a;">
+              </sc-if>
+              <sc-if value="{{ c.locked }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:var(--font-mono);font-size:15px;color:#94a3b8;">0</span>
+              </sc-if>
+            </div>
+            <div style="background:#ffffff;padding:14px 18px;font-family:var(--font-mono);font-size:15px;color:#0f172a;display:flex;align-items:center;">{{ c.upfront }}</div>
+            <div style="background:#ffffff;padding:14px 18px;font-family:var(--font-mono);font-size:15px;color:#0f172a;display:flex;align-items:center;">{{ c.active }}</div>
+            <div style="background:#ffffff;padding:14px 18px;font-family:var(--font-mono);font-size:15px;color:#0f172a;display:flex;align-items:center;">{{ c.recurring }}</div>
+            <div style="background:#ffffff;padding:14px 18px;font-family:var(--font-mono);font-size:15px;color:#0f172a;display:flex;align-items:center;">{{ c.costs }}</div>
+            <div style="background:#ffffff;padding:14px 18px;font-family:var(--font-mono);font-size:15px;color:{{ c.netColor }};display:flex;align-items:center;">{{ c.net }}</div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#16294a;padding:32px 36px;min-width:900px;box-sizing:border-box;">
+          <span style="font-size:14px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,.85);">Total net cashflow over 6 months</span>
+          <span style="font-family:var(--font-mono);font-size:40px;color:#d4af37;">{{ mTotalCashflow }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 06 — optimization -->
+    <sc-if value="{{ showOptimization }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:80px 0;">
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:12px;">
+          <span style="font-family:var(--font-mono);font-size:12px;color:#c9a14a;">06 —</span>
+          <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#475569;">KPI optimization</span>
+        </div>
+        <h2 style="font-size:34px;letter-spacing:-0.02em;font-weight:600;margin:0 0 16px;">Know exactly <em style="font-family:var(--font-display);font-weight:400;">what to fix.</em></h2>
+        <p style="font-size:15px;line-height:1.7;color:#475569;max-width:640px;margin:0 0 40px;">Each metric in the model is driven by a specific set of levers. If a number above disappoints, this is where you look.</p>
+        <div style="border:1px solid #e2e8f0;">
+          <sc-for list="{{ optRows }}" as="o" hint-placeholder-count="7">
+            <div style="display:grid;grid-template-columns:4fr 8fr;gap:1px;background:#e2e8f0;border-bottom:1px solid #e2e8f0;">
+              <div style="background:#f5f6f8;padding:20px 28px;font-size:14px;font-weight:600;color:#0f172a;display:flex;align-items:center;">{{ o.metric }}</div>
+              <div style="background:#ffffff;padding:20px 28px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                <sc-for list="{{ o.levers }}" as="l" hint-placeholder-count="3">
+                  <span style="font-size:12px;color:#475569;border:1px solid #e2e8f0;padding:5px 11px;">{{ l }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- CTA -->
+  <div class="grid-lines-dark" style="background:#16294a;">
+    <div style="max-width:1320px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:center;">
+      <div>
+        <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:20px;">Done-for-you outbound</div>
+        <h2 style="font-size:44px;line-height:1.1;letter-spacing:-0.03em;font-weight:600;color:#ffffff;margin:0 0 20px;">Want this system <em style="font-family:var(--font-display);font-weight:400;">run for you?</em></h2>
+        <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);margin:0;max-width:520px;">We build and operate this exact engine for B2B service companies. You only pay when qualified buyers show up.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;justify-self:end;">
+        <a href="{{ bookUrl }}" style="display:inline-block;background:#c9a14a;color:#16294a;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;padding:18px 36px;" style-hover="background:#d4af37;">Book a strategy call</a>
+        <span style="font-size:13px;color:rgba(255,255,255,.55);">A 30-minute working session. We do not pitch. We diagnose.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div style="border-top:1px solid rgba(255,255,255,.15);background:#16294a;">
+    <div style="max-width:1320px;margin:0 auto;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;">
+      <img src="assets/logo-on-dark.png" alt="Polaris Origin" style="height:24px;display:block;">
+      <span style="font-size:12px;color:rgba(255,255,255,.55);">GTM Cost &amp; ROI Calculator — all figures are estimates, in USD.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;bookUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://polarisorigin.com/contact&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Call to action&quot;},&quot;showOptimization&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = Component.defaults();
+  static defaults() {
+    return {
+      leads: '10000', seq: '3', days: '22',
+      sendCost: '94', crmCost: '200', clay: '0',
+      respRate: 3, posRate: 20, bookRate: 20, showRate: 70, closeRate: 50,
+      upfront: '1000', mrr: '1500', stay: '3',
+      closesOv: [null, null, null, null, null]
+    };
+  }
+  num(k) { const v = parseFloat(this.state[k]); return isFinite(v) ? v : 0; }
+  set(k) { return (e) => this.setState({ [k]: e.target.value }); }
+  setRate(k) { return (e) => this.setState({ [k]: parseFloat(e.target.value) }); }
+  fmt(n, dec) {
+    if (!isFinite(n)) return '—';
+    const neg = n < 0, a = Math.abs(n);
+    const d = dec != null ? dec : (Math.round(a * 100) % 100 ? 2 : 0);
+    return (neg ? '−$' : '$') + a.toLocaleString('en-US', { minimumFractionDigits: d ? 2 : 0, maximumFractionDigits: d ? 2 : 0 });
+  }
+  int(n) { return isFinite(n) ? Math.round(n).toLocaleString('en-US') : '—'; }
+  renderVals() {
+    const s = this.state;
+    const leads = this.num('leads'), seq = this.num('seq'), days = this.num('days');
+    const emailsMonthly = leads * seq;
+    const emailsDaily = days > 0 ? Math.ceil(emailsMonthly / days) : 0;
+    const inboxes = Math.ceil(emailsDaily / 20);
+    const domains = Math.ceil(inboxes / 3);
+    const softwareTotal = this.num('sendCost') + this.num('crmCost');
+    const inboxCost = inboxes * 4.5;
+    const leadCost = 100 * (leads / 2000);
+    const variableTotal = inboxCost + this.num('clay') + leadCost;
+    const domainAnnual = domains * 12;
+    const monthlySpend = softwareTotal + variableTotal;
+    // funnel
+    const responses = leads * s.respRate / 100;
+    const positive = responses * s.posRate / 100;
+    const calls = Math.floor(positive * s.bookRate / 100);
+    const shows = Math.floor(calls * s.showRate / 100);
+    const closes = Math.floor(shows * s.closeRate / 100);
+    const costPerCall = calls > 0 ? monthlySpend / calls : Infinity;
+    const cac = closes > 0 ? monthlySpend / closes : Infinity;
+    // per client
+    const upfront = this.num('upfront'), mrr = this.num('mrr'), stay = this.num('stay');
+    const clv = upfront + mrr * stay;
+    const grossMargin = clv > 0 ? 1 - ((softwareTotal + variableTotal + domainAnnual / 12) * stay) / clv : NaN;
+    const clvCac = isFinite(cac) && cac > 0 ? clv / cac : NaN;
+    // cashflow
+    const closesArr = [0];
+    for (let i = 0; i < 5; i++) {
+      const ov = s.closesOv[i];
+      const v = ov == null || ov === '' ? closes : parseFloat(ov);
+      closesArr.push(isFinite(v) ? v : 0);
+    }
+    const cashRows = []; let total = 0;
+    for (let m = 1; m <= 6; m++) {
+      const cl = closesArr[m - 1];
+      const up = cl * upfront;
+      let active = 0;
+      for (let k = 1; k <= m; k++) if (k > m - stay) active += closesArr[k - 1];
+      const rec = active * mrr;
+      const costs = monthlySpend + (m === 1 ? domainAnnual : 0);
+      const net = up + rec - costs;
+      total += net;
+      cashRows.push({
+        m: String(m).padStart(2, '0'),
+        editable: m > 1, locked: m === 1,
+        closeBg: m > 1 ? '#fdfaf3' : '#ffffff',
+        edited: m > 1 && s.closesOv[m - 2] != null,
+        closesVal: m > 1 && s.closesOv[m - 2] != null ? s.closesOv[m - 2] : String(closes),
+        onCloses: ((idx) => (e) => {
+          const arr = this.state.closesOv.slice(); arr[idx] = e.target.value;
+          this.setState({ closesOv: arr });
+        })(m - 2),
+        onBlurCloses: ((idx) => (e) => {
+          const v = e.target.value;
+          if (v === '' || !isFinite(parseFloat(v))) {
+            const arr = this.state.closesOv.slice(); arr[idx] = null;
+            this.setState({ closesOv: arr });
+          }
+        })(m - 2),
+        upfront: this.fmt(up, 0), active: this.int(active), recurring: this.fmt(rec, 0),
+        costs: this.fmt(costs), net: this.fmt(net),
+        netColor: net < 0 ? '#94a3b8' : '#0f172a'
+      });
+    }
+    const bar = (v) => leads > 0 && v > 0 ? Math.max(1.5, 100 * Math.pow(v / leads, 0.45)).toFixed(1) + '%' : '1.5%';
+    const funnelRows = [
+      { label: 'Leads reached', display: this.int(leads), width: '100%', color: '#e2e8f0' },
+      { label: 'Responses', display: this.int(responses), width: bar(responses), color: '#94a3b8' },
+      { label: 'Positive responses', display: this.int(positive), width: bar(positive), color: '#64748b' },
+      { label: 'Calls booked', display: this.int(calls), width: bar(calls), color: '#1f3a5f' },
+      { label: 'Show-ups', display: this.int(shows), width: bar(shows), color: '#16294a' },
+      { label: 'Clients closed', display: this.int(closes), width: bar(closes), color: '#c9a14a' }
+    ];
+    const rateRows = [
+      { label: 'Response rate', value: s.respRate, display: s.respRate + '%', max: 20, step: 0.5, onChange: this.setRate('respRate') },
+      { label: 'Positive response rate', value: s.posRate, display: s.posRate + '%', max: 100, step: 1, onChange: this.setRate('posRate') },
+      { label: 'Call booking rate (on positives)', value: s.bookRate, display: s.bookRate + '%', max: 100, step: 1, onChange: this.setRate('bookRate') },
+      { label: 'Show rate', value: s.showRate, display: s.showRate + '%', max: 100, step: 1, onChange: this.setRate('showRate') },
+      { label: 'Close rate', value: s.closeRate, display: s.closeRate + '%', max: 100, step: 1, onChange: this.setRate('closeRate') }
+    ];
+    const optRows = [
+      { metric: 'Response rate', levers: ['Script', 'Offer', 'Deliverability'] },
+      { metric: 'Positive response rate', levers: ['Script', 'Offer', 'Deliverability'] },
+      { metric: 'Call booking rate', levers: ['Speed to respond', 'Response handling ability'] },
+      { metric: 'Close rate', levers: ['Offer', 'Case studies', 'Sales assets', 'Content / social presence', 'Target market', 'Sales skills', 'Follow-up activity'] },
+      { metric: 'Avg monthly revenue', levers: ['Offer', 'Case studies', 'Content / social presence', 'Sales assets', 'Target market'] },
+      { metric: 'Avg gross profit', levers: ['Operations & management', 'Team efficiency', 'Automation', 'Follow-up activity'] },
+      { metric: 'Avg customer stay', levers: ['Communication frequency', 'Client results', 'Reporting'] }
+    ];
+    return {
+      leads: s.leads, seq: s.seq, days: s.days, sendCost: s.sendCost, crmCost: s.crmCost, clay: s.clay,
+      upfront: s.upfront, mrr: s.mrr, stay: s.stay,
+      onLeads: this.set('leads'), onSeq: this.set('seq'), onDays: this.set('days'),
+      onSendCost: this.set('sendCost'), onCrmCost: this.set('crmCost'), onClay: this.set('clay'),
+      onUpfront: this.set('upfront'), onMrr: this.set('mrr'), onStay: this.set('stay'),
+      resetAll: () => this.setState(Component.defaults()),
+      mEmailsMonthly: this.int(emailsMonthly), mEmailsDaily: this.int(emailsDaily),
+      mInboxes: this.int(inboxes), mDomains: this.int(domains),
+      mInboxCost: this.fmt(inboxCost), mLeadCost: this.fmt(leadCost), mDomainAnnual: this.fmt(domainAnnual),
+      mSoftwareTotal: this.fmt(softwareTotal), mVariableTotal: this.fmt(variableTotal), mMonthlySpend: this.fmt(monthlySpend),
+      mCostPerCall: this.fmt(costPerCall, 2), mCAC: this.fmt(cac, 2), mCLV: this.fmt(clv),
+      mGrossMargin: isFinite(grossMargin) ? (grossMargin * 100).toFixed(1) + '%' : '—',
+      mClvCac: isFinite(clvCac) ? clvCac.toFixed(1) + ' : 1' : '—',
+      mTotalCashflow: this.fmt(total),
+      rateRows, funnelRows, cashRows, optRows,
+      bookUrl: this.props.bookUrl ?? 'https://polarisorigin.com/contact',
+      showOptimization: this.props.showOptimization ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>
