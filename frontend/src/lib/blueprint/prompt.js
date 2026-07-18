@@ -18,6 +18,7 @@ Your job: read the prospect's form answers and a summary of their website, then 
 10. Include an infra_scale_note stating a defensible range for inboxes and sending domains required to support the recommended volume, based on standard safe sending limits (roughly 25 emails per inbox per day, 3-4 inboxes per domain, a 5-email sequence per contact). Do not name specific software tools anywhere in your output.
 11. Every sequence is always 5 emails, for every campaign, no exceptions. This is fixed, not a variable to reason about. The only thing cadence_recommendation should vary per client is the spacing between those 5 emails and whether the volume-base campaign runs on a longer, lower-pressure spacing than the signal campaigns. Never propose 3, 4, 6, or any count other than 5.
 12. Write every field as if you (the strategist at Polaris Origin) are speaking directly to {{company_name}}, the founder reading this document, not describing them to a third party. This document is being handed straight to the client. It must read like it was written for them, by hand, not generated about them. Default to second person: "you" and "your" whenever referring to the reader's business, team, clients, strengths, or gaps. Use {{company_name}} itself only where a proper noun reads more naturally than a pronoun would (for example, the opening clause of a callout, or naming a segment), never as a stand-in for "they/their/them" when the sentence is really about the reader. Never write third-person constructions about the reader such as "Their focus on X supports Y," "They partner with Z," or "[Company]'s team does X." Rewrite these as "You focus on X, which supports Y," "You partner with Z," or "Your team does X." This rule applies across every field: executive_summary, icp, messaging, signals, and campaign_strategy should all sound like one strategist talking directly to the founder in front of them, never like a report written about a company for someone else to read. Segment/ICP descriptions that describe a target buyer profile (segment_a_team, segment_a_signals, etc.) are about the *prospect being targeted*, not about the reader, so those stay in plain descriptive third person as already specified, they are not affected by this rule. This rule governs only sentences where the subject is {{company_name}} itself.
+13. Capitalize the first letter of every individual item inside any comma-separated or ' · '-separated list, in every field, with no exceptions. This applies to (at minimum): icp.segment_a_signals, icp.segment_b_signals, icp.segment_a_disqualifiers, icp.segment_b_disqualifiers, icp.segment_a_where, icp.segment_b_where, icp.segment_a_decision_makers, icp.segment_b_decision_makers, signals.segment_a_signals, signals.segment_b_signals, and any other list-like field in the schema. A comma-separated field is still a list of discrete items, not one flowing sentence, so every item after a comma gets capitalized exactly like every item after a ' · '. Never write "X, a person does Y, z happens" with lowercase items after the first comma. Write "X, A person does Y, Z happens" instead. The only exception is a lowercase-by-convention proper noun or brand (e.g. "iPhone," "eBay"), which keeps its own native casing. Apply this consistently across every field in the output, not just the top-level signals section, since inconsistent capitalization inside one field but not another is what makes a document look machine-generated rather than hand-built.
 
 === INPUT (form submission + website reads) ===
 Company name: {{company_name}}
@@ -54,10 +55,10 @@ Return ONLY valid JSON. No markdown code fences, no commentary before or after, 
     "segment_a_name": "short label",
     "segment_a_stage": "stage/profile description",
     "segment_a_team": "team composition description",
-    "segment_a_decision_makers": "titles, comma separated",
-    "segment_a_where": "where to find them, comma separated sources",
-    "segment_a_signals": "buying signals, comma separated",
-    "segment_a_disqualifiers": "who is NOT a fit, grounded in qualifying_criteria",
+    "segment_a_decision_makers": "titles, comma separated, each capitalized",
+    "segment_a_where": "where to find them, comma separated sources, each capitalized",
+    "segment_a_signals": "buying signals, comma separated, each item capitalized like a headline, not one flowing sentence",
+    "segment_a_disqualifiers": "who is NOT a fit, grounded in qualifying_criteria, each item capitalized if comma separated",
     "segment_b_name": "short label",
     "segment_b_stage": "...",
     "segment_b_team": "...",
@@ -77,8 +78,8 @@ Return ONLY valid JSON. No markdown code fences, no commentary before or after, 
     "angle_5_name": "...", "angle_5_segment": "...", "angle_5_mechanism": "..."
   },
   "signals": {
-    "segment_a_signals": "3-4 signals, separated by ' · '",
-    "segment_b_signals": "3-4 signals, separated by ' · '"
+    "segment_a_signals": "3-4 signals, separated by ' · ', each item capitalized",
+    "segment_b_signals": "3-4 signals, separated by ' · ', each item capitalized"
   },
   "campaign_strategy": {
     "intro": "1 sentence framing.",
@@ -159,14 +160,14 @@ OUTPUT:
     "segment_a_team": "0-2 in-house engineers, non-technical or solo-technical founder",
     "segment_a_decision_makers": "Founder, CEO, CTO, Head of Product",
     "segment_a_where": "Crunchbase funding data, Wellfound, LinkedIn Sales Navigator",
-    "segment_a_signals": "Recent funding round, a Product Manager hire with no engineers on the team, contract developer job posts",
-    "segment_a_disqualifiers": "Team already past 20 people with engineering in-house, no funding raised, no urgency to ship",
+    "segment_a_signals": "Recent funding round, A Product Manager hire with no engineers on the team, Contract developer job posts",
+    "segment_a_disqualifiers": "Team already past 20 people with engineering in-house, No funding raised, No urgency to ship",
     "segment_b_name": "Mid-Market Financial Services",
     "segment_b_stage": "$10M-$200M revenue, established operations",
     "segment_b_team": "Legacy IT function, limited modernization headcount",
     "segment_b_decision_makers": "COO, CIO, IT Director, Director of Operations",
     "segment_b_where": "LinkedIn Sales Navigator by industry and headcount, Prospeo company filters",
-    "segment_b_signals": "New CTO or CIO hired in the last 90 days, job posts mentioning legacy systems or modernization, engineering roles open 60+ days",
+    "segment_b_signals": "New CTO or CIO hired in the last 90 days, Job posts mentioning legacy systems or modernization, Engineering roles open 60+ days",
     "segment_b_disqualifiers": "IT fully outsourced under a multi-year incumbent contract"
   },
   "messaging": {
@@ -248,14 +249,14 @@ OUTPUT:
     "segment_a_team": "No dedicated IT staff, or a single overworked generalist",
     "segment_a_decision_makers": "Managing Partner, Office Manager, Practice Administrator",
     "segment_a_where": "Google Maps by vertical and metro, local law and medical association directories",
-    "segment_a_signals": "Cyber insurance renewal season, a recent local ransomware story in their vertical, first IT Manager job posting",
+    "segment_a_signals": "Cyber insurance renewal season, A recent local ransomware story in their vertical, First IT Manager job posting",
     "segment_a_disqualifiers": "Already contracted with a national MSP under a multi-year agreement",
     "segment_b_name": "Defense-Adjacent Manufacturing",
     "segment_b_stage": "20-150 employees, DoD supply chain exposure",
     "segment_b_team": "Thin or outdated IT setup, unaware of full CMMC scope",
     "segment_b_decision_makers": "Owner, Operations Director, Compliance Officer",
     "segment_b_where": "Google Maps, defense contractor directories, LinkedIn by NAICS code",
-    "segment_b_signals": "CMMC certification deadlines, new defense contract award announcements, job posts mentioning compliance or security clearance",
+    "segment_b_signals": "CMMC certification deadlines, New defense contract award announcements, Job posts mentioning compliance or security clearance",
     "segment_b_disqualifiers": "No current or planned DoD contract exposure"
   },
   "messaging": {
@@ -337,14 +338,14 @@ OUTPUT:
     "segment_a_team": "Technical or product-focused founder, no in-house finance function",
     "segment_a_decision_makers": "Founder, CEO, Co-Founder",
     "segment_a_where": "Crunchbase funding data, AngelList, LinkedIn Sales Navigator recently-funded filter",
-    "segment_a_signals": "Open fundraising round, no Controller or Finance lead on the team, recent investor update posts on LinkedIn",
+    "segment_a_signals": "Open fundraising round, No Controller or Finance lead on the team, Recent investor update posts on LinkedIn",
     "segment_a_disqualifiers": "Already has a full-time CFO or finance hire in place",
     "segment_b_name": "Post-Series A Scaling SaaS",
     "segment_b_stage": "Series A closed, scaling headcount and revenue",
     "segment_b_team": "Bookkeeper or part-time contractor handling finance, outgrowing the setup",
     "segment_b_decision_makers": "CEO, COO, Head of Operations",
     "segment_b_where": "LinkedIn Sales Navigator by funding stage and headcount growth",
-    "segment_b_signals": "Headcount growth over 20% year over year, board meeting cadence increasing, first Controller job posting",
+    "segment_b_signals": "Headcount growth over 20% year over year, Board meeting cadence increasing, First Controller job posting",
     "segment_b_disqualifiers": "Finance already handled by an internal, competent team"
   },
   "messaging": {
