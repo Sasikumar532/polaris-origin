@@ -54,7 +54,7 @@ export default function Resources() {
                     data-testid={`resource-link-${r.slug}`}
                     className="group/btn mt-8 inline-flex items-center gap-2 self-start bg-[#1f3a5f] text-white px-6 py-3 text-[13px] tracking-[0.04em] uppercase font-medium hover:bg-[#C9A14A] transition-colors"
                   >
-                    Read Resource
+                    TRY IT OUT
                     <ArrowUpRight
                       size={16}
                       strokeWidth={1.75}
