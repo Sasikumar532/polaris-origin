@@ -185,7 +185,7 @@ export default function AdminDashboard({ adminEmail }) {
         <p className="mt-16 text-slate-500">No submissions yet.</p>
       ) : (
         <div className="mt-10 border border-slate-200 overflow-x-auto">
-          <table className="w-full min-w-[900px] text-left text-[14px]">
+          <table className="w-full min-w-[1100px] text-left text-[14px]">
             <thead>
               <tr className="bg-[#1f3a5f] text-white">
                 <th className="w-10 px-2 py-3" />
@@ -239,7 +239,9 @@ export default function AdminDashboard({ adminEmail }) {
                       <td className="px-4 py-4 text-slate-600">
                         {r.best_fit_industry}
                       </td>
-                      <td className="px-4 py-4 text-slate-600">{r.aov}</td>
+                      <td className="px-4 py-4 text-slate-600 whitespace-nowrap">
+                        {r.aov}
+                      </td>
                       <td className="px-4 py-4 text-slate-600">
                         {r.competitor_name}
                       </td>
