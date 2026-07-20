@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { saveSubmission } from "@/lib/blueprint/store";
 import { processBlueprint } from "@/lib/blueprint/process";
+import { sendSubmissionNotification } from "@/lib/email";
 
 // googleapis + fetch of arbitrary sites need the Node runtime, not Edge.
 export const runtime = "nodejs";
@@ -52,7 +53,13 @@ export async function POST(request) {
     );
   }
 
-  // 2. Kick off blueprint generation in the background (fire-and-forget) so the
+  // 2. Notify the team by email (fire-and-forget; never blocks the response).
+  sendSubmissionNotification(body).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error("Notification email failed:", err);
+  });
+
+  // 3. Kick off blueprint generation in the background (fire-and-forget) so the
   //    prospect gets an instant response instead of waiting ~1 minute.
   processBlueprint(submissionId, body).catch((err) => {
     // eslint-disable-next-line no-console
