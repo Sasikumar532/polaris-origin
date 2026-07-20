@@ -78,29 +78,55 @@ export default function AdminDashboard({ adminEmail }) {
     load();
   }, [load]);
 
+  // Generation runs in the background on the server; we trigger it, then poll
+  // the list until this row leaves "processing" (completed or failed).
+  const pollUntilDone = (id) => {
+    let tries = 0;
+    const iv = setInterval(async () => {
+      tries += 1;
+      try {
+        const res = await fetch("/api/admin/submissions", { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          const row = data.submissions.find((r) => r.id === id);
+          if (row) {
+            setRows((rs) => rs.map((r) => (r.id === id ? row : r)));
+            if (row.status !== "processing") {
+              clearInterval(iv);
+              setBusyId((b) => (b === id ? null : b));
+              if (row.status === "failed" && row.error) setError(row.error);
+            }
+          }
+        }
+      } catch {
+        /* transient — keep polling */
+      }
+      if (tries >= 90) {
+        // ~7.5 min safety cap
+        clearInterval(iv);
+        setBusyId((b) => (b === id ? null : b));
+      }
+    }, 5000);
+  };
+
   const generate = async (id) => {
     setBusyId(id);
     setError("");
     setRows((rs) =>
-      rs.map((r) => (r.id === id ? { ...r, status: "processing" } : r))
+      rs.map((r) => (r.id === id ? { ...r, status: "processing", error: null } : r))
     );
     try {
       const res = await fetch(`/api/admin/submissions/${id}/generate`, {
         method: "POST",
       });
-      const data = await res.json();
       if (res.status === 401) {
         router.push("/admin-login");
         return;
       }
-      if (!res.ok) throw new Error(data?.error || "Generation failed.");
-      setRows((rs) =>
-        rs.map((r) =>
-          r.id === id
-            ? { ...r, status: "completed", documentUrl: data.documentUrl, error: null }
-            : r
-        )
-      );
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || "Could not start generation.");
+      // Kicked off in the background; poll for the result.
+      pollUntilDone(id);
     } catch (err) {
       setRows((rs) =>
         rs.map((r) =>
@@ -108,7 +134,6 @@ export default function AdminDashboard({ adminEmail }) {
         )
       );
       setError(err.message || "Generation failed.");
-    } finally {
       setBusyId(null);
     }
   };

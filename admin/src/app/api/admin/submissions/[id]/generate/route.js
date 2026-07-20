@@ -22,11 +22,13 @@ export async function POST(request, { params }) {
   }
 
   await markSubmissionProcessing(id);
-  // Admin clicks are synchronous: wait for the doc so we can return the link.
-  const result = await processBlueprint(id, submission);
+  // Fire-and-forget: generation can take a while (site fetch + LLM + Docs), so
+  // we return immediately to avoid a proxy timeout. The dashboard polls for the
+  // result. PM2 keeps the process alive to finish the background job.
+  processBlueprint(id, submission).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error("Admin background generation crashed:", err);
+  });
 
-  if (!result.ok) {
-    return NextResponse.json({ error: result.error }, { status: 500 });
-  }
-  return NextResponse.json({ ok: true, documentUrl: result.documentUrl });
+  return NextResponse.json({ ok: true, status: "processing" });
 }
