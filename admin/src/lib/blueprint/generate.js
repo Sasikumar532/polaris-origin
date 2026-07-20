@@ -11,9 +11,13 @@ const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 // or emit invalid JSON. So each generation is retried a few times, optionally
 // across fallback models, with a hard per-attempt timeout.
 const PER_ATTEMPT_TIMEOUT_MS = Number(
-  process.env.BLUEPRINT_ATTEMPT_TIMEOUT_MS || 75000
+  process.env.BLUEPRINT_ATTEMPT_TIMEOUT_MS || 120000
 );
 const MAX_ATTEMPTS_PER_MODEL = Number(process.env.BLUEPRINT_MAX_ATTEMPTS || 3);
+// Reasoning models (e.g. GLM) spend tokens "thinking" before the answer. Too low
+// a cap and the whole budget goes to reasoning, leaving content empty with
+// finish_reason=length. Give generous headroom (only actual output is billed).
+const MAX_TOKENS = Number(process.env.BLUEPRINT_MAX_TOKENS || 20000);
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -67,7 +71,10 @@ async function callModel({ apiKey, model, system }) {
       body: JSON.stringify({
         model,
         temperature: 0.6,
-        max_tokens: 4096,
+        max_tokens: MAX_TOKENS,
+        // Structured extraction task — skip model "thinking" so the token budget
+        // goes to the JSON answer, not reasoning.
+        reasoning: { enabled: false },
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: system },
