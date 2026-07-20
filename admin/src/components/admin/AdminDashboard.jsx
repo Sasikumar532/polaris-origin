@@ -255,20 +255,33 @@ export default function AdminDashboard({ adminEmail }) {
                             href={r.website_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[12px] text-slate-500 hover:text-[#1f3a5f] break-all"
+                            title={r.website_url}
+                            className="block max-w-[200px] truncate text-[12px] text-slate-500 hover:text-[#1f3a5f]"
                           >
                             {r.website_url}
                           </a>
                         )}
                       </td>
                       <td className="px-4 py-4 text-slate-600">
-                        {r.best_fit_industry}
-                      </td>
-                      <td className="px-4 py-4 text-slate-600 whitespace-nowrap">
-                        {r.aov}
+                        <div
+                          className="max-w-[180px] truncate"
+                          title={r.best_fit_industry}
+                        >
+                          {r.best_fit_industry}
+                        </div>
                       </td>
                       <td className="px-4 py-4 text-slate-600">
-                        {r.competitor_name}
+                        <div className="max-w-[240px] truncate" title={r.aov}>
+                          {r.aov}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-slate-600">
+                        <div
+                          className="max-w-[140px] truncate"
+                          title={r.competitor_name}
+                        >
+                          {r.competitor_name}
+                        </div>
                       </td>
                       <td className="px-4 py-4 text-slate-500 whitespace-nowrap">
                         {fmtDate(r.createdAt)}
