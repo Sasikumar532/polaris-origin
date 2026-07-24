@@ -7,6 +7,7 @@ import path from "node:path";
 import { existsSync } from "node:fs";
 
 let transporter;
+let playbookTransporter;
 
 function getTransporter() {
   if (transporter) return transporter;
@@ -25,6 +26,40 @@ function getTransporter() {
     auth: { user, pass },
   });
   return transporter;
+}
+
+// Separate SMTP account used only for the Cold Email Playbook (3rd resource).
+// Falls back to the default SMTP account if the PLAYBOOK_SMTP_* vars aren't set.
+function getPlaybookTransporter() {
+  if (playbookTransporter) return playbookTransporter;
+  const user = process.env.PLAYBOOK_SMTP_USER;
+  const pass = (process.env.PLAYBOOK_SMTP_PASS || "").replace(/\s+/g, "");
+  if (!user || !pass) return getTransporter();
+  playbookTransporter = nodemailer.createTransport({
+    host: process.env.PLAYBOOK_SMTP_HOST || "smtp.gmail.com",
+    port: Number(process.env.PLAYBOOK_SMTP_PORT || 465),
+    secure: Number(process.env.PLAYBOOK_SMTP_PORT || 465) === 465,
+    auth: { user, pass },
+  });
+  return playbookTransporter;
+}
+
+// The from/to addresses the playbook uses (defaults to its own SMTP user).
+function playbookFrom() {
+  return (
+    process.env.PLAYBOOK_MAIL_FROM ||
+    process.env.PLAYBOOK_SMTP_USER ||
+    process.env.MAIL_FROM ||
+    process.env.SMTP_USER
+  );
+}
+function playbookTo() {
+  return (
+    process.env.PLAYBOOK_MAIL_TO ||
+    process.env.PLAYBOOK_SMTP_USER ||
+    process.env.MAIL_TO ||
+    process.env.SMTP_USER
+  );
 }
 
 const ROWS = [
@@ -88,8 +123,8 @@ export async function sendSubmissionNotification(submission) {
 
 // Notify the team when someone downloads the Cold Email Playbook.
 export async function sendPlaybookNotification(lead) {
-  const to = process.env.MAIL_TO || process.env.SMTP_USER;
-  const from = process.env.MAIL_FROM || process.env.SMTP_USER;
+  const to = playbookTo();
+  const from = playbookFrom();
   const rows = [
     ["Name", lead.name],
     ["Email", lead.email],
@@ -98,7 +133,7 @@ export async function sendPlaybookNotification(lead) {
     ["Role", lead.role],
   ];
   try {
-    const t = getTransporter();
+    const t = getPlaybookTransporter();
     await t.sendMail({
       from,
       to,
@@ -137,7 +172,7 @@ function playbookPdfPath() {
 
 // Emails the actual playbook PDF to the person who filled out the form.
 export async function sendPlaybookToLead(lead) {
-  const from = process.env.MAIL_FROM || process.env.SMTP_USER;
+  const from = playbookFrom();
   const pdfPath = playbookPdfPath();
   if (!existsSync(pdfPath)) {
     // eslint-disable-next-line no-console
@@ -146,7 +181,7 @@ export async function sendPlaybookToLead(lead) {
   }
   const firstName = String(lead.name || "there").split(" ")[0];
   try {
-    const t = getTransporter();
+    const t = getPlaybookTransporter();
     await t.sendMail({
       from,
       to: lead.email,
