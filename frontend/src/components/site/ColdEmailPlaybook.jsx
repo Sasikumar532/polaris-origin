@@ -70,19 +70,13 @@ export default function ColdEmailPlaybook() {
       {/* LEAD FORM */}
       <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch border border-slate-200">
         {/* LEFT — image panel (swap the inner block for a real <img> when ready) */}
-        <div className="relative min-h-[280px] lg:min-h-full bg-[#16294a] grid-lines-dark overflow-hidden">
-          <span className="absolute top-4 left-4 z-10 bg-white px-3 py-1.5 text-[11px] tracking-[0.2em] uppercase text-slate-900">
-            Infrastructure
-          </span>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display italic text-white/10 text-[120px] lg:text-[160px] leading-none select-none">
-              60
-            </span>
-          </div>
-          <span className="absolute bottom-4 right-4 z-10 bg-[#1f3a5f] text-white px-4 py-2.5 text-[12px] font-mono-tight tracking-[0.04em]">
-            9 Chapters · 60-Point Audit
-          </span>
-        </div>
+        <div className="relative min-h-[280px] lg:min-h-full bg-[#16294a] overflow-hidden">
+  <img 
+    src="/cold-email-deliverability.gif" 
+    alt="Cold Email Deliverability"
+    className="w-full h-full object-cover"
+  />
+</div>
 
         {/* RIGHT — form */}
         <div className="p-8 lg:p-12">
