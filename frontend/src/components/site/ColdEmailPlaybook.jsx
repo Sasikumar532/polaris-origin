@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, ChevronDown, Loader2, X } from "lucide-react";
+import { CheckCircle2, Loader2, X } from "lucide-react";
 import SectionLabel from "@/components/site/SectionLabel";
 
 const CHAPTERS = [
@@ -14,73 +14,6 @@ const CHAPTERS = [
   { num: "07", title: "List Hygiene" },
   { num: "08", title: "Scaling Safely" },
   { num: "09", title: "Ongoing Maintenance" },
-];
-
-const ACCORDION = [
-  {
-    title: "1. Building Your Infrastructure",
-    body: "Your domain reputation determines whether providers trust your emails. Buy dedicated sending domains — never your root domain — move DNS to Cloudflare, and age new domains 3-5 days minimum (2 weeks is better) before warmup begins.",
-  },
-  {
-    title: "2. Authentication",
-    body: "SPF, DKIM, and DMARC prove to inbox providers that you are who you say you are. Miss any one of the three and even a perfectly warmed-up mailbox lands in spam. The full record values for Google Workspace and Microsoft 365 are inside.",
-  },
-  {
-    title: "3. Mailbox Configuration",
-    body: "Each mailbox is its own sending identity with its own reputation. Use Google Workspace or Microsoft 365 only, cap at 3 mailboxes per domain, and give every mailbox a complete profile and photo before it sends a single email.",
-  },
-  {
-    title: "4. Warmup",
-    body: "A brand new mailbox has no sending history, and providers treat unknown senders with suspicion. Warmup builds that history gradually — and should keep running quietly in the background even at full campaign volume, indefinitely.",
-  },
-  {
-    title: "5. Launch Readiness",
-    body: "Your last checkpoint before real prospects see your emails. Mail-Tester score of 8/10 or above, clean blacklist checks, and natural variation in subject lines and openers — not spintax, which modern filters detect easily.",
-  },
-  {
-    title: "6. Audience Fit",
-    body: "Inbox providers reward engagement — opens, replies, time spent reading. A tightly-targeted list of 500 contacts that actually reply protects your reputation far better than a loose list of 5,000 that gets ignored.",
-  },
-  {
-    title: "7. List Hygiene",
-    body: "A dirty list is the fastest way to burn a domain. Remove duplicates, role-based addresses, and personal providers from B2B lists, then verify the rest — only 'Deliverable' status ever enters the sequence.",
-  },
-  {
-    title: "8. Scaling Safely",
-    body: "Scaling too fast is the most common way operators destroy the infrastructure they just built. Add new domains in batches of 3-5, stagger mailbox warmup by two weeks, and scale by adding mailboxes, not pushing more through one.",
-  },
-  {
-    title: "9. Ongoing Maintenance",
-    body: "Infrastructure health is monitored continuously, not set up once. Reply rate, spam complaint rate, and bounce rate predict a problem weeks before it shows up in your results — the playbook includes the full weekly and monthly cadence.",
-  },
-];
-
-const MYTHS = [
-  {
-    myth: "Buying older domains automatically improves deliverability.",
-    reality:
-      "Domain age helps, but an old domain with no sending history still needs a full warmup cycle. Age alone isn't a shortcut.",
-  },
-  {
-    myth: "Warmup fixes everything.",
-    reality:
-      "Warmup builds sending history. It can't fix bad list quality, broken authentication, or a mismatched audience.",
-  },
-  {
-    myth: "Personalizing every sentence guarantees inbox placement.",
-    reality:
-      "Personalization improves reply rates. It has almost no effect on spam filter scoring, which cares about infrastructure — not copy quality.",
-  },
-  {
-    myth: "More mailboxes always means more deliverability.",
-    reality:
-      "More mailboxes means more sending capacity. If your list and targeting are weak, more mailboxes just damage reputation across more assets, faster.",
-  },
-  {
-    myth: "A high open rate means your infrastructure is healthy.",
-    reality:
-      "Open rate is increasingly unreliable due to Apple Mail Privacy Protection. Reply rate and spam complaint rate are far more honest signals.",
-  },
 ];
 
 const ROLE_OPTIONS = ["Business Owner", "Outbound Agency", "Freelancer", "Other"];
@@ -99,7 +32,6 @@ export default function ColdEmailPlaybook() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [openIdx, setOpenIdx] = useState(0);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -136,7 +68,24 @@ export default function ColdEmailPlaybook() {
   return (
     <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-16 lg:py-20">
       {/* LEAD FORM */}
-      <div className="mx-auto max-w-2xl border border-slate-200 p-8 lg:p-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch border border-slate-200">
+        {/* LEFT — image panel (swap the inner block for a real <img> when ready) */}
+        <div className="relative min-h-[280px] lg:min-h-full bg-[#16294a] grid-lines-dark overflow-hidden">
+          <span className="absolute top-4 left-4 z-10 bg-white px-3 py-1.5 text-[11px] tracking-[0.2em] uppercase text-slate-900">
+            Infrastructure
+          </span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-display italic text-white/10 text-[120px] lg:text-[160px] leading-none select-none">
+              60
+            </span>
+          </div>
+          <span className="absolute bottom-4 right-4 z-10 bg-[#1f3a5f] text-white px-4 py-2.5 text-[12px] font-mono-tight tracking-[0.04em]">
+            9 Chapters · 60-Point Audit
+          </span>
+        </div>
+
+        {/* RIGHT — form */}
+        <div className="p-8 lg:p-12">
         <SectionLabel index="01" label="Get The Playbook" />
             <h2 className="mt-5 text-[24px] lg:text-[28px] tracking-tighter-2 font-semibold text-slate-900">
               Get the full playbook, free
@@ -239,6 +188,7 @@ export default function ColdEmailPlaybook() {
                 </button>
               </div>
             </form>
+        </div>
       </div>
 
       {/* WHAT'S INSIDE — chapters grid */}
@@ -256,79 +206,6 @@ export default function ColdEmailPlaybook() {
               <p className="mt-3 text-[17px] font-semibold text-slate-900 tracking-tighter-2">
                 {ch.title}
               </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* CHAPTER DETAILS — accordion */}
-      <div className="mt-20 lg:mt-28">
-        <SectionLabel index="03" label="Inside Each Chapter" />
-        <h2 className="mt-5 max-w-2xl text-[28px] lg:text-[34px] tracking-tighter-2 font-semibold text-slate-900">
-          What each chapter actually covers
-        </h2>
-        <div className="mt-10 border border-slate-200">
-          {ACCORDION.map((item, i) => {
-            const open = openIdx === i;
-            return (
-              <div
-                key={item.title}
-                className="border-b border-slate-200 last:border-b-0"
-              >
-                <button
-                  onClick={() => setOpenIdx(open ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-                >
-                  <span className="text-[16px] lg:text-[17px] font-semibold text-slate-900">
-                    {item.title}
-                  </span>
-                  <ChevronDown
-                    size={20}
-                    strokeWidth={1.75}
-                    className={`shrink-0 text-slate-400 transition-transform ${
-                      open ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {open && (
-                  <p className="px-6 pb-6 max-w-3xl text-[15px] leading-[1.85] text-slate-600">
-                    {item.body}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* MYTHS */}
-      <div className="mt-20 lg:mt-28">
-        <SectionLabel index="04" label="Myths vs Reality" />
-        <h2 className="mt-5 max-w-2xl text-[28px] lg:text-[34px] tracking-tighter-2 font-semibold text-slate-900">
-          Five myths that quietly burn domains
-        </h2>
-        <div className="mt-10 border border-slate-200">
-          {MYTHS.map((m, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 px-6 py-7 border-b border-slate-200 last:border-b-0"
-            >
-              <div>
-                <span className="text-[11px] tracking-[0.18em] uppercase text-red-500">
-                  Myth
-                </span>
-                <p className="mt-2 text-[15px] leading-[1.7] text-slate-500 line-through decoration-slate-300">
-                  {m.myth}
-                </p>
-              </div>
-              <div>
-                <span className="text-[11px] tracking-[0.18em] uppercase text-[#1f3a5f]">
-                  Reality
-                </span>
-                <p className="mt-2 text-[15px] leading-[1.7] text-slate-800">
-                  {m.reality}
-                </p>
-              </div>
             </div>
           ))}
         </div>
