@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import CTASection from "@/components/site/CTASection";
 import BlueprintGeneratorForm from "@/components/site/BlueprintGeneratorForm";
 import GtmRoiCalculator from "@/components/site/GtmRoiCalculator";
+import ColdEmailPlaybook from "@/components/site/ColdEmailPlaybook";
 
 export default function ResourceDetail({ resource }) {
   return (
@@ -33,6 +34,10 @@ export default function ResourceDetail({ resource }) {
       {resource.type === "calculator" ? (
         <section className="border-b border-slate-200 bg-white pb-8">
           <GtmRoiCalculator />
+        </section>
+      ) : resource.type === "playbook" ? (
+        <section className="border-b border-slate-200 bg-white">
+          <ColdEmailPlaybook />
         </section>
       ) : (
         <section className="border-b border-slate-200 bg-white">
@@ -72,6 +77,16 @@ export default function ResourceDetail({ resource }) {
           buttonLabel="Book a strategy call"
           note="A 30-minute working session. We do not pitch. We diagnose."
           align="left"
+        />
+      ) : resource.type === "playbook" ? (
+        <CTASection
+          testId="resource-detail-cta"
+          eyebrow="Done-for-you outbound"
+          titleLead="Don't want to build this"
+          titleAccent="yourself?"
+          titleBreak={false}
+          body="If you'd rather not spend the next few days setting this up, we'll build and manage your cold email infrastructure end-to-end. No pressure — just a conversation about whether we're the right fit."
+          buttonLabel="Book a Free Strategy Call"
         />
       ) : (
         <CTASection testId="resource-detail-cta" />

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/styles.css">
+  <script src="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/_ds_bundle.js"></script>
+  <script src="./image-slot.js"></script>
+  <style>
+    body{margin:0;background:var(--surface-page);}
+    a{color:var(--text-accent);}
+    a:hover{color:var(--po-navy-900);}
+    .fade{opacity:0;transform:translateY(12px);animation:fadeUp 700ms cubic-bezier(.2,.7,.2,1) forwards;}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+    ::selection{background:var(--po-gold-500);color:var(--po-navy-900);}
+    .bp-wrap > *:last-child .bp-arrow{display:none;}
+  </style>
+</helmet>
+
+<x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Navbar" logo-src="./assets/logo-on-light.png" active="" hint-size="100%,72px"></x-import>
+
+<section style="max-width:var(--container-max);margin:0 auto;padding:96px 40px 96px;">
+  <div style="text-align:center;max-width:760px;margin:0 auto 64px;">
+    <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Badge" tone="gold" hint-size="auto,30px">Free Resource · Outbound Infrastructure</x-import>
+    <h1 style="margin:28px 0 0;font-family:var(--font-sans);font-weight:600;font-size:56px;line-height:var(--leading-tight);letter-spacing:var(--tracking-tightest);color:var(--text-primary);">
+      Most cold campaigns don't fail on copy. They fail on <span style="font-family: var(--font-display); font-style: italic; color: var(--po-gold-600); width: 272px; height: 79px; font-size: 60px; font-weight: 400;">infrastructure</span></h1>
+    <p style="margin:24px auto 0;max-width:560px;font-size:17px;line-height:var(--leading-relaxed);color:var(--text-muted);">
+      The Cold Email Infrastructure Playbook is the exact process we run before a single cold email is sent — from buying domains to monitoring reputation months later. Nine chapters, one blueprint, zero guesswork.
+    </p>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:stretch;">
+    <div style="position:relative;width:100%;height:0;padding-top:125%;border:1px solid var(--border-subtle);">
+      <image-slot id="hero-arch" shape="rect" placeholder="Drop a grayscale architectural photo" style="position:absolute;inset:0;width:100%;height:100%;filter:grayscale(1);"></image-slot>
+      <span style="position:absolute;top:16px;left:16px;background:var(--po-white);border:1px solid var(--border-subtle);padding:6px 14px;font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-primary);">Infrastructure</span>
+      <span style="position:absolute;bottom:16px;right:16px;background:var(--brand-primary);color:var(--text-inverse);padding:10px 16px;font-size:12px;font-family:var(--font-mono);letter-spacing:var(--tracking-wide);">9 Chapters · 60-Point Audit</span>
+    </div>
+    <div id="get-playbook" style="border:1px solid var(--border-subtle);padding:40px;display:flex;flex-direction:column;justify-content:center;">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:24px 0;">
+          <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Badge" tone="gold" hint-size="auto,30px">Request Received</x-import>
+          <h2 style="margin:28px 0 0;font-size:28px;font-weight:600;letter-spacing:var(--tracking-tight);color:var(--text-primary);">You're all set.</h2>
+          <p style="margin:20px auto 0;max-width:420px;font-size:15px;line-height:var(--leading-relaxed);color:var(--text-muted);">
+            We've sent the Cold Email Infrastructure Playbook to <span style="color:var(--text-primary);font-weight:500;">{{ formState.email }}</span>. Check your inbox — and your spam folder, just in case it landed there.
+          </p>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="01" label="Get The Playbook" hint-size="auto,24px"></x-import>
+          <h2 style="margin:20px 0 12px;font-size:26px;font-weight:600;letter-spacing:var(--tracking-tight);color:var(--text-primary);">
+            Get the full playbook, free
+          </h2>
+          <p style="margin:0 0 32px;font-size:15px;line-height:var(--leading-relaxed);color:var(--text-muted);">
+            All nine chapters, the complete setup checklists, DNS record values, the warmup schedule, and the 60-point infrastructure audit — sent straight to your inbox.
+          </p>
+          <form onSubmit="{{ handleSubmit }}" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 32px;">
+            <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Input" label="Full Name" placeholder="Jordan Smith" value="{{ formState.name }}" onChange="{{ onNameChange }}" required="{{ true }}" hint-size="100%,60px"></x-import>
+            <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Input" label="Work Email" type="email" placeholder="jordan@company.com" value="{{ formState.email }}" onChange="{{ onEmailChange }}" required="{{ true }}" hint-size="100%,60px"></x-import>
+            <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Input" label="Phone (optional)" type="tel" placeholder="+1 332 290 3120" value="{{ formState.phone }}" onChange="{{ onPhoneChange }}" hint-size="100%,60px"></x-import>
+            <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Input" label="Company Name" placeholder="Acme Outbound" value="{{ formState.company }}" onChange="{{ onCompanyChange }}" required="{{ true }}" hint-size="100%,60px"></x-import>
+            <div style="grid-column:1 / -1;">
+              <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Input" as="select" label="What best describes you?" options="{{ roleOptions }}" value="{{ formState.role }}" onChange="{{ onRoleChange }}" required="{{ true }}" hint-size="100%,60px"></x-import>
+            </div>
+            <div style="grid-column:1 / -1;margin-top:8px;">
+              <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Button" variant="primary" size="lg" hint-size="auto,58px">Get the Playbook</x-import>
+            </div>
+          </form>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--surface-soft);padding:96px 40px;">
+  <div style="max-width:var(--container-max);margin:0 auto;">
+    <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="01" label="What's Inside" hint-size="auto,24px"></x-import>
+    <h2 style="margin:20px 0 40px;font-size:34px;font-weight:600;letter-spacing:var(--tracking-tight);color:var(--text-primary);max-width:640px;">
+      A complete, chapter-by-chapter build order
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle);">
+      <sc-for list="{{ chapters }}" as="ch" hint-placeholder-count="9">
+        <div style="background:var(--surface-page);padding:32px;">
+          <span style="font-size:11px;letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--text-gold);font-variant-numeric:tabular-nums;">Chapter {{ ch.num }}</span>
+          <p style="margin:12px 0 0;font-size:17px;font-weight:600;color:var(--text-primary);letter-spacing:var(--tracking-tight);">{{ ch.title }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section style="padding:96px 40px;">
+  <div style="max-width:var(--container-max);margin:0 auto;">
+    <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.CTABanner" eyebrow="Don't want to build this" accent="yourself?" body="If you'd rather not spend the next few days setting this up, we'll build and manage your cold email infrastructure end-to-end. No pressure — just a conversation about whether we're the right fit." button-label="Book a Free Strategy Call" hint-size="100%,240px"></x-import>
+  </div>
+</section>
+
+<x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Footer" logo-src="./assets/logo-on-dark.png" hint-size="100%,300px"></x-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    submitted: false,
+    formState: { name: "", email: "", phone: "", company: "", role: "" },
+  };
+
+  chapters = [
+    { num: "01", title: "Building Your Infrastructure" },
+    { num: "02", title: "Authentication" },
+    { num: "03", title: "Mailbox Configuration" },
+    { num: "04", title: "Warmup" },
+    { num: "05", title: "Launch Readiness" },
+    { num: "06", title: "Audience Fit" },
+    { num: "07", title: "List Hygiene" },
+    { num: "08", title: "Scaling Safely" },
+    { num: "09", title: "Ongoing Maintenance" },
+  ];
+
+  blueprint = ["Buy Domain", "Configure DNS", "Create Mailboxes", "Authenticate", "Warm Up", "Verify Reputation", "Clean List", "Launch", "Monitor", "Scale"];
+
+  accordionItems = [
+    { title: "1. Building Your Infrastructure", body: "Your domain reputation determines whether providers trust your emails. Buy dedicated sending domains — never your root domain — move DNS to Cloudflare, and age new domains 3-5 days minimum (2 weeks is better) before warmup begins." },
+    { title: "2. Authentication", body: "SPF, DKIM, and DMARC prove to inbox providers that you are who you say you are. Miss any one of the three and even a perfectly warmed-up mailbox lands in spam. The full record values for Google Workspace and Microsoft 365 are inside." },
+    { title: "3. Mailbox Configuration", body: "Each mailbox is its own sending identity with its own reputation. Use Google Workspace or Microsoft 365 only, cap at 3 mailboxes per domain, and give every mailbox a complete profile and photo before it sends a single email." },
+    { title: "4. Warmup", body: "A brand new mailbox has no sending history, and providers treat unknown senders with suspicion. Warmup builds that history gradually — and should keep running quietly in the background even at full campaign volume, indefinitely." },
+    { title: "5. Launch Readiness", body: "Your last checkpoint before real prospects see your emails. Mail-Tester score of 8/10 or above, clean blacklist checks, and natural variation in subject lines and openers — not spintax, which modern filters detect easily." },
+    { title: "6. Audience Fit", body: "Inbox providers reward engagement — opens, replies, time spent reading. A tightly-targeted list of 500 contacts that actually reply protects your reputation far better than a loose list of 5,000 that gets ignored." },
+    { title: "7. List Hygiene", body: "A dirty list is the fastest way to burn a domain. Remove duplicates, role-based addresses, and personal providers from B2B lists, then verify the rest — only 'Deliverable' status ever enters the sequence." },
+    { title: "8. Scaling Safely", body: "Scaling too fast is the most common way operators destroy the infrastructure they just built. Add new domains in batches of 3-5, stagger mailbox warmup by two weeks, and scale by adding mailboxes, not pushing more through one." },
+    { title: "9. Ongoing Maintenance", body: "Infrastructure health is monitored continuously, not set up once. Reply rate, spam complaint rate, and bounce rate predict a problem weeks before it shows up in your results — the playbook includes the full weekly and monthly cadence." },
+  ];
+
+  myths = [
+    { myth: "Buying older domains automatically improves deliverability.", reality: "Domain age helps, but an old domain with no sending history still needs a full warmup cycle. Age alone isn't a shortcut." },
+    { myth: "Warmup fixes everything.", reality: "Warmup builds sending history. It can't fix bad list quality, broken authentication, or a mismatched audience." },
+    { myth: "Personalizing every sentence guarantees inbox placement.", reality: "Personalization improves reply rates. It has almost no effect on spam filter scoring, which cares about infrastructure — not copy quality." },
+    { myth: "More mailboxes always means more deliverability.", reality: "More mailboxes means more sending capacity. If your list and targeting are weak, more mailboxes just damage reputation across more assets, faster." },
+    { myth: "A high open rate means your infrastructure is healthy.", reality: "Open rate is increasingly unreliable due to Apple Mail Privacy Protection. Reply rate and spam complaint rate are far more honest signals." },
+  ];
+
+  roleOptions = ["Business Owner", "Outbound Agency", "Freelancer", "Other"];
+
+  scrollToForm = () => {
+    const el = document.getElementById("get-playbook");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  onField = (key) => (e) => {
+    const val = e && e.target ? e.target.value : e;
+    this.setState((s) => ({ formState: { ...s.formState, [key]: val } }));
+  };
+  onNameChange = this.onField("name");
+  onEmailChange = this.onField("email");
+  onPhoneChange = this.onField("phone");
+  onCompanyChange = this.onField("company");
+  onRoleChange = this.onField("role");
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const f = this.state.formState;
+    if (!f.name || !f.email || !f.company || !f.role) return;
+    this.setState({ submitted: true });
+  };
+
+  renderVals() {
+    return {
+      chapters: this.chapters,
+      blueprint: this.blueprint,
+      accordionItems: this.accordionItems,
+      myths: this.myths,
+      roleOptions: this.roleOptions,
+      formState: this.state.formState,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      scrollToForm: this.scrollToForm,
+      onNameChange: this.onNameChange,
+      onEmailChange: this.onEmailChange,
+      onPhoneChange: this.onPhoneChange,
+      onCompanyChange: this.onCompanyChange,
+      onRoleChange: this.onRoleChange,
+      handleSubmit: this.handleSubmit,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

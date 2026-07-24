@@ -6,7 +6,6 @@ import {
   Loader2,
   ExternalLink,
   RefreshCw,
-  LogOut,
   ChevronDown,
   ChevronRight,
   Trash2,
@@ -46,7 +45,7 @@ function fmtDate(d) {
   });
 }
 
-export default function AdminDashboard({ adminEmail }) {
+export default function AdminDashboard() {
   const router = useRouter();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -138,12 +137,6 @@ export default function AdminDashboard({ adminEmail }) {
     }
   };
 
-  const logout = async () => {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin-login");
-    router.refresh();
-  };
-
   const doDelete = async (id) => {
     setDeletingId(id);
     setError("");
@@ -176,26 +169,14 @@ export default function AdminDashboard({ adminEmail }) {
           <h1 className="mt-3 text-[32px] lg:text-[42px] tracking-tighter-2 font-semibold text-slate-900">
             Blueprint submissions
           </h1>
-          <p className="mt-2 text-[14px] text-slate-500">
-            Signed in as {adminEmail}
-          </p>
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={load}
-            className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-[12px] tracking-[0.08em] uppercase text-slate-600 hover:border-[#1f3a5f] hover:text-[#1f3a5f] transition-colors"
-          >
-            <RefreshCw size={14} strokeWidth={1.75} />
-            Refresh
-          </button>
-          <button
-            onClick={logout}
-            className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-[12px] tracking-[0.08em] uppercase text-slate-600 hover:border-red-400 hover:text-red-600 transition-colors"
-          >
-            <LogOut size={14} strokeWidth={1.75} />
-            Log out
-          </button>
-        </div>
+        <button
+          onClick={load}
+          className="inline-flex items-center gap-2 border border-slate-200 px-4 py-2.5 text-[12px] tracking-[0.08em] uppercase text-slate-600 hover:border-[#1f3a5f] hover:text-[#1f3a5f] transition-colors"
+        >
+          <RefreshCw size={14} strokeWidth={1.75} />
+          Refresh
+        </button>
       </div>
 
       {error && (

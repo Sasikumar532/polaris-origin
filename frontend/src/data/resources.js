@@ -1,4 +1,4 @@
-import { FileText, Calculator } from "lucide-react";
+import { FileText, Calculator, Mail } from "lucide-react";
 
 // Single source of truth for the Resources list and each detail page.
 export const RESOURCES = [
@@ -19,6 +19,15 @@ export const RESOURCES = [
     excerpt:
       "Model your outbound engine end to end — infrastructure, spend, funnel conversion and client economics. Change any input and every figure recalculates instantly.",
     readingTime: "Interactive tool",
+  },
+  {
+    slug: "cold-email-infrastructure-playbook",
+    icon: Mail,
+    type: "playbook",
+    title: "Cold Email Infrastructure Playbook",
+    excerpt:
+      "The exact process we run before a single cold email is sent — from buying domains to monitoring reputation months later. Nine chapters, one blueprint, zero guesswork.",
+    readingTime: "Free download",
   },
 ];
 
