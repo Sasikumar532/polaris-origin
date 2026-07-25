@@ -414,12 +414,12 @@ export default function GtmRoiCalculator() {
           {/* totals strip */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-200 border border-slate-200 border-t-0">
             <div className="bg-white px-10 py-7">
-              <div className="text-[11px] tracking-[0.2em] uppercase text-slate-600 mb-2.5">Software total / mo</div>
-              <div style={{ fontFamily: MONO, fontSize: 24 }}>{v.softwareTotal}</div>
-            </div>
-            <div className="bg-white px-10 py-7">
               <div className="text-[11px] tracking-[0.2em] uppercase text-slate-600 mb-2.5">Variable total / mo</div>
               <div style={{ fontFamily: MONO, fontSize: 24 }}>{v.variableTotal}</div>
+            </div>
+            <div className="bg-white px-10 py-7">
+              <div className="text-[11px] tracking-[0.2em] uppercase text-slate-600 mb-2.5">Software total / mo</div>
+              <div style={{ fontFamily: MONO, fontSize: 24 }}>{v.softwareTotal}</div>
             </div>
             <div className="px-10 py-7" style={{ background: "#1f3a5f" }}>
               <div className="text-[11px] tracking-[0.2em] uppercase mb-2.5" style={{ color: "rgba(255,255,255,.72)" }}>Total monthly spend</div>
