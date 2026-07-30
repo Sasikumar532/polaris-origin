@@ -2,12 +2,18 @@ import { connectDb } from "@/lib/mongoose";
 import Booking from "@/models/Booking";
 
 // Cal.com's `responses` fields are usually plain strings, but the booking
-// form can also send them as { label, value } objects — unwrap either shape
-// into a plain string so downstream .toLowerCase()/.trim() calls never crash.
+// form can also send them as { label, value } objects, or — for name fields
+// specifically — { value: { firstName, lastName } }. Unwrap any of these
+// shapes into a plain string so downstream .toLowerCase()/.trim() never crash.
 function asString(v) {
   if (v == null) return "";
   if (typeof v === "string") return v;
-  if (typeof v === "object" && "value" in v) return asString(v.value);
+  if (typeof v === "object") {
+    if ("value" in v) return asString(v.value);
+    if ("firstName" in v || "lastName" in v) {
+      return [v.firstName, v.lastName].filter(Boolean).join(" ").trim();
+    }
+  }
   return String(v);
 }
 
@@ -94,9 +100,12 @@ export async function upsertBookingFromCal(rawBody) {
   const bookingId = data.bookingId || data.id || null;
   const title = data.title || data.eventTitle || "Strategy Call";
 
+  // attendees[].name is Cal.com's canonical display name and is reliably a
+  // plain string; prefer it over `responses.name`, whose shape varies by
+  // booking-form configuration (plain string vs { firstName, lastName }).
   const name =
-    asString(data.responses?.name) ||
     asString(data.attendees?.[0]?.name) ||
+    asString(data.responses?.name) ||
     asString(data.name) ||
     "Attendee";
 
@@ -123,7 +132,9 @@ export async function upsertBookingFromCal(rawBody) {
     "| startTime:", startTime,
     "| meetingLink:", meetingLink || "(none found)",
     "| rawLocation:", data.location,
-    "| videoCallData:", JSON.stringify(data.videoCallData || null)
+    "| videoCallData:", JSON.stringify(data.videoCallData || null),
+    "| rawAttendeeName:", JSON.stringify(data.attendees?.[0]?.name ?? null),
+    "| rawResponsesName:", JSON.stringify(data.responses?.name ?? null)
   );
 
   const cancelReason = data.cancellationReason || data.rejectionReason || "";
