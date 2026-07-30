@@ -1,4 +1,4 @@
-import connectDB from "@/lib/mongoose";
+import { connectDb } from "@/lib/mongoose";
 import Booking from "@/models/Booking";
 
 function extractCompany(data, email) {
@@ -23,7 +23,7 @@ function extractCompany(data, email) {
 }
 
 export async function upsertBookingFromCal(rawBody) {
-  await connectDB();
+  await connectDb();
 
   const data = rawBody.payload || rawBody;
   const triggerEvent = rawBody.triggerEvent || rawBody.event || "BOOKING_CREATED";
@@ -137,11 +137,11 @@ export async function upsertBookingFromCal(rawBody) {
 }
 
 export async function getBookingsList(limit = 100) {
-  await connectDB();
+  await connectDb();
   return await Booking.find().sort({ startTime: -1 }).limit(limit).lean();
 }
 
 export async function deleteBookingById(id) {
-  await connectDB();
+  await connectDb();
   return await Booking.findByIdAndDelete(id);
 }
