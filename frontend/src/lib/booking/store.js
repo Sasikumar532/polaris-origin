@@ -73,7 +73,6 @@ export async function upsertBookingFromCal(rawBody) {
   const triggerEvent = rawBody.triggerEvent || rawBody.event || "BOOKING_CREATED";
 
   if (!HANDLED_TRIGGERS.has(triggerEvent)) {
-    console.log("[booking/store] skipping unhandled trigger:", triggerEvent); // eslint-disable-line no-console
     return null;
   }
 
@@ -86,12 +85,6 @@ export async function upsertBookingFromCal(rawBody) {
       data.eventTypeId ?? data.eventType?.id ?? ""
     );
     if (incomingEventTypeId && incomingEventTypeId !== String(wantedEventTypeId)) {
-      console.log( // eslint-disable-line no-console
-        "[booking/store] skipping — eventTypeId",
-        incomingEventTypeId,
-        "does not match CAL_EVENT_TYPE_ID",
-        wantedEventTypeId
-      );
       return null;
     }
   }
@@ -122,20 +115,6 @@ export async function upsertBookingFromCal(rawBody) {
   const startTime = data.startTime || data.start_time || data.start;
   const endTime = data.endTime || data.end_time || data.end || null;
   const meetingLink = extractMeetingLink(data);
-
-  console.log( // eslint-disable-line no-console
-    "[booking/store] parsed —",
-    "uid:", uid,
-    "| name:", name,
-    "| email:", email,
-    "| company:", company,
-    "| startTime:", startTime,
-    "| meetingLink:", meetingLink || "(none found)",
-    "| rawLocation:", data.location,
-    "| videoCallData:", JSON.stringify(data.videoCallData || null),
-    "| rawAttendeeName:", JSON.stringify(data.attendees?.[0]?.name ?? null),
-    "| rawResponsesName:", JSON.stringify(data.responses?.name ?? null)
-  );
 
   const cancelReason = data.cancellationReason || data.rejectionReason || "";
 
