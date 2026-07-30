@@ -9,15 +9,15 @@ export async function POST(req) {
     const secret = process.env.CAL_WEBHOOK_SECRET;
 
     if (secret) {
+      // With a secret configured, a request MUST carry a matching signature —
+      // a missing header is rejected too, not silently allowed through.
       const signature = req.headers.get("x-cal-signature-256");
-      if (signature) {
-        const hmac = crypto
-          .createHmac("sha256", secret)
-          .update(rawBodyText)
-          .digest("hex");
-        if (hmac !== signature) {
-          return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
-        }
+      const hmac = crypto
+        .createHmac("sha256", secret)
+        .update(rawBodyText)
+        .digest("hex");
+      if (!signature || hmac !== signature) {
+        return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
       }
     }
 
