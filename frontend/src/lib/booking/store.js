@@ -22,11 +22,41 @@ function extractCompany(data, email) {
   return "your company";
 }
 
+// Cal.com's `location` field is often a non-URL placeholder like
+// "integrations:google:meet" — the real join link usually lives in one of
+// several other fields depending on the video integration. Check the
+// specific fields first and only fall back to `location` if it's an actual URL.
+function extractMeetingLink(data) {
+  const isUrl = (v) => typeof v === "string" && /^https?:\/\//i.test(v.trim());
+  const candidates = [
+    data.videoCallData?.url,
+    data.metadata?.videoCallUrl,
+    data.metadata?.hangoutLink,
+    data.additionalInformation?.hangoutLink,
+    data.location,
+    data.meetingUrl,
+  ];
+  return candidates.find(isUrl) || "";
+}
+
+// The Cal.com webhook is subscribed account-wide with every trigger type
+// enabled (payments, requests, etc.), but we only act on these three — any
+// other trigger (e.g. BOOKING_PAID) is ignored rather than treated as a create.
+const HANDLED_TRIGGERS = new Set([
+  "BOOKING_CREATED",
+  "BOOKING_CANCELLED",
+  "BOOKING_RESCHEDULED",
+]);
+
 export async function upsertBookingFromCal(rawBody) {
   await connectDb();
 
   const data = rawBody.payload || rawBody;
   const triggerEvent = rawBody.triggerEvent || rawBody.event || "BOOKING_CREATED";
+
+  if (!HANDLED_TRIGGERS.has(triggerEvent)) {
+    return null;
+  }
 
   // Optional scoping: if CAL_EVENT_TYPE_ID is set, ignore webhooks from any
   // other Cal.com event type (relevant if the webhook is attached account-wide
@@ -62,12 +92,7 @@ export async function upsertBookingFromCal(rawBody) {
 
   const startTime = data.startTime || data.start_time || data.start;
   const endTime = data.endTime || data.end_time || data.end || null;
-  const meetingLink =
-    data.location ||
-    data.videoCallData?.url ||
-    data.meetingUrl ||
-    data.metadata?.videoCallUrl ||
-    "";
+  const meetingLink = extractMeetingLink(data);
 
   const cancelReason = data.cancellationReason || data.rejectionReason || "";
 
