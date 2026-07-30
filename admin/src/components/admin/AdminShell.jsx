@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FileText, Mail, LogOut } from "lucide-react";
+import { FileText, Mail, Calendar, LogOut } from "lucide-react";
 
 const NAV = [
   { href: "/admin", label: "Blueprint submissions", icon: FileText },
   { href: "/admin/playbook", label: "Playbook leads", icon: Mail },
+  { href: "/admin/bookings", label: "Cal.com Bookings", icon: Calendar },
 ];
 
 export default function AdminShell({ adminEmail, children }) {

@@ -217,3 +217,177 @@ If you'd rather not build this yourself, just reply and we can talk about settin
     return false;
   }
 }
+
+export function formatMeetingDay(dateObj) {
+  const d = new Date(dateObj);
+  if (isNaN(d.getTime())) return "our scheduled day";
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const dayName = days[d.getDay()];
+  const monthName = months[d.getMonth()];
+  const dayNum = d.getDate();
+  let suffix = "th";
+  if (dayNum % 10 === 1 && dayNum !== 11) suffix = "st";
+  else if (dayNum % 10 === 2 && dayNum !== 12) suffix = "nd";
+  else if (dayNum % 10 === 3 && dayNum !== 13) suffix = "rd";
+  return `${dayName}, ${monthName} ${dayNum}${suffix}`;
+}
+
+function getCloserName() {
+  return process.env.CLOSER_NAME || "Lakshan Kannan";
+}
+
+// Email 2: 2 or 3 Days before the call
+export async function sendBookingReminderEmail2(booking) {
+  const from = playbookFrom();
+  const firstName = String(booking.name || "there").split(" ")[0];
+  const dayStr = formatMeetingDay(booking.startTime);
+  const company = booking.company || "your company";
+  const closerName = getCloserName();
+
+  const text = `Hi ${firstName},
+
+Just a quick note before our conversation on ${dayStr}. I've already started looking into ${company} and putting together a few ideas I'd like to walk you through.
+
+Rather than spending the call talking about ourselves, I'd rather spend it talking about your business. We'll look at things like:
+• Whether your current positioning is attracting the right buyers
+• Opportunities to generate more qualified meetings through outbound
+• Messaging angles I think would resonate with your ideal customers
+• Where I'd focus first if I were responsible for your outbound GTM
+
+My goal is simple: I want you to leave the meeting with at least a few actionable ideas, regardless of whether we ever work together.
+
+Looking forward to it.
+
+${closerName}`;
+
+  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
+    <p>Hi ${esc(firstName)},</p>
+    <p>Just a quick note before our conversation on <strong>${esc(dayStr)}</strong>. I've already started looking into <strong>${esc(company)}</strong> and putting together a few ideas I'd like to walk you through.</p>
+    <p>Rather than spending the call talking about ourselves, I'd rather spend it talking about your business. We'll look at things like:</p>
+    <ul style="padding-left:20px;margin:12px 0">
+      <li>Whether your current positioning is attracting the right buyers</li>
+      <li>Opportunities to generate more qualified meetings through outbound</li>
+      <li>Messaging angles I think would resonate with your ideal customers</li>
+      <li>Where I'd focus first if I were responsible for your outbound GTM</li>
+    </ul>
+    <p>My goal is simple: I want you to leave the meeting with at least a few actionable ideas, regardless of whether we ever work together.</p>
+    <p>Looking forward to it.</p>
+    <p style="color:#334155;font-weight:600;margin-top:16px">${esc(closerName)}</p>
+  </div>`;
+
+  try {
+    const t = getPlaybookTransporter();
+    await t.sendMail({
+      from,
+      to: booking.email,
+      subject: "here’s what you can look forward to",
+      text,
+      html,
+    });
+    return true;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Booking Reminder Email 2 failed:", err?.message || err);
+    return false;
+  }
+}
+
+// Email 3: 24 Hours Before
+export async function sendBookingReminderEmail3(booking) {
+  const from = playbookFrom();
+  const firstName = String(booking.name || "there").split(" ")[0];
+  const company = booking.company || "your company";
+  const closerName = getCloserName();
+
+  const text = `Hi ${firstName},
+
+Looking forward to speaking tomorrow. I've reserved time specifically to prepare for our conversation, so I want to make sure we get as much value out of the meeting as possible.
+
+During our call we'll review:
+✓ The custom outbound GTM blueprint I prepared
+✓ Where I think ${company} has the biggest growth opportunities
+✓ The fastest wins I'd prioritize first
+✓ Any questions you have around outbound, deliverability, targeting, or messaging
+
+One thing that would help: Come with your biggest outbound challenge or goal. That'll let us spend more time on what's most valuable to you.
+
+See you tomorrow.
+
+${closerName}`;
+
+  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
+    <p>Hi ${esc(firstName)},</p>
+    <p>Looking forward to speaking tomorrow. I've reserved time specifically to prepare for our conversation, so I want to make sure we get as much value out of the meeting as possible.</p>
+    <p>During our call we'll review:</p>
+    <ul style="list-style-type:none;padding-left:0;margin:12px 0">
+      <li style="margin-bottom:6px">✓ The custom outbound GTM blueprint I prepared</li>
+      <li style="margin-bottom:6px">✓ Where I think <strong>${esc(company)}</strong> has the biggest growth opportunities</li>
+      <li style="margin-bottom:6px">✓ The fastest wins I'd prioritize first</li>
+      <li style="margin-bottom:6px">✓ Any questions you have around outbound, deliverability, targeting, or messaging</li>
+    </ul>
+    <p>One thing that would help: Come with your biggest outbound challenge or goal. That'll let us spend more time on what's most valuable to you.</p>
+    <p>See you tomorrow.</p>
+    <p style="color:#334155;font-weight:600;margin-top:16px">${esc(closerName)}</p>
+  </div>`;
+
+  try {
+    const t = getPlaybookTransporter();
+    await t.sendMail({
+      from,
+      to: booking.email,
+      subject: "ready for tomorrow?",
+      text,
+      html,
+    });
+    return true;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Booking Reminder Email 3 failed:", err?.message || err);
+    return false;
+  }
+}
+
+// Email 4: 2 Hours Before
+export async function sendBookingReminderEmail4(booking) {
+  const from = playbookFrom();
+  const firstName = String(booking.name || "there").split(" ")[0];
+  const meetingLink = booking.meetingLink || "your calendar invitation";
+  const closerName = getCloserName();
+
+  const text = `Hi ${firstName},
+
+Just a quick reminder that we're meeting in about two hours. Here's your meeting link: ${meetingLink}
+
+I've finished preparing your outbound GTM blueprint and I'm looking forward to walking you through it.
+
+See you soon.
+
+${closerName}`;
+
+  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
+    <p>Hi ${esc(firstName)},</p>
+    <p>Just a quick reminder that we're meeting in about two hours. Here's your meeting link:</p>
+    <p style="margin:16px 0"><a href="${esc(meetingLink)}" style="display:inline-block;padding:10px 20px;background-color:#16294a;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:600">${esc(meetingLink)}</a></p>
+    <p>I've finished preparing your outbound GTM blueprint and I'm looking forward to walking you through it.</p>
+    <p>See you soon.</p>
+    <p style="color:#334155;font-weight:600;margin-top:16px">${esc(closerName)}</p>
+  </div>`;
+
+  try {
+    const t = getPlaybookTransporter();
+    await t.sendMail({
+      from,
+      to: booking.email,
+      subject: "see you shortly",
+      text,
+      html,
+    });
+    return true;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Booking Reminder Email 4 failed:", err?.message || err);
+    return false;
+  }
+}
+
