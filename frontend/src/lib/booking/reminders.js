@@ -26,6 +26,13 @@ export async function processPendingReminders() {
   };
 
   for (const booking of bookings) {
+    // Re-check status right before sending — the booking may have been
+    // cancelled after this batch was fetched but before this iteration ran.
+    const current = await Booking.findById(booking._id).select("status").lean();
+    if (!current || current.status !== "BOOKED") {
+      continue;
+    }
+
     const startTime = new Date(booking.startTime);
     const diffHours = (startTime.getTime() - now.getTime()) / (1000 * 60 * 60);
 
