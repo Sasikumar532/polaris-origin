@@ -28,6 +28,19 @@ export async function upsertBookingFromCal(rawBody) {
   const data = rawBody.payload || rawBody;
   const triggerEvent = rawBody.triggerEvent || rawBody.event || "BOOKING_CREATED";
 
+  // Optional scoping: if CAL_EVENT_TYPE_ID is set, ignore webhooks from any
+  // other Cal.com event type (relevant if the webhook is attached account-wide
+  // rather than to this one event's own settings).
+  const wantedEventTypeId = process.env.CAL_EVENT_TYPE_ID;
+  if (wantedEventTypeId) {
+    const incomingEventTypeId = String(
+      data.eventTypeId ?? data.eventType?.id ?? ""
+    );
+    if (incomingEventTypeId && incomingEventTypeId !== String(wantedEventTypeId)) {
+      return null;
+    }
+  }
+
   const uid = String(data.uid || data.bookingId || data.id || `cal_${Date.now()}`);
   const bookingId = data.bookingId || data.id || null;
   const title = data.title || data.eventTitle || "Strategy Call";
