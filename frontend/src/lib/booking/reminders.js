@@ -1,4 +1,4 @@
-import connectDB from "@/lib/mongoose";
+import { connectDb } from "@/lib/mongoose";
 import Booking from "@/models/Booking";
 import {
   sendBookingReminderEmail2,
@@ -7,7 +7,7 @@ import {
 } from "@/lib/email";
 
 export async function processPendingReminders() {
-  await connectDB();
+  await connectDb();
 
   const now = new Date();
   // Look for active bookings with start time in the future or within past 6 hours

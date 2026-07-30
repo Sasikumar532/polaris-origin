@@ -1,12 +1,24 @@
 import { connectDb } from "@/lib/mongoose";
 import Booking from "@/models/Booking";
 
+// Cal.com's `responses` fields are usually plain strings, but the booking
+// form can also send them as { label, value } objects — unwrap either shape
+// into a plain string so downstream .toLowerCase()/.trim() calls never crash.
+function asString(v) {
+  if (v == null) return "";
+  if (typeof v === "string") return v;
+  if (typeof v === "object" && "value" in v) return asString(v.value);
+  return String(v);
+}
+
 function extractCompany(data, email) {
-  if (data.responses?.company) return String(data.responses.company).trim();
-  if (data.responses?.Company) return String(data.responses.Company).trim();
-  if (data.responses?.["company-name"]) return String(data.responses["company-name"]).trim();
-  if (data.responses?.["Company Name"]) return String(data.responses["Company Name"]).trim();
-  if (data.company) return String(data.company).trim();
+  const fromResponses =
+    asString(data.responses?.company) ||
+    asString(data.responses?.Company) ||
+    asString(data.responses?.["company-name"]) ||
+    asString(data.responses?.["Company Name"]);
+  if (fromResponses.trim()) return fromResponses.trim();
+  if (asString(data.company).trim()) return asString(data.company).trim();
 
   // Try to derive from email domain if non-generic
   if (email && email.includes("@")) {
@@ -55,6 +67,7 @@ export async function upsertBookingFromCal(rawBody) {
   const triggerEvent = rawBody.triggerEvent || rawBody.event || "BOOKING_CREATED";
 
   if (!HANDLED_TRIGGERS.has(triggerEvent)) {
+    console.log("[booking/store] skipping unhandled trigger:", triggerEvent); // eslint-disable-line no-console
     return null;
   }
 
@@ -67,6 +80,12 @@ export async function upsertBookingFromCal(rawBody) {
       data.eventTypeId ?? data.eventType?.id ?? ""
     );
     if (incomingEventTypeId && incomingEventTypeId !== String(wantedEventTypeId)) {
+      console.log( // eslint-disable-line no-console
+        "[booking/store] skipping — eventTypeId",
+        incomingEventTypeId,
+        "does not match CAL_EVENT_TYPE_ID",
+        wantedEventTypeId
+      );
       return null;
     }
   }
@@ -76,23 +95,36 @@ export async function upsertBookingFromCal(rawBody) {
   const title = data.title || data.eventTitle || "Strategy Call";
 
   const name =
-    data.responses?.name ||
-    data.attendees?.[0]?.name ||
-    data.name ||
+    asString(data.responses?.name) ||
+    asString(data.attendees?.[0]?.name) ||
+    asString(data.name) ||
     "Attendee";
 
-  const email = (
-    data.responses?.email ||
-    data.attendees?.[0]?.email ||
-    data.email ||
-    ""
-  ).toLowerCase().trim();
+  const email = asString(
+    asString(data.responses?.email) ||
+      asString(data.attendees?.[0]?.email) ||
+      asString(data.email)
+  )
+    .toLowerCase()
+    .trim();
 
   const company = extractCompany(data, email);
 
   const startTime = data.startTime || data.start_time || data.start;
   const endTime = data.endTime || data.end_time || data.end || null;
   const meetingLink = extractMeetingLink(data);
+
+  console.log( // eslint-disable-line no-console
+    "[booking/store] parsed —",
+    "uid:", uid,
+    "| name:", name,
+    "| email:", email,
+    "| company:", company,
+    "| startTime:", startTime,
+    "| meetingLink:", meetingLink || "(none found)",
+    "| rawLocation:", data.location,
+    "| videoCallData:", JSON.stringify(data.videoCallData || null)
+  );
 
   const cancelReason = data.cancellationReason || data.rejectionReason || "";
 
