@@ -282,13 +282,16 @@ export async function sendBookingConfirmationEmail(booking) {
   const dayStr = formatMeetingDay(booking.startTime);
   const timeStr = formatMeetingTime(booking.startTime, booking.attendeeTimeZone);
   const calendarLink = buildCalendarLink(booking);
+  const meetingLink = booking.meetingLink || "the link in your calendar invite";
   const closerName = getCloserName();
 
   const text = `Hey ${firstName}, you're locked in for ${dayStr} at ${timeStr}.
 
 One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.
 
-Link: ${calendarLink}
+Invite link: ${calendarLink}
+
+Meeting link: ${meetingLink}
 
 What you can expect: We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.
 
@@ -298,7 +301,8 @@ ${closerName}`;
   const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
     <p>Hey ${esc(firstName)}, you're locked in for <strong>${esc(dayStr)}</strong> at <strong>${esc(timeStr)}</strong>.</p>
     <p>One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.</p>
-    <p>Link: <a href="${esc(calendarLink)}" style="color:#1f3a5f">${esc(calendarLink)}</a></p>
+    <p>Invite link: <a href="${esc(calendarLink)}" style="color:#1f3a5f">${esc(calendarLink)}</a></p>
+    <p>Meeting link: <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a></p>
     <p><strong>What you can expect:</strong> We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.</p>
     <p>See you then,</p>
     <p style="color:#0f172a;font-weight:600;margin-top:4px">${esc(closerName)}</p>
@@ -402,9 +406,15 @@ ${closerName}`;
 // 4. Reminder 2 — 2 hours before (all branches).
 export async function sendBookingReminder2Email(booking) {
   const from = playbookFrom();
+  const calendarLink = buildCalendarLink(booking);
+  const meetingLink = booking.meetingLink || "the link in your calendar invite";
   const closerName = getCloserName();
 
   const text = `Looking forward to the call in a couple hours.
+
+Invite link: ${calendarLink}
+
+Meeting link: ${meetingLink}
 
 If something came up, just reply and I'll send new times.
 
@@ -412,6 +422,8 @@ ${closerName}`;
 
   const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
     <p>Looking forward to the call in a couple hours.</p>
+    <p>Invite link: <a href="${esc(calendarLink)}" style="color:#1f3a5f">${esc(calendarLink)}</a></p>
+    <p>Meeting link: <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a></p>
     <p>If something came up, just reply and I'll send new times.</p>
     <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
   </div>`;
