@@ -247,8 +247,10 @@ const BRAND_BG_SOFT = "#f5f6f8";
 const BRAND_CREAM = "#fdfaf3";
 const BRAND_CREAM_BORDER = "#e3d5b3";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://polarisorigin.com";
-// The light/white logo variant (same one the site's dark Footer uses), hosted
-// from /public so email clients can load it from a stable HTTPS URL.
+// The full-color logo (navy "POLARIS" + gold "ORIGIN" + gold mark), hosted
+// from /public so email clients can load it from a stable HTTPS URL. It has
+// dark navy text, so it sits on a white card rather than directly on the
+// navy header band — otherwise "POLARIS" would blend into the background.
 const LOGO_URL = `${SITE_URL}/polaris-origin-logo.png`;
 
 // Shared branded shell every booking email renders inside: navy header with
@@ -257,8 +259,10 @@ function emailShell({ heading, bodyHtml }) {
   return `<div style="background:${BRAND_BG_SOFT};padding:32px 16px;font-family:Arial,Helvetica,sans-serif;">
     <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;border:1px solid ${BRAND_LINE};">
       <div style="background:${BRAND_NAVY};padding:28px 32px;text-align:center;">
-        <img src="${LOGO_URL}" alt="Polaris Origin" width="180" style="display:block;margin:0 auto;height:auto;max-width:180px;" />
-        <div style="margin-top:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.62);">
+        <div style="display:inline-block;background:#ffffff;border-radius:10px;padding:14px 22px;">
+          <img src="${LOGO_URL}" alt="Polaris Origin" width="180" style="display:block;height:auto;max-width:180px;" />
+        </div>
+        <div style="margin-top:14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.62);">
           Outbound GTM &amp; RevOps
         </div>
       </div>
