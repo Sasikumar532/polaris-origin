@@ -237,6 +237,66 @@ function getCloserName() {
   return process.env.CLOSER_NAME || "Lakshan";
 }
 
+// Polaris Origin brand palette (matches the site's design tokens).
+const BRAND_NAVY = "#16294a";
+const BRAND_NAVY_LIGHT = "#1f3a5f";
+const BRAND_GOLD = "#d4af37";
+const BRAND_INK = "#0f172a";
+const BRAND_LINE = "#e6e8ec";
+const BRAND_BG_SOFT = "#f5f6f8";
+const BRAND_CREAM = "#fdfaf3";
+const BRAND_CREAM_BORDER = "#e3d5b3";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://polarisorigin.com";
+// The light/white logo variant (same one the site's dark Footer uses), hosted
+// from /public so email clients can load it from a stable HTTPS URL.
+const LOGO_URL = `${SITE_URL}/polaris-origin-logo.png`;
+
+// Shared branded shell every booking email renders inside: navy header with
+// the wordmark, a white card for the message body, and a footer bar.
+function emailShell({ heading, bodyHtml }) {
+  return `<div style="background:${BRAND_BG_SOFT};padding:32px 16px;font-family:Arial,Helvetica,sans-serif;">
+    <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;border:1px solid ${BRAND_LINE};">
+      <div style="background:${BRAND_NAVY};padding:28px 32px;text-align:center;">
+        <img src="${LOGO_URL}" alt="Polaris Origin" width="180" style="display:block;margin:0 auto;height:auto;max-width:180px;" />
+        <div style="margin-top:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,.62);">
+          Outbound GTM &amp; RevOps
+        </div>
+      </div>
+      <div style="padding:32px;font-size:14px;line-height:1.7;color:${BRAND_INK};">
+        ${heading ? `<h1 style="margin:0 0 16px;font-size:20px;font-weight:700;color:${BRAND_INK};">${heading}</h1>` : ""}
+        ${bodyHtml}
+      </div>
+      <div style="background:${BRAND_BG_SOFT};padding:16px 32px;text-align:center;border-top:1px solid ${BRAND_LINE};">
+        <span style="font-size:11px;color:#94a3b8;">© ${new Date().getFullYear()} Polaris Origin. All rights reserved.</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+// A highlighted cream/gold box for key facts (day, time, etc.) — same visual
+// role as the reference's credentials box, restyled to the site's palette.
+function infoBox(rows) {
+  const rowsHtml = rows
+    .map(
+      ([label, valueHtml], i) => `<div style="${i > 0 ? "margin-top:12px;" : ""}">
+        <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#9c8449;margin-bottom:3px;">${esc(label)}</div>
+        <div style="font-size:15px;color:${BRAND_INK};font-weight:600;">${valueHtml}</div>
+      </div>`
+    )
+    .join("");
+  return `<div style="background:${BRAND_CREAM};border:1px solid ${BRAND_CREAM_BORDER};border-radius:6px;padding:16px 20px;margin:20px 0;">${rowsHtml}</div>`;
+}
+
+function ctaButton(label, href, variant = "primary") {
+  const styles =
+    variant === "primary"
+      ? `background:${BRAND_NAVY_LIGHT};color:#ffffff;border:1px solid ${BRAND_NAVY_LIGHT};`
+      : `background:#ffffff;color:${BRAND_NAVY_LIGHT};border:1px solid ${BRAND_NAVY_LIGHT};`;
+  return `<div style="text-align:center;margin:10px 0;">
+    <a href="${esc(href)}" style="display:inline-block;${styles}text-decoration:none;font-weight:600;font-size:13px;letter-spacing:0.04em;text-transform:uppercase;padding:13px 30px;border-radius:6px;">${esc(label)}</a>
+  </div>`;
+}
+
 // e.g. "3:45 PM GMT+5:30" in the attendee's own timezone when known.
 export function formatMeetingTime(dateObj, timeZone) {
   const d = new Date(dateObj);
@@ -298,15 +358,20 @@ What you can expect: We'll go over your existing outbound setup, and design a sy
 See you then,
 ${closerName}`;
 
-  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
-    <p>Hey ${esc(firstName)}, you're locked in for <strong>${esc(dayStr)}</strong> at <strong>${esc(timeStr)}</strong>.</p>
-    <p>One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.</p>
-    <p>Invite link: <a href="${esc(calendarLink)}" style="color:#1f3a5f">${esc(calendarLink)}</a></p>
-    <p>Meeting link: <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a></p>
-    <p><strong>What you can expect:</strong> We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.</p>
-    <p>See you then,</p>
-    <p style="color:#0f172a;font-weight:600;margin-top:4px">${esc(closerName)}</p>
-  </div>`;
+  const html = emailShell({
+    heading: `You're locked in, ${esc(firstName)}! 🎉`,
+    bodyHtml: `
+      ${infoBox([
+        ["Day", esc(dayStr)],
+        ["Time", esc(timeStr)],
+      ])}
+      <p>One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.</p>
+      ${ctaButton("Add to Calendar", calendarLink, "primary")}
+      ${ctaButton("Meeting Link", meetingLink, "secondary")}
+      <p style="margin-top:20px;"><strong>What you can expect:</strong> We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.</p>
+      <p style="margin-top:20px;margin-bottom:0;">See you then,<br/><span style="font-weight:600;">${esc(closerName)}</span></p>
+    `,
+  });
 
   try {
     const t = getPlaybookTransporter();
@@ -341,13 +406,16 @@ Come with a rough sense of your best clients. We'll do the rest on the call.
 
 ${closerName}`;
 
-  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
-    <p>We're not just talking on <strong>${esc(dayStr)}</strong>.</p>
-    <p>We're building your ICP live, then pulling 10 real companies that match it.</p>
-    <p>You walk away with a working list either way, whether we end up working together or not.</p>
-    <p>Come with a rough sense of your best clients. We'll do the rest on the call.</p>
-    <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
-  </div>`;
+  const html = emailShell({
+    heading: `Here's what we're building`,
+    bodyHtml: `
+      <p>We're not just talking on <strong>${esc(dayStr)}</strong>.</p>
+      <p>We're building your ICP live, then pulling 10 real companies that match it.</p>
+      <p>You walk away with a working list either way, whether we end up working together or not.</p>
+      <p>Come with a rough sense of your best clients. We'll do the rest on the call.</p>
+      <p style="margin-top:20px;margin-bottom:0;"><span style="font-weight:600;">${esc(closerName)}</span></p>
+    `,
+  });
 
   try {
     const t = getPlaybookTransporter();
@@ -380,11 +448,14 @@ The link is ${meetingLink}.
 
 ${closerName}`;
 
-  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
-    <p>Reminder: we're on at <strong>${esc(timeStr)}, ${esc(dayStr)}</strong>.</p>
-    <p>The link is <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a>.</p>
-    <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
-  </div>`;
+  const html = emailShell({
+    heading: `24 hours to go`,
+    bodyHtml: `
+      <p>Reminder: we're on at <strong>${esc(timeStr)}, ${esc(dayStr)}</strong>.</p>
+      ${ctaButton("Join Meeting", meetingLink, "primary")}
+      <p style="margin-top:20px;margin-bottom:0;"><span style="font-weight:600;">${esc(closerName)}</span></p>
+    `,
+  });
 
   try {
     const t = getPlaybookTransporter();
@@ -420,13 +491,16 @@ If something came up, just reply and I'll send new times.
 
 ${closerName}`;
 
-  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
-    <p>Looking forward to the call in a couple hours.</p>
-    <p>Invite link: <a href="${esc(calendarLink)}" style="color:#1f3a5f">${esc(calendarLink)}</a></p>
-    <p>Meeting link: <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a></p>
-    <p>If something came up, just reply and I'll send new times.</p>
-    <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
-  </div>`;
+  const html = emailShell({
+    heading: `See you in 2 hours`,
+    bodyHtml: `
+      <p>Looking forward to the call in a couple hours.</p>
+      ${ctaButton("Add to Calendar", calendarLink, "secondary")}
+      ${ctaButton("Join Meeting", meetingLink, "primary")}
+      <p style="margin-top:20px;">If something came up, just reply and I'll send new times.</p>
+      <p style="margin-top:20px;margin-bottom:0;"><span style="font-weight:600;">${esc(closerName)}</span></p>
+    `,
+  });
 
   try {
     const t = getPlaybookTransporter();
