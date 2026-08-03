@@ -201,11 +201,15 @@ export async function upsertBookingFromCal(rawBody) {
     return { booking: updated, isNewBooking: false };
   }
 
-  const isNewBooking = !existing;
   const hoursUntilMeeting = (new Date(startTime).getTime() - Date.now()) / 3600000;
 
-  // BOOKING_CREATED (or a duplicate/idempotent delivery of the same one)
-  const booking = await Booking.findOneAndUpdate(
+  // BOOKING_CREATED (or a duplicate/idempotent delivery of the same one).
+  // Cal.com can fire the same creation event twice in close succession, so
+  // "is this new" must come from the atomic upsert itself (includeResultMetadata),
+  // not from a separate findOne beforehand — otherwise two concurrent requests
+  // can both see "doesn't exist yet" and both conclude they're the new one,
+  // sending the confirmation email twice for one booking.
+  const result = await Booking.findOneAndUpdate(
     { uid },
     {
       $setOnInsert: {
@@ -231,8 +235,10 @@ export async function upsertBookingFromCal(rawBody) {
         rawPayload: rawBody,
       },
     },
-    { upsert: true, new: true }
+    { upsert: true, new: true, includeResultMetadata: true }
   );
+  const booking = result.value;
+  const isNewBooking = Boolean(result.lastErrorObject?.upserted);
   return { booking, isNewBooking };
 }
 

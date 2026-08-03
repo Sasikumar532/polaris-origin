@@ -234,7 +234,7 @@ export function formatMeetingDay(dateObj) {
 }
 
 function getCloserName() {
-  return process.env.CLOSER_NAME || "Lakshan Kannan";
+  return process.env.CLOSER_NAME || "Lakshan";
 }
 
 // e.g. "3:45 PM GMT+5:30" in the attendee's own timezone when known.
@@ -261,11 +261,14 @@ export async function sendBookingConfirmationEmail(booking) {
   const firstName = String(booking.name || "there").split(" ")[0];
   const dayStr = formatMeetingDay(booking.startTime);
   const timeStr = formatMeetingTime(booking.startTime, booking.attendeeTimeZone);
+  const meetingLink = booking.meetingLink || "the link in your calendar invite";
   const closerName = getCloserName();
 
   const text = `Hey ${firstName}, you're locked in for ${dayStr} at ${timeStr}.
 
 One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.
+
+Link: ${meetingLink}
 
 What you can expect: We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.
 
@@ -275,6 +278,7 @@ ${closerName}`;
   const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
     <p>Hey ${esc(firstName)}, you're locked in for <strong>${esc(dayStr)}</strong> at <strong>${esc(timeStr)}</strong>.</p>
     <p>One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.</p>
+    <p>Link: <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a></p>
     <p><strong>What you can expect:</strong> We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.</p>
     <p>See you then,</p>
     <p style="color:#334155;font-weight:600;margin-top:4px">${esc(closerName)}</p>
