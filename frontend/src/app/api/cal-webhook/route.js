@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { upsertBookingFromCal } from "@/lib/booking/store";
+import { upsertBookingFromCal, markConfirmationSent } from "@/lib/booking/store";
 import { processPendingReminders } from "@/lib/booking/reminders";
+import { sendBookingConfirmationEmail } from "@/lib/email";
 
 export async function POST(req) {
   try {
@@ -24,7 +25,18 @@ export async function POST(req) {
     const body = JSON.parse(rawBodyText || "{}");
 
     // Save/update booking in DB
-    const booking = await upsertBookingFromCal(body);
+    const result = await upsertBookingFromCal(body);
+    const booking = result?.booking;
+
+    // New booking: send the immediate confirmation (fire-and-forget).
+    if (result?.isNewBooking && booking) {
+      sendBookingConfirmationEmail(booking)
+        .then((sent) => (sent ? markConfirmationSent(booking._id) : null))
+        .catch((err) =>
+          // eslint-disable-next-line no-console
+          console.error("[cal-webhook] Confirmation email error:", err?.message || err)
+        );
+    }
 
     // Fire-and-forget check for any pending reminders
     processPendingReminders().catch((err) =>

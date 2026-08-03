@@ -127,37 +127,18 @@ export default function BookingsTable({ initialBookings = [] }) {
                       )}
                     </td>
                     <td className="px-5 py-4 whitespace-nowrap text-[12px]">
+                      {b.reminderBranch && (
+                        <div className="mb-1.5 inline-block px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-semibold tracking-wide">
+                          BRANCH {b.reminderBranch}
+                        </div>
+                      )}
                       <div className="space-y-1">
-                        <div className="flex items-center gap-1.5">
-                          {b.reminders?.email2Sent ? (
-                            <CheckCircle2 size={13} className="text-emerald-600" />
-                          ) : (
-                            <Clock size={13} className="text-slate-400" />
-                          )}
-                          <span className={b.reminders?.email2Sent ? "text-emerald-800 font-medium" : "text-slate-500"}>
-                            2-3d Reminder
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          {b.reminders?.email3Sent ? (
-                            <CheckCircle2 size={13} className="text-emerald-600" />
-                          ) : (
-                            <Clock size={13} className="text-slate-400" />
-                          )}
-                          <span className={b.reminders?.email3Sent ? "text-emerald-800 font-medium" : "text-slate-500"}>
-                            24h Reminder
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          {b.reminders?.email4Sent ? (
-                            <CheckCircle2 size={13} className="text-emerald-600" />
-                          ) : (
-                            <Clock size={13} className="text-slate-400" />
-                          )}
-                          <span className={b.reminders?.email4Sent ? "text-emerald-800 font-medium" : "text-slate-500"}>
-                            2h Reminder
-                          </span>
-                        </div>
+                        <ReminderRow label="Confirmation" sent={b.reminders?.confirmationSent} />
+                        <ReminderRow label="Value" sent={b.reminders?.valueSent} />
+                        {(b.reminderBranch === "A" || b.reminderBranch === "B") && (
+                          <ReminderRow label="Reminder 1 (24h)" sent={b.reminders?.reminder1Sent} />
+                        )}
+                        <ReminderRow label="Reminder 2 (2h)" sent={b.reminders?.reminder2Sent} />
                       </div>
                     </td>
                     <td className="px-5 py-4 whitespace-nowrap">
@@ -191,6 +172,21 @@ export default function BookingsTable({ initialBookings = [] }) {
           </table>
         </div>
       </div>
+    </div>
+  );
+}
+
+function ReminderRow({ label, sent }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      {sent ? (
+        <CheckCircle2 size={13} className="text-emerald-600" />
+      ) : (
+        <Clock size={13} className="text-slate-400" />
+      )}
+      <span className={sent ? "text-emerald-800 font-medium" : "text-slate-500"}>
+        {label}
+      </span>
     </div>
   );
 }

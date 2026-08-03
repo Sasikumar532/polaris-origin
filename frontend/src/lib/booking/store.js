@@ -66,6 +66,25 @@ const HANDLED_TRIGGERS = new Set([
   "BOOKING_RESCHEDULED",
 ]);
 
+// Which follow-up track a booking goes on, decided once from how much notice
+// exists between booking-time and the meeting. See lib/booking/reminders.js
+// for what each branch actually sends.
+function computeReminderBranch(hoursUntilMeeting) {
+  if (hoursUntilMeeting > 96) return "A";
+  if (hoursUntilMeeting >= 72) return "B";
+  if (hoursUntilMeeting >= 48) return "C";
+  return "D";
+}
+
+const RESET_FOLLOWUP_REMINDERS = {
+  "reminders.valueSent": false,
+  "reminders.valueSentAt": null,
+  "reminders.reminder1Sent": false,
+  "reminders.reminder1SentAt": null,
+  "reminders.reminder2Sent": false,
+  "reminders.reminder2SentAt": null,
+};
+
 export async function upsertBookingFromCal(rawBody) {
   await connectDb();
 
@@ -115,6 +134,9 @@ export async function upsertBookingFromCal(rawBody) {
   const startTime = data.startTime || data.start_time || data.start;
   const endTime = data.endTime || data.end_time || data.end || null;
   const meetingLink = extractMeetingLink(data);
+  const attendeeTimeZone = asString(
+    data.attendees?.[0]?.timeZone || data.responses?.timeZone
+  ).trim();
 
   const cancelReason = data.cancellationReason || data.rejectionReason || "";
 
@@ -132,20 +154,30 @@ export async function upsertBookingFromCal(rawBody) {
     );
     if (!updated && email && startTime) {
       // Fallback matching by email + startTime if uid wasn't matched
-      return await Booking.findOneAndUpdate(
+      const fallback = await Booking.findOneAndUpdate(
         { email, startTime: new Date(startTime) },
         { $set: { status: "CANCELLED", cancelReason, rawPayload: rawBody } },
         { new: true }
       );
+      return { booking: fallback, isNewBooking: false };
     }
-    return updated;
+    return { booking: updated, isNewBooking: false };
   }
 
   // Handle BOOKING_CREATED or BOOKING_RESCHEDULED
   const existing = await Booking.findOne({ uid });
+  const isReschedule =
+    triggerEvent === "BOOKING_RESCHEDULED" ||
+    (existing && existing.startTime?.getTime() !== new Date(startTime).getTime());
 
-  if (triggerEvent === "BOOKING_RESCHEDULED" || (existing && existing.startTime?.getTime() !== new Date(startTime).getTime())) {
-    return await Booking.findOneAndUpdate(
+  if (isReschedule) {
+    // Recompute the branch against the new meeting time; reset the
+    // time-relative follow-ups so they fire again on the new schedule.
+    // Confirmation already went out for this booking, so it isn't resent.
+    const hoursUntilMeeting = (new Date(startTime).getTime() - Date.now()) / 3600000;
+    const reminderBranch = computeReminderBranch(hoursUntilMeeting);
+
+    const updated = await Booking.findOneAndUpdate(
       { uid },
       {
         $set: {
@@ -156,20 +188,24 @@ export async function upsertBookingFromCal(rawBody) {
           startTime: new Date(startTime),
           endTime: endTime ? new Date(endTime) : null,
           meetingLink,
+          attendeeTimeZone,
           status: "BOOKED",
           cancelReason: "",
-          "reminders.email2Sent": false,
-          "reminders.email3Sent": false,
-          "reminders.email4Sent": false,
+          reminderBranch,
+          ...RESET_FOLLOWUP_REMINDERS,
           rawPayload: rawBody,
         },
       },
       { upsert: true, new: true }
     );
+    return { booking: updated, isNewBooking: false };
   }
 
-  // BOOKING_CREATED or standard upsert
-  return await Booking.findOneAndUpdate(
+  const isNewBooking = !existing;
+  const hoursUntilMeeting = (new Date(startTime).getTime() - Date.now()) / 3600000;
+
+  // BOOKING_CREATED (or a duplicate/idempotent delivery of the same one)
+  const booking = await Booking.findOneAndUpdate(
     { uid },
     {
       $setOnInsert: {
@@ -181,11 +217,14 @@ export async function upsertBookingFromCal(rawBody) {
         startTime: new Date(startTime),
         endTime: endTime ? new Date(endTime) : null,
         meetingLink,
+        attendeeTimeZone,
         status: "BOOKED",
+        reminderBranch: computeReminderBranch(hoursUntilMeeting),
         reminders: {
-          email2Sent: false,
-          email3Sent: false,
-          email4Sent: false,
+          confirmationSent: false,
+          valueSent: false,
+          reminder1Sent: false,
+          reminder2Sent: false,
         },
       },
       $set: {
@@ -194,6 +233,15 @@ export async function upsertBookingFromCal(rawBody) {
     },
     { upsert: true, new: true }
   );
+  return { booking, isNewBooking };
+}
+
+export async function markConfirmationSent(id) {
+  await connectDb();
+  await Booking.findByIdAndUpdate(id, {
+    "reminders.confirmationSent": true,
+    "reminders.confirmationSentAt": new Date(),
+  });
 }
 
 export async function getBookingsList(limit = 100) {
