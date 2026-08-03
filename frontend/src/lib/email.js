@@ -255,20 +255,40 @@ export function formatMeetingTime(dateObj, timeZone) {
   }
 }
 
+// A Google Calendar "add event" link, pre-filled with the booking's details.
+// Clicking it opens Calendar directly to add the event — no API key or
+// Cal.com-specific data needed, just the meeting's own time/title/link.
+function buildCalendarLink(booking) {
+  const start = new Date(booking.startTime);
+  if (isNaN(start.getTime())) return "";
+  const end = booking.endTime
+    ? new Date(booking.endTime)
+    : new Date(start.getTime() + 30 * 60000);
+  const fmt = (d) => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: booking.title || "Strategy Call",
+    dates: `${fmt(start)}/${fmt(end)}`,
+    details: booking.meetingLink ? `Join: ${booking.meetingLink}` : "",
+    location: booking.meetingLink || "",
+  });
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
 // 1. Confirmation — sent immediately when a new booking comes in.
 export async function sendBookingConfirmationEmail(booking) {
   const from = playbookFrom();
   const firstName = String(booking.name || "there").split(" ")[0];
   const dayStr = formatMeetingDay(booking.startTime);
   const timeStr = formatMeetingTime(booking.startTime, booking.attendeeTimeZone);
-  const meetingLink = booking.meetingLink || "the link in your calendar invite";
+  const calendarLink = buildCalendarLink(booking);
   const closerName = getCloserName();
 
   const text = `Hey ${firstName}, you're locked in for ${dayStr} at ${timeStr}.
 
 One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.
 
-Link: ${meetingLink}
+Link: ${calendarLink}
 
 What you can expect: We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.
 
@@ -278,10 +298,10 @@ ${closerName}`;
   const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
     <p>Hey ${esc(firstName)}, you're locked in for <strong>${esc(dayStr)}</strong> at <strong>${esc(timeStr)}</strong>.</p>
     <p>One favor: click "Yes" on the calendar invite so it actually sits on your calendar instead of just floating in your inbox.</p>
-    <p>Link: <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a></p>
+    <p>Link: <a href="${esc(calendarLink)}" style="color:#1f3a5f">${esc(calendarLink)}</a></p>
     <p><strong>What you can expect:</strong> We'll go over your existing outbound setup, and design a system live that would get you qualified bookings with increased show-up rates.</p>
     <p>See you then,</p>
-    <p style="color:#334155;font-weight:600;margin-top:4px">${esc(closerName)}</p>
+    <p style="color:#0f172a;font-weight:600;margin-top:4px">${esc(closerName)}</p>
   </div>`;
 
   try {
@@ -322,7 +342,7 @@ ${closerName}`;
     <p>We're building your ICP live, then pulling 10 real companies that match it.</p>
     <p>You walk away with a working list either way, whether we end up working together or not.</p>
     <p>Come with a rough sense of your best clients. We'll do the rest on the call.</p>
-    <p style="color:#334155;font-weight:600;margin-top:16px">${esc(closerName)}</p>
+    <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
   </div>`;
 
   try {
@@ -359,7 +379,7 @@ ${closerName}`;
   const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
     <p>Reminder: we're on at <strong>${esc(timeStr)}, ${esc(dayStr)}</strong>.</p>
     <p>The link is <a href="${esc(meetingLink)}" style="color:#1f3a5f">${esc(meetingLink)}</a>.</p>
-    <p style="color:#334155;font-weight:600;margin-top:16px">${esc(closerName)}</p>
+    <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
   </div>`;
 
   try {
@@ -393,7 +413,7 @@ ${closerName}`;
   const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#0f172a">
     <p>Looking forward to the call in a couple hours.</p>
     <p>If something came up, just reply and I'll send new times.</p>
-    <p style="color:#334155;font-weight:600;margin-top:16px">${esc(closerName)}</p>
+    <p style="color:#0f172a;font-weight:600;margin-top:16px">${esc(closerName)}</p>
   </div>`;
 
   try {
