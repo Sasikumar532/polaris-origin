@@ -21,7 +21,6 @@ const SITEMAP = [
     title: "Operating Regions",
     items: [
       { label: "North America", to: "/contact" },
-      { label: "United Kingdom", to: "/contact" },
       { label: "India", to: "/contact" },
     ],
   },
@@ -31,7 +30,6 @@ const CONTACT_INFO = [
   { label: "partners@polarisorigin.com", href: "mailto:partners@polarisorigin.com" },
   { label: "contact@polarisorigin.com", href: "mailto:contact@polarisorigin.com" },
   { label: "careers@polarisorigin.com", href: "mailto:careers@polarisorigin.com" },
-  { label: "+1 332-290-3120", href: "tel:+13322903120" },
   { label: "+91 87789 31001", href: "tel:+918778931001" },
 ];
 

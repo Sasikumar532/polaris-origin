@@ -20,21 +20,42 @@ const numInput = {
   boxSizing: "border-box",
 };
 
+// Same footprint as numInput, but for fixed (non-editable) values.
+const fixedValue = {
+  width: "100%",
+  border: "1px solid #e2e8f0",
+  borderBottom: "2px solid #cbd5e1",
+  padding: "10px 12px",
+  fontFamily: MONO,
+  fontSize: 20,
+  color: "#64748b",
+  background: "#f5f6f8",
+  boxSizing: "border-box",
+};
+
+const SENDING_DAYS_FIXED = 22;
+
+// Tiered sending-software cost, driven entirely by emails sent per month.
+function sendingSoftwareCost(emailsMonthly) {
+  if (emailsMonthly < 6000) return 39;
+  if (emailsMonthly <= 90000) return 94;
+  if (emailsMonthly <= 150000) return 174;
+  return 379;
+}
+
 const DEFAULTS = {
   leads: "5000",
-  seq: "4",
-  days: "22",
-  sendCost: "94",
+  seq: "3",
   crmCost: "100",
   clay: "0",
-  respRate: 1.5,
-  posRate: 26,
+  respRate: 1,
+  posRate: 20,
   bookRate: 70,
-  showRate: 85,
-  closeRate: 70,
-  upfront: "1498",
-  mrr: "2000",
-  stay: "6",
+  showRate: 80,
+  closeRate: 50,
+  upfront: "5000",
+  mrr: "3500",
+  stay: "3",
   closesOv: [null, null, null, null, null],
 };
 
@@ -110,13 +131,14 @@ export default function GtmRoiCalculator() {
   const v = useMemo(() => {
     const leads = toNum(s.leads);
     const seq = toNum(s.seq);
-    const days = toNum(s.days);
+    const days = SENDING_DAYS_FIXED;
     const emailsMonthly = leads * seq;
     const emailsDaily = days > 0 ? Math.ceil(emailsMonthly / days) : 0;
-    const inboxes = Math.ceil(emailsDaily / 20);
-    const domains = Math.ceil(inboxes / 3);
-    const softwareTotal = toNum(s.sendCost) + toNum(s.crmCost);
-    const inboxCost = inboxes * 4.5;
+    const inboxes = Math.ceil(emailsDaily / 30);
+    const domains = Math.ceil(inboxes / 2);
+    const sendCost = sendingSoftwareCost(emailsMonthly);
+    const softwareTotal = sendCost + toNum(s.crmCost);
+    const inboxCost = inboxes * 3.5;
     const leadCost = 100 * (leads / 2000);
     const variableTotal = inboxCost + toNum(s.clay) + leadCost;
     const domainAnnual = domains * 12;
@@ -226,6 +248,8 @@ export default function GtmRoiCalculator() {
     ];
 
     return {
+      sendCost: fmt(sendCost),
+      sendingDays: days,
       emailsMonthly: int(emailsMonthly),
       emailsDaily: int(emailsDaily),
       inboxes: int(inboxes),
@@ -337,13 +361,18 @@ export default function GtmRoiCalculator() {
                 {[
                   ["Leads reached monthly", "leads"],
                   ["Emails in sequence", "seq"],
-                  ["Sending days in month", "days"],
                 ].map(([label, key]) => (
                   <label key={key} className="block">
                     <span className="block text-[13px] text-slate-600 mb-2">{label}</span>
                     <input type="number" value={s[key]} onChange={set(key)} style={numInput} />
                   </label>
                 ))}
+                <label className="block">
+                  <span className="block text-[13px] text-slate-600 mb-2">
+                    Sending days in month <span className="text-slate-400">(fixed)</span>
+                  </span>
+                  <div style={fixedValue}>{v.sendingDays}</div>
+                </label>
               </div>
             </div>
 
@@ -351,8 +380,13 @@ export default function GtmRoiCalculator() {
             <div className={cellBox}>
               <KindLabel color="#c9a14a">Software spend / month {INPUT_TAG}</KindLabel>
               <div className="flex flex-col gap-6">
+                <label className="block">
+                  <span className="block text-[13px] text-slate-600 mb-2">
+                    Sending software <span className="text-slate-400">(auto, by volume)</span>
+                  </span>
+                  <div style={fixedValue}>{v.sendCost}</div>
+                </label>
                 {[
-                  ["Sending software", "sendCost"],
                   ["CRM + Slack + misc software", "crmCost"],
                   ["Clay (optional)", "clay"],
                 ].map(([label, key]) => (
@@ -393,9 +427,9 @@ export default function GtmRoiCalculator() {
               </div>
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
-                  "20 emails / inbox / day",
-                  "3 inboxes / domain",
-                  "$4.50 / inbox / mo",
+                  "30 emails / inbox / day",
+                  "2 inboxes / domain",
+                  "$3.50 / inbox / mo",
                   "$100 / 2,000 leads",
                   "$12 / domain / yr",
                 ].map((t) => (
