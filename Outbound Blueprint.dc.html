@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/motion.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/styles.css">
+  <script src="_ds/polaris-origin-design-system-bf1e9ec1-edcb-456f-9b9d-276e95677056/_ds_bundle.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body{margin:0;background:var(--surface-page);}
+    a{color:var(--brand-primary);}
+    a:hover{color:var(--brand-primary-hover);}
+    :focus-visible{outline:2px solid var(--brand-accent);outline-offset:3px;}
+    @media (prefers-reduced-motion:reduce){ * { transition:none!important; animation:none!important; } }
+  </style>
+</helmet>
+
+<div ref="{{ containerRef }}" style="background:var(--surface-page);color:var(--text-primary);font-family:var(--font-sans);">
+
+  <nav style="position:fixed;left:28px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:16px;">
+    <sc-for list="{{ navItems }}" as="nav" hint-placeholder-count="7">
+      <a href="{{ nav.href }}" style="display:flex;align-items:center;gap:11px;text-decoration:none;padding:2px 4px;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--po-gold-600);transition:color .15s ease;" style-hover="color:#fff;">
+        <span style="display:block;width:15px;height:1px;background:currentColor;flex-shrink:0;"></span>{{ nav.index }}
+      </a>
+    </sc-for>
+  </nav>
+
+  <div style="background:var(--surface-inverse-deep);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(to right, rgba(201,161,74,.16) 1px, transparent 1px),linear-gradient(to bottom, rgba(201,161,74,.16) 1px, transparent 1px);background-size:56px 56px;"></div>
+    <div style="max-width:1180px;margin:0 auto;padding:80px 40px 88px 92px;position:relative;">
+      <div style="max-width:1040px;margin:0 auto;">
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:56px;">
+          <div style="height:60px;min-width:60px;padding:10px 18px;background:rgba(255,255,255,.04);border:1px dashed var(--po-gold-600);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:var(--font-display);font-style:italic;font-size:18px;color:rgba(255,255,255,.72);letter-spacing:var(--tracking-tight);white-space:nowrap;">﹛ Company name ﹜</span>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:16px;color:rgba(255,255,255,.4);">&#215;</span>
+          <div style="height:60px;padding:8px 16px;background:#fff;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;">
+            <img src="assets/logo-on-light.png" alt="Polaris Origin" style="height:34px;width:auto;display:block;">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start;">
+          <div>
+            <h1 style="font-family:var(--font-sans);font-weight:600;letter-spacing:var(--tracking-tightest);font-size:clamp(34px,4.8vw,58px);line-height:var(--leading-tight);margin:0;color:#fff;">
+              Custom Outbound <span style="font-family:var(--font-display);font-style:italic;font-weight:400;color:var(--po-gold-600);">Action Plan</span>
+            </h1>
+            <p style="color:var(--text-inverse-muted);font-size:16px;line-height:var(--leading-relaxed);max-width:56ch;margin:24px 0 0;">
+              Everything in this page is built from publicly available information about <span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Company name ﹜</span>: your website, your published case studies, your job postings, and public company data. Nothing here came from anywhere you did not put it yourself.
+            </p>
+          </div>
+          <div style="border-left:1px solid rgba(255,255,255,.15);padding-left:32px;display:flex;flex-direction:column;gap:28px;">
+            <div>
+              <div style="font-size:10px;letter-spacing:var(--tracking-widest);text-transform:uppercase;color:var(--po-gold-600);margin-bottom:12px;">Prepared exclusively for</div>
+              <div style="font-size:20px;font-weight:600;letter-spacing:var(--tracking-tight);color:#fff;border-bottom:1px dashed var(--po-gold-600);display:inline-block;">﹛ Name, Title ﹜</div>
+              <div style="font-size:14px;color:var(--text-inverse-muted);margin-top:6px;">﹛ Company name ﹜</div>
+            </div>
+            <div>
+              <div style="font-size:10px;letter-spacing:var(--tracking-widest);text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px;">Prepared by</div>
+              <div style="font-size:16px;font-weight:600;color:#fff;">Polaris Origin</div>
+              <div style="font-size:14px;color:var(--text-inverse-muted);margin-top:6px;">Outbound GTM &amp; RevOps</div>
+            </div>
+            <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-inverse-muted);letter-spacing:.06em;border-bottom:1px dashed var(--po-gold-600);display:inline-block;">﹛ Date ﹜</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="sec-01" data-reveal-id="video" style="{{ videoStyle }};position:relative;">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 40px 0 92px;position:relative;">
+      <div style="max-width:760px;margin:0 auto;position:relative;">
+        <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="01" label="Walkthrough" hint-size="auto,20px"></x-import>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:600;color:var(--text-primary);margin:20px 0 18px;">I recorded a walkthrough of this</h2>
+        <p style="color:var(--text-muted);font-size:18px;line-height:var(--leading-relaxed);max-width:64ch;margin:0 0 32px;">Five minutes on what I found, where the demand in your market is sitting right now, and what I would run first.</p>
+        <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid var(--border-subtle);aspect-ratio:16/9;overflow:hidden;background:#000;">
+            <iframe src="{{ videoUrl }}" allowFullScreen="" title="Walkthrough" style="width:100%;height:100%;border:0;display:block;"></iframe>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noVideo }}" hint-placeholder-val="{{ true }}">
+          <div style="border:1px dashed var(--border-subtle);background:var(--surface-soft);aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+            <i data-lucide="play-circle" style="width:44px;height:44px;color:var(--text-gold);display:inline-block;margin-bottom:18px;"></i>
+            <p style="color:var(--text-muted);font-size:16px;margin:0;">Recording now. You will get an email the moment it is up.</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-02" data-reveal-id="snapshot" style="{{ snapshotStyle }};position:relative;">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 40px 0 92px;position:relative;">
+      <div style="max-width:760px;margin:0 auto;position:relative;">
+        <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="02" label="Source data" hint-size="auto,20px"></x-import>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:600;color:var(--text-primary);margin:20px 0 18px;">What this is built from</h2>
+        <p style="color:var(--text-muted);font-size:18px;line-height:var(--leading-relaxed);max-width:64ch;margin:0;">Before anything else, here is what the public record says about you. If any of this is wrong, everything below it shifts, so it is worth two minutes of your time.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle);margin:36px 0 0;">
+          <sc-for list="{{ snapshotItems }}" as="item" hint-placeholder-count="6">
+            <div style="background:var(--surface-page);padding:24px 22px;">
+              <i data-lucide="{{ item.icon }}" style="width:16px;height:16px;color:var(--text-gold);display:block;margin-bottom:14px;"></i>
+              <div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">{{ item.label }}</div>
+              <div style="font-size:16px;font-weight:500;line-height:1.4;display:inline-block;padding:2px 8px;border-bottom:1px dashed var(--po-gold-600);background:rgba(201,161,74,.08);color:var(--text-muted);">{{ item.value }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-03" data-reveal-id="campaigns" style="{{ campaignsStyle }};position:relative;">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 40px 72px 92px;position:relative;">
+      <div style="max-width:760px;margin:0 auto;position:relative;">
+        <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="03" label="Campaign plan" hint-size="auto,20px"></x-import>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:600;color:var(--text-primary);margin:20px 0 18px;">What I would run, and in what order</h2>
+        <div style="border-left:2px solid var(--po-gold-600);background:var(--surface-soft);padding:22px 28px;">
+          <p style="font-size:15.5px;line-height:var(--leading-relaxed);color:var(--text-muted);margin:0;max-width:66ch;">Every campaign here leads with something useful rather than a call. Lead magnets have been shown to lift reply rates by around 5x, because it nurtures a cold prospect and turns them into a warm prospect who will more likely be open to a call after receiving value upfront, as opposed to just giving a stranger, time on their calendar.</p>
+        </div>
+      </div>
+
+      <div style="max-width:1080px;margin:40px auto 0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle);">
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border-subtle);">
+          <sc-for list="{{ campaigns }}" as="camp" hint-placeholder-count="2">
+            <button onClick="{{ camp.onSelect }}" style="{{ camp.rowStyle }}">
+              <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--po-gold-600);flex-shrink:0;">{{ camp.idx }}</span>
+              <span style="flex:1;font-size:16px;font-weight:500;letter-spacing:var(--tracking-tight);color:var(--text-primary);">{{ camp.name }}</span>
+              <i data-lucide="{{ camp.typeIcon }}" style="width:15px;height:15px;color:var(--text-gold);flex-shrink:0;"></i>
+            </button>
+          </sc-for>
+        </div>
+        <div style="background:var(--surface-soft);padding:36px 40px;">
+          <div style="display:inline-flex;align-items:center;white-space:nowrap;padding:6px 14px;font-size:11px;text-transform:uppercase;letter-spacing:var(--tracking-wider);font-weight:500;border:1px solid;background:{{ selCamp.badgeBg }};color:{{ selCamp.badgeColor }};border-color:{{ selCamp.badgeBg }};margin-bottom:22px;">{{ selCamp.typeLabel }}</div>
+          <div style="display:grid;border-top:1px solid var(--border-subtle);">
+            <div style="display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border-subtle);">
+              <div style="display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);"><i data-lucide="user" style="width:13px;height:13px;color:var(--text-gold);"></i>Who (ICP)</div>
+              <div style="font-size:15.5px;line-height:1.6;color:var(--text-primary);">{{ selCamp.who }}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border-subtle);">
+              <div style="display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);"><i data-lucide="search" style="width:13px;height:13px;color:var(--text-gold);"></i>Where (Source)</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                <sc-for list="{{ selCamp.sourcing }}" as="src" hint-placeholder-count="3">
+                  <code style="font-family:var(--font-mono);font-size:13px;background:var(--surface-page);border:1px solid var(--border-subtle);padding:3px 9px;display:inline-block;">{{ src }}</code>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border-subtle);">
+              <div style="display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);"><i data-lucide="zap" style="width:13px;height:13px;color:var(--text-gold);"></i>Trigger</div>
+              <div style="font-size:15.5px;line-height:1.6;color:var(--text-primary);">{{ selCamp.trigger }}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border-subtle);">
+              <div style="display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);"><i data-lucide="alert-triangle" style="width:13px;height:13px;color:var(--text-gold);"></i>Why they buy now</div>
+              <div style="font-size:15.5px;line-height:1.6;color:var(--text-primary);">{{ selCamp.pain }}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--border-subtle);">
+              <div style="display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);"><i data-lucide="gift" style="width:13px;height:13px;color:var(--text-gold);"></i>Lead magnet</div>
+              <div style="font-size:15.5px;line-height:1.6;color:var(--text-primary);">{{ selCamp.lead_magnet }}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px 0 0;">
+              <div style="display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);"><i data-lucide="arrow-up-right" style="width:13px;height:13px;color:var(--text-gold);"></i>The angle</div>
+              <div style="font-size:15.5px;line-height:1.6;color:var(--text-primary);">{{ selCamp.angle }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-04" data-reveal-id="companies" style="{{ companiesStyle }}">
+    <div style="background:var(--surface-inverse);position:relative;padding:104px 0 112px;overflow:hidden;">
+      <div class="grid-lines-dark" style="position:absolute;inset:0;opacity:.5;"></div>
+      <div style="position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 40px 0 92px;">
+        <div style="max-width:860px;margin:0 auto;">
+          <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="04" label="Live results" tone="light" hint-size="auto,20px"></x-import>
+          <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:600;color:#fff;margin:20px 0 18px;">Your Ideal Customers</h2>
+          <p style="color:var(--text-inverse-muted);font-size:18px;line-height:var(--leading-relaxed);max-width:64ch;margin:0;">These came out of the searches above. Real companies, ranked by how well they fit and how recently their signal fired.</p>
+
+          <div style="margin:40px 0 0;border:1px solid var(--border-subtle-inverse);overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed;">
+              <thead>
+                <tr>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Name</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">LinkedIn</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Email</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Company</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Headcount</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Location</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:left;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Signal</th>
+                  <th style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-inverse-muted);text-align:right;font-weight:500;padding:11px 10px;background:var(--surface-inverse-deep);border-bottom:1px solid var(--border-subtle-inverse);">Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr onClick="{{ toggleRow }}" onKeyDown="{{ toggleRowKey }}" tabIndex="0" style="cursor:pointer;transition:background-color .2s ease;">
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <span style="display:inline-block;padding:2px 8px;border-bottom:1px dashed var(--po-gold-600);background:rgba(255,255,255,.06);color:#fff;font-weight:500;white-space:nowrap;">﹛ Name ﹜</span>
+                      <i data-lucide="{{ expandIcon }}" style="width:13px;height:13px;color:var(--text-gold);flex-shrink:0;"></i>
+                    </div>
+                  </td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);">
+                    <span style="display:inline-flex;align-items:center;gap:6px;"><i data-lucide="external-link" style="width:13px;height:13px;color:var(--text-inverse-muted);"></i><span style="border-bottom:1px dashed var(--po-gold-600);">﹛ LinkedIn profile ﹜</span></span>
+                  </td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);"><span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Email ﹜</span></td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);"><span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Company ﹜</span></td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);"><span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Headcount ﹜</span></td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);"><span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Location ﹜</span></td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);"><span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Signal and how recent ﹜</span></td>
+                  <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);text-align:right;">
+                    <span style="font-family:var(--font-mono);font-size:14px;color:var(--text-gold);border-bottom:1px dashed var(--po-gold-600);">﹛ Score ﹜</span>
+                  </td>
+                </tr>
+                <tr style="{{ detailRowStyle }}">
+                  <td colSpan="8" style="background:rgba(255,255,255,.03);padding:0 16px;">
+                    <div style="padding:24px 0 28px 0;">
+                      <p style="font-size:15px;color:var(--text-inverse-muted);max-width:70ch;margin:0 0 20px;">﹛ What the signal is, what it implies, and why they are worth contacting this month ﹜</p>
+                      <div style="display:grid;gap:12px;max-width:440px;">
+                        <sc-for list="{{ breakdown }}" as="b" hint-placeholder-count="3">
+                          <div style="display:grid;grid-template-columns:140px 1fr 70px;gap:12px;align-items:center;">
+                            <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tracking-wide);text-transform:uppercase;color:var(--text-inverse-muted);">{{ b.label }}</span>
+                            <span style="height:5px;border:1px dashed rgba(201,161,74,.55);display:block;"></span>
+                            <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-inverse-muted);text-align:right;white-space:nowrap;">﹛ Score ﹜ / {{ b.max }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                      <a href="#" style="display:inline-block;margin-top:18px;font-family:var(--font-mono);font-size:11.5px;color:var(--text-gold);text-decoration:none;border-bottom:1px solid rgba(201,161,74,.4);">Source</a>
+                    </div>
+                  </td>
+                </tr>
+                <sc-for list="{{ blurredRows }}" as="br" hint-placeholder-count="5">
+                  <tr>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);">
+                      <sc-if value="{{ br.locked }}" hint-placeholder-val="{{ true }}">
+                        <span style="display:inline-block;color:#fff;font-weight:500;filter:blur(5px);opacity:.55;user-select:none;pointer-events:none;">﹛ Name ﹜</span>
+                      </sc-if>
+                      <sc-if value="{{ br.unlocked }}" hint-placeholder-val="{{ false }}">
+                        <span style="display:inline-block;padding:2px 8px;border-bottom:1px dashed var(--po-gold-600);background:rgba(255,255,255,.06);color:#fff;">﹛ Name ﹜</span>
+                      </sc-if>
+                    </td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);{{ br.cellStyle }}">﹛ LinkedIn profile ﹜</td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);{{ br.cellStyle }}">﹛ Email ﹜</td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);{{ br.cellStyle }}">﹛ Company ﹜</td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);{{ br.cellStyle }}">﹛ Headcount ﹜</td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);{{ br.cellStyle }}">﹛ Location ﹜</td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);color:var(--text-inverse-muted);{{ br.cellStyle }}">﹛ Signal ﹜</td>
+                    <td style="padding:10px;border-bottom:1px solid var(--border-subtle-inverse);text-align:right;">
+                      <sc-if value="{{ br.locked }}" hint-placeholder-val="{{ true }}">
+                        <i data-lucide="lock" style="width:14px;height:14px;color:var(--text-inverse-muted);opacity:.6;"></i>
+                      </sc-if>
+                      <sc-if value="{{ br.unlocked }}" hint-placeholder-val="{{ false }}">
+                        <span style="border-bottom:1px dashed var(--po-gold-600);color:var(--text-inverse-muted);">﹛ Score ﹜</span>
+                      </sc-if>
+                    </td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+
+          <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.Card" padding="lg" inverse="{{ true }}" style="margin-top:26px;" hint-size="100%,auto">
+            <h3 style="font-size:20px;margin:0 0 11px;font-weight:600;color:#fff;">The rest of this list gets built with you, live</h3>
+            <p style="color:var(--text-inverse-muted);font-size:16px;line-height:var(--leading-relaxed);margin:0;max-width:64ch;">With your inputs, we'll pull leads live on call and built you a small list for you to check quality. You can keep it at the end of the call.</p>
+            <div style="margin-top:26px;display:flex;justify-content:center;">
+              <button style="display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--po-gold-600);color:var(--po-navy-900);border:1px solid var(--po-gold-600);padding:18px 32px;font-family:var(--font-sans);font-size:13px;letter-spacing:var(--tracking-wider);text-transform:uppercase;cursor:pointer;transition:background-color .2s ease,color .2s ease;" style-hover="background-color:#fff;color:var(--po-navy-900);"><strong style="font-weight:700;">Book Your Lead Sourcing Session &#8594;</strong></button>
+            </div>
+          </x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-05" data-reveal-id="volume" style="{{ volumeStyle }};position:relative;">
+    <div style="max-width:1180px;margin:0 auto;padding:96px 40px 0 92px;position:relative;">
+      <div style="max-width:760px;margin:0 auto;position:relative;">
+        <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="05" label="Volume math" hint-size="auto,20px"></x-import>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:600;color:var(--text-primary);margin:20px 0 18px;">How much you need to send</h2>
+        <p style="color:var(--text-muted);font-size:18px;line-height:var(--leading-relaxed);max-width:64ch;margin:0 0 24px;">Your market is roughly <span style="border-bottom:1px dashed var(--po-gold-600);">﹛ TAM ﹜</span> companies. Basic thumbrule is for you to send as much emails as possible, such that you completely contact your TAM within a quarter.</p>
+        <p style="font-size:17px;line-height:var(--leading-relaxed);color:var(--text-muted);max-width:66ch;margin:0 0 18px;">Work on a ninety day cycle. A company with no budget for you in March can have a signed off project by June. Priorities move, people change roles, a competitor misses a deadline, a board asks for something to ship.</p>
+        <p style="font-size:17px;line-height:var(--leading-relaxed);color:var(--text-muted);max-width:66ch;margin:0;">And nobody remembers a cold email they ignored last quarter. When you come back round, it lands like the first one.</p>
+
+        <div style="display:flex;flex-direction:column;align-items:center;margin:40px 0 0;">
+          <sc-for list="{{ funnelStats }}" as="stat" hint-placeholder-count="3">
+            <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+              <div style="width:{{ stat.width }};box-sizing:border-box;border:1px solid var(--border-subtle);background:var(--surface-soft);padding:20px 22px;text-align:center;">
+                <i data-lucide="{{ stat.icon }}" style="width:15px;height:15px;color:var(--text-gold);display:inline-block;margin-bottom:10px;"></i>
+                <div style="font-family:var(--font-display);font-style:italic;font-size:30px;line-height:1;color:var(--text-accent);font-variant-numeric:tabular-nums;">{{ stat.n }}</div>
+                <div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);margin-top:10px;line-height:1.5;">{{ stat.l }}</div>
+              </div>
+              <div style="width:1px;height:18px;background:var(--po-gold-600);opacity:.6;"></div>
+            </div>
+          </sc-for>
+          <i data-lucide="arrow-down" style="width:16px;height:16px;color:var(--po-gold-600);margin-top:-4px;"></i>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle);margin:28px 0 0;">
+          <sc-for list="{{ infraStats }}" as="stat" hint-placeholder-count="3">
+            <div style="background:var(--surface-page);padding:22px 20px;">
+              <i data-lucide="{{ stat.icon }}" style="width:14px;height:14px;color:var(--text-gold);display:block;margin-bottom:10px;"></i>
+              <div style="font-family:var(--font-display);font-style:italic;font-size:24px;line-height:1;color:var(--text-accent);font-variant-numeric:tabular-nums;">{{ stat.n }}</div>
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:var(--tracking-wider);text-transform:uppercase;color:var(--text-muted);margin-top:10px;line-height:1.5;">{{ stat.l }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);margin:20px 0 0;">Based on 25 emails per inbox per day, two inboxes per domain, and one warming inbox held in reserve for every active one so nothing stops when a domain degrades.</p>
+        <div style="margin-top:32px;display:flex;justify-content:center;">
+          <a href="https://polarisorigin.com/resources/outbound-gtm-roi-calculator" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:var(--font-sans);font-weight:700;text-transform:uppercase;letter-spacing:var(--tracking-wide);font-size:13px;color:var(--po-navy-900);background:var(--po-gold-600);border:1px solid var(--po-gold-600);padding:14px 24px;text-decoration:none;transition:background-color .2s ease;" style-hover="background:var(--po-gold-500);border-color:var(--po-gold-500);">
+            <strong style="font-weight:700;">Run your numbers in our free GTM ROI Calculator</strong> <i data-lucide="arrow-right" style="width:15px;height:15px;"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-06" data-reveal-id="system" style="{{ systemStyle }};position:relative;">
+    <sc-if value="{{ showSystemSection }}" hint-placeholder-val="{{ true }}">
+      <div style="max-width:1180px;margin:0 auto;padding:96px 40px 40px 92px;position:relative;">
+        <div style="max-width:760px;margin:0 auto;position:relative;">
+          <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="06" label="The full system" hint-size="auto,20px"></x-import>
+          <h2 style="font-size:clamp(28px,3.4vw,40px);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:600;color:var(--text-primary);margin:20px 0 18px;">Outbound can only do so much</h2>
+          <div style="font-size:18px;line-height:var(--leading-relaxed);color:var(--text-muted);max-width:66ch;">
+            <p style="margin:0 0 18px;">Outbound only works if the rest of your sales setup works.</p>
+            <p style="margin:0;">You must have real sales capability to handle sales calls and convert them.</p>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;justify-content:center;gap:0;flex-wrap:wrap;margin:32px 0;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:140px;">
+              <div style="width:54px;height:54px;border-radius:50%;border:1px solid var(--po-gold-600);display:flex;align-items:center;justify-content:center;"><i data-lucide="mail" style="width:20px;height:20px;color:var(--text-gold);"></i></div>
+              <span style="font-size:13px;font-weight:500;color:var(--text-primary);text-align:center;line-height:1.4;">Outbound<br>emails</span>
+            </div>
+            <i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--text-muted);margin:18px 4px 0;flex-shrink:0;"></i>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:140px;">
+              <div style="width:54px;height:54px;border-radius:50%;border:1px solid var(--po-gold-600);display:flex;align-items:center;justify-content:center;"><i data-lucide="database" style="width:20px;height:20px;color:var(--text-gold);"></i></div>
+              <span style="font-size:13px;font-weight:500;color:var(--text-primary);text-align:center;line-height:1.4;">CRM<br>hygiene</span>
+            </div>
+            <i data-lucide="arrow-right" style="width:16px;height:16px;color:var(--text-muted);margin:18px 4px 0;flex-shrink:0;"></i>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:140px;">
+              <div style="width:54px;height:54px;border-radius:50%;border:1px solid var(--po-gold-600);display:flex;align-items:center;justify-content:center;"><i data-lucide="trending-up" style="width:20px;height:20px;color:var(--text-gold);"></i></div>
+              <span style="font-size:13px;font-weight:500;color:var(--text-primary);text-align:center;line-height:1.4;">GTM<br>Engineering</span>
+            </div>
+          </div>
+
+          <p style="font-family:var(--font-mono);font-size:20px;letter-spacing:var(--tracking-wide);color:var(--text-accent);text-align:center;margin:0 0 32px;">Outbound <span style="color:var(--po-gold-600);">&times;</span> RevOps <span style="color:var(--po-gold-600);">=</span> GTM Engineering</p>
+
+          <div style="font-size:18px;line-height:var(--leading-relaxed);color:var(--text-muted);max-width:66ch;">
+            <p style="margin:0;">Your CRM is where that starts. When records are messy or half filled, you cannot tell which campaign brought in money, which deals went quiet, or where you are losing people. You end up guessing.</p>
+          </div>
+
+          <div style="font-size:18px;line-height:var(--leading-relaxed);color:var(--text-muted);max-width:66ch;margin-top:28px;">
+            <p style="margin:0 0 18px;">Maintaining a CRM with proper hygiene, is the best thing a sales team can have, and tracking the right KPIs and reviewing them regularly is how you can make data backed decisions.</p>
+            <p style="margin:0;">This is also something we do as part of our service. Meanwhile, you still pay only when we get you results - for every meeting where the prospect actually shows up.</p>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+
+  <section id="sec-07" data-reveal-id="cta" style="{{ ctaStyle }}">
+    <div style="background:var(--surface-inverse-deep);position:relative;padding:96px 0 120px;overflow:hidden;">
+      <div class="grid-lines-dark" style="position:absolute;inset:0;opacity:.4;"></div>
+      <div style="position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 40px 0 92px;">
+        <div style="max-width:720px;margin:0 auto;">
+          <x-import component-from-global-scope="PolarisOriginDesignSystem_bf1e9e.SectionLabel" index="07" label="Next step" tone="light" hint-size="auto,20px"></x-import>
+          <h2 style="color:#fff;font-size:clamp(32px,4.2vw,46px);letter-spacing:var(--tracking-tightest);font-weight:600;line-height:var(--leading-tight);margin:20px 0 16px;">Your build session</h2>
+          <p style="color:var(--text-inverse-muted);font-size:18px;line-height:var(--leading-relaxed);max-width:60ch;margin:0;">One call, about forty five minutes. We build your list together while you watch, and you keep what we build.</p>
+
+          <div style="display:grid;gap:14px;margin:30px 0 0;">
+            <sc-for list="{{ keeps }}" as="k" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <i data-lucide="check" style="width:15px;height:15px;color:var(--text-gold);flex-shrink:0;"></i>
+                <span style="font-size:16px;color:#DCE5F2;">{{ k }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:36px;display:flex;justify-content:center;">
+            <button style="display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--po-gold-600);color:var(--po-navy-900);border:1px solid var(--po-gold-600);padding:18px 32px;font-family:var(--font-sans);font-size:13px;letter-spacing:var(--tracking-wider);text-transform:uppercase;cursor:pointer;transition:background-color .2s ease,color .2s ease;" style-hover="background-color:#fff;color:var(--po-navy-900);"><strong style="font-weight:700;">Book Your Lead Sourcing Session &#8594;</strong></button>
+          </div>
+          <p style="color:var(--text-inverse-muted);font-size:14px;margin:22px 0 0;">Nothing is prepared in advance and emailed over. The list is built during the session, which is the only reason it is worth your forty five minutes.</p>
+          <div style="margin-top:56px;padding-top:24px;border-top:1px solid var(--border-subtle-inverse);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:var(--tracking-wide);color:var(--text-inverse-muted);">Polaris Origin&nbsp;&nbsp;&middot;&nbsp;&nbsp;polarisorigin.com</span>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:var(--tracking-wide);color:var(--text-inverse-muted);">Prepared for <span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Company name ﹜</span>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<span style="border-bottom:1px dashed var(--po-gold-600);">﹛ Date ﹜</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;videoUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Behavior&quot;},
+  &quot;lockedRowCount&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 5, &quot;min&quot;: 0, &quot;max&quot;: 5, &quot;step&quot;: 1, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Behavior&quot;},
+  &quot;showSystemSection&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Behavior&quot;}
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.containerRef = React.createRef();
+    this.state = { expandedRow: false, selectedCampaign: 0 };
+    this.toggleRow = this.toggleRow.bind(this);
+    this.toggleRowKey = this.toggleRowKey.bind(this);
+    this.selectCampaign = this.selectCampaign.bind(this);
+  }
+
+  componentDidMount() {
+    var self = this;
+    this._iconTimer = setInterval(function () {
+      if (window.lucide) {
+        window.lucide.createIcons();
+        clearInterval(self._iconTimer);
+        self._iconTimer = null;
+      }
+    }, 60);
+    setTimeout(function () {
+      if (self._iconTimer) { clearInterval(self._iconTimer); self._iconTimer = null; }
+    }, 3000);
+  }
+
+  componentDidUpdate() {
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  componentWillUnmount() {
+    if (this._iconTimer) clearInterval(this._iconTimer);
+  }
+
+  revealStyle() {
+    return { opacity: 1, transform: 'none' };
+  }
+
+  toggleRow() {
+    this.setState(function (s) { return { expandedRow: !s.expandedRow }; });
+  }
+
+  toggleRowKey(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.toggleRow(); }
+  }
+
+  selectCampaign(i) {
+    this.setState({ selectedCampaign: i });
+  }
+
+  renderVals() {
+    var videoUrl = this.props.videoUrl || '';
+    var lockedRowCount = this.props.lockedRowCount != null ? this.props.lockedRowCount : 5;
+    var showSystemSection = this.props.showSystemSection !== false;
+
+    var navItems = [
+      { index: '01', label: 'Walkthrough', href: '#sec-01' },
+      { index: '02', label: 'Source data', href: '#sec-02' },
+      { index: '03', label: 'Campaign plan', href: '#sec-03' },
+      { index: '04', label: 'Your customers', href: '#sec-04' },
+      { index: '05', label: 'Volume math', href: '#sec-05' },
+      { index: '06', label: 'The full system', href: '#sec-06' },
+      { index: '07', label: 'Next step', href: '#sec-07' }
+    ];
+
+    var snapshotItems = [
+      { icon: 'map-pin', label: 'Headquarters', value: '\uFE5B City, State \uFE5C' },
+      { icon: 'users', label: 'Team size', value: '~\uFE5B headcount \uFE5C' },
+      { icon: 'calendar', label: 'Founded', value: '\uFE5B Year \uFE5C' },
+      { icon: 'target', label: 'Focus', value: '\uFE5B What they build \uFE5C' },
+      { icon: 'building-2', label: 'Industries worked with', value: '\uFE5B From their case studies \uFE5C' },
+      { icon: 'trophy', label: 'Signals / Achievements', value: '\uFE5B Signals or achievements, or delete this row \uFE5C' }
+    ];
+
+    var campaignsRaw = [
+      {
+        name: '\uFE5B Campaign name \uFE5C', type: 'signal', typeLabel: 'Signal triggered', typeIcon: 'radio',
+        badgeBg: 'var(--po-gold-600)', badgeColor: 'var(--po-navy-900)',
+        who: '\uFE5B The segment and the titles inside it \uFE5C',
+        sourcing: ['\uFE5B tool and filter \uFE5C', '\uFE5B tool and filter \uFE5C', '\uFE5B tool and filter \uFE5C'],
+        trigger: '\uFE5B The event that puts a company into this campaign \uFE5C',
+        pain: '\uFE5B The specific consequence the trigger creates for them \uFE5C',
+        lead_magnet: '\uFE5B The asset offered in the email, built from public information, produced in minutes not hours \uFE5C',
+        angle: '\uFE5B One line on what the email leads with \uFE5C'
+      },
+      {
+        name: 'Broad volume base', type: 'broad', typeLabel: 'Broad volume', typeIcon: 'users',
+        badgeBg: 'var(--brand-primary)', badgeColor: '#ffffff',
+        who: 'Every decision maker across the segments above',
+        sourcing: ['The searches from the campaigns above', 'Everyone not captured by a live signal', 'Refresh and re-enter every 90 days'],
+        trigger: 'None. This is the base layer.',
+        pain: 'Most companies that will hire you this year are not showing a public signal today. Waiting for one means missing them.',
+        lead_magnet: '\uFE5B A self-serve asset that needs no research, so it can go to everyone \uFE5C',
+        angle: 'Straight value proposition, tightest possible copy, high volume.'
+      }
+    ];
+    var selIdx = this.state.selectedCampaign;
+    var self2 = this;
+    var campaigns = campaignsRaw.map(function (c, i) {
+      var isSel = i === selIdx;
+      return Object.assign({}, c, {
+        idx: String(i + 1).padStart(2, '0'),
+        onSelect: function () { self2.selectCampaign(i); },
+        rowStyle: {
+          boxSizing: 'border-box', width: '100%', display: 'flex', alignItems: 'center', gap: '14px',
+          padding: '18px 20px', border: 'none', cursor: 'pointer', textAlign: 'left', font: 'inherit',
+          background: isSel ? 'rgba(201,161,74,.14)' : 'var(--surface-page)',
+          borderLeft: isSel ? '3px solid var(--po-gold-600)' : '3px solid transparent'
+        }
+      });
+    });
+    var selCamp = campaigns[selIdx] || campaigns[0];
+
+    var breakdown = [
+      { label: 'Decision maker', max: 30 },
+      { label: 'Industry', max: 20 },
+      { label: 'Signal strength', max: 50 }
+    ];
+
+    var blurredRows = [];
+    for (var i = 1; i <= 5; i++) {
+      var locked = i <= lockedRowCount;
+      blurredRows.push({
+        key: i, locked: locked, unlocked: !locked,
+        cellStyle: locked ? 'filter:blur(5px);opacity:.55;user-select:none;pointer-events:none;' : ''
+      });
+    }
+
+    var keeps = [
+      'Your ICP defined properly, with you, on the call',
+      '25 companies matching it, sourced live',
+      'The decision maker at each one, with a verified email address',
+      'The signal that makes each company worth contacting now',
+      'Yours to keep and use, whether you work with us or not'
+    ];
+
+    var funnelStats = [
+      { icon: 'building-2', n: '\uFE5B ~X,000 \uFE5C', l: 'Companies in your market', width: '100%' },
+      { icon: 'calendar-clock', n: '\uFE5B TAM / 3 \uFE5C', l: 'To reach per month', width: '68%' },
+      { icon: 'calendar-days', n: '\uFE5B / 22 \uFE5C', l: 'Per working day', width: '40%' }
+    ];
+    var infraStats = [
+      { icon: 'mail', n: '\uFE5B / 25 \uFE5C', l: 'Sending inboxes' },
+      { icon: 'globe', n: '\uFE5B / 2 \uFE5C', l: 'Domains' },
+      { icon: 'shield-check', n: '\uFE5B same as active \uFE5C', l: 'Inboxes warming in reserve' }
+    ];
+
+    return {
+      containerRef: this.containerRef,
+      navItems: navItems,
+      videoUrl: videoUrl,
+      hasVideo: !!videoUrl,
+      noVideo: !videoUrl,
+      snapshotItems: snapshotItems,
+      campaigns: campaigns,
+      selCamp: selCamp,
+      breakdown: breakdown,
+      blurredRows: blurredRows,
+      toggleRow: this.toggleRow,
+      toggleRowKey: this.toggleRowKey,
+      expandIcon: this.state.expandedRow ? 'minus' : 'plus',
+      detailRowStyle: { display: this.state.expandedRow ? 'table-row' : 'none' },
+      keeps: keeps,
+      funnelStats: funnelStats,
+      infraStats: infraStats,
+      showSystemSection: showSystemSection,
+      videoStyle: this.revealStyle(),
+      snapshotStyle: this.revealStyle(),
+      campaignsStyle: this.revealStyle(),
+      companiesStyle: this.revealStyle(),
+      volumeStyle: this.revealStyle(),
+      systemStyle: this.revealStyle(),
+      ctaStyle: this.revealStyle()
+    };
+  }
+}
+</script>
+</body>
+</html>
